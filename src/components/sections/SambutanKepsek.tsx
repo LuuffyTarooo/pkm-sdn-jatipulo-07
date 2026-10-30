@@ -1,0 +1,215 @@
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+/**
+ * Komponen Sambutan Kepala Sekolah (Beranda)
+ * Direplikasi persis sesuai desain referensi visual:
+ * - Card putih terbingkai rapi di atas latar belakang halus
+ * - Kolom kiri: Potret resmi kepala sekolah (/images/kepala-sekolah/kepalasekolah.svg)
+ *   dengan plat hijau tua di bagian bawah berisi nama dan jabatan
+ * - Kolom kanan:
+ *   - Eyebrow dengan garis horizontal aksen hijau tua
+ *   - Judul utama: "Menyemai Karakter, Merawat Potensi Peserta Didik"
+ *   - Kutipan filosofis miring (italic)
+ *   - 3 kartu pilar (Sekolah Ramah Anak, Karakter Pancasila, Prestasi Nyata)
+ *   - Tombol aksi ganda berdampingan (Profil & Visi Misi Sekolah, Hubungi Satuan Pendidikan)
+ */
+interface SambutanKepsekProps {
+  className?: string;
+  isSubPage?: boolean;
+}
+
+export default function SambutanKepsek({ className = '', isSubPage = false }: SambutanKepsekProps = {}) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <section
+      aria-labelledby="sambutan-title"
+      className={`py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 bg-[#f4f9f6] ${className}`}
+    >
+      <div className="container mx-auto max-w-6xl">
+        {/* Kartu Kontainer Utama */}
+        <div className="bg-white rounded-3xl border border-gray-100/90 shadow-[0_4px_30px_rgba(0,0,0,0.03)] p-6 sm:p-8 lg:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+            
+            {/* Kolom Kiri: Potret Kepala Sekolah (Besar, menyatu pas dengan nama) */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center">
+              <div className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] flex flex-col items-center">
+                {!imgError ? (
+                  <Image
+                    src="/images/kepala-sekolah/kepalasekolah.png"
+                    alt="Dra. Hj. Sri Wahyuni, M.Pd. - Kepala SDN Jatipulo 07 Jakarta Barat"
+                    width={734}
+                    height={791}
+                    priority
+                    className="w-full h-auto object-contain mx-auto drop-shadow-sm block"
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <div className="w-full aspect-[734/791] flex flex-col items-center justify-center text-white p-8 text-center bg-[#084d3e] rounded-2xl">
+                    <div className="w-16 h-16 rounded-full bg-emerald-700/60 flex items-center justify-center mb-3">
+                      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+
+                {/* Nama & Jabatan Tepat Menempel di Bawah Foto (Tanpa Celah Kosong) */}
+                <div className="text-center mt-2.5 sm:mt-3">
+                  <h3 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl text-[#084d3e] leading-tight tracking-tight">
+                    Dra. Hj. Sri Wahyuni, M.Pd.
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-neutral-600 font-medium mt-1">
+                    Kepala SDN Jatipulo 07 Jakarta Barat
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Kolom Kanan: Narasi Sambutan, 3 Pilar & Tombol Aksi (7 Kolom) */}
+            <div className="lg:col-span-7 space-y-5 text-left">
+              
+              {/* Eyebrow Kicker dengan Garis Horizontal */}
+              <div className="flex items-center gap-3">
+                <span className="w-8 sm:w-10 h-[2.5px] bg-[#084d3e] rounded-full" />
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600 font-sans">
+                  KATA SAMBUTAN KEPALA SEKOLAH
+                </span>
+              </div>
+
+              {/* Judul Utama */}
+              <h2
+                id="sambutan-title"
+                className="font-heading text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[#084d3e] leading-[1.2] tracking-tight"
+              >
+                Menyemai Karakter,<br />
+                Merawat Potensi Peserta Didik
+              </h2>
+
+              {/* Kutipan Filosofis */}
+              <p className="italic text-neutral-600 font-sans text-sm sm:text-base leading-relaxed">
+                &ldquo;Pendidikan sejati membentuk pribadi yang berilmu, mandiri, dan berakhlak mulia.&rdquo;
+              </p>
+
+              {/* 3 Kartu Pilar Komitmen Sekolah */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-2">
+                {/* Pilar 1: Sekolah Ramah Anak */}
+                <div className="p-4 rounded-2xl bg-[#f2faf5] text-left flex flex-col justify-between">
+                  <div className="w-8 h-8 rounded-full bg-[#dcfce7] text-[#059669] flex items-center justify-center mb-3">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
+                      Sekolah<br className="hidden sm:inline" /> Ramah Anak
+                    </h4>
+                    <p className="text-[11px] text-neutral-500 font-sans mt-1">
+                      Aman dan nyaman
+                    </p>
+                  </div>
+                </div>
+
+                {/* Pilar 2: Karakter Pancasila */}
+                <div className="p-4 rounded-2xl bg-[#f2faf5] text-left flex flex-col justify-between">
+                  <div className="w-8 h-8 rounded-full bg-[#dcfce7] text-[#059669] flex items-center justify-center mb-3">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
+                      Karakter<br className="hidden sm:inline" /> Pancasila
+                    </h4>
+                    <p className="text-[11px] text-neutral-500 font-sans mt-1">
+                      Berakhlak mulia
+                    </p>
+                  </div>
+                </div>
+
+                {/* Pilar 3: Prestasi Nyata */}
+                <div className="p-4 rounded-2xl bg-[#f2faf5] text-left flex flex-col justify-between">
+                  <div className="w-8 h-8 rounded-full bg-[#dcfce7] text-[#059669] flex items-center justify-center mb-3">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                      <path d="M4 22h16" />
+                      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
+                      Prestasi<br className="hidden sm:inline" /> Nyata
+                    </h4>
+                    <p className="text-[11px] text-neutral-500 font-sans mt-1">
+                      Akademik &amp; non-akademik
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dua Tombol Aksi Berdampingan */}
+              <div className="flex flex-wrap items-center gap-3 pt-3">
+                {!isSubPage ? (
+                  <Link
+                    href="/profil"
+                    className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-[#084d3e] hover:bg-[#064235] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
+                  >
+                    <svg className="w-4 h-4 text-emerald-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    <span>Profil &amp; Visi Misi Sekolah</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                ) : (
+                  <a
+                    href="#visi-misi"
+                    className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-[#084d3e] hover:bg-[#064235] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
+                  >
+                    <svg className="w-4 h-4 text-emerald-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    <span>Visi &amp; Misi Sekolah</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </a>
+                )}
+
+                <Link
+                  href="/hubungi-kami"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-white hover:bg-neutral-50 text-neutral-800 border border-neutral-200 text-xs sm:text-sm font-semibold transition-colors"
+                >
+                  <svg className="w-4 h-4 text-neutral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  <span>Hubungi Satuan Pendidikan</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
