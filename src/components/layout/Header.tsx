@@ -130,14 +130,14 @@ function HeaderNav() {
             />
           </div>
 
-          <span className="font-heading font-bold tracking-tight sm:tracking-wide text-sm sm:text-base lg:text-lg truncate text-white group-hover:text-[#bae6fd] transition-colors duration-200">
+          <span className="font-heading font-bold tracking-tight sm:tracking-wide text-sm sm:text-base lg:text-base xl:text-lg truncate text-white group-hover:text-[#bae6fd] transition-colors duration-200">
             SDN Jatipulo 07 Jakarta
           </span>
         </Link>
 
-        {/* Tengah: Navigasi Desktop */}
+        {/* Tengah: Navigasi Desktop (Mulai dari layar laptop/tablet landscape lg: 1024px+) */}
         <nav
-          className="hidden xl:flex items-center gap-7 text-sm font-normal"
+          className="hidden lg:flex items-center gap-3.5 xl:gap-7 text-[13px] xl:text-sm font-normal"
           aria-label="Navigasi Utama"
         >
           <Link href="/" className={navLinkClass('/')}>
@@ -255,12 +255,12 @@ function HeaderNav() {
         </nav>
 
         {/* Kanan: Tombol Portal Archiva & Mobile Menu */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+        <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
           <Link
             href="/archiva/login"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden sm:inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white ${
+            className={`hidden sm:inline-flex items-center gap-2 text-xs xl:text-sm font-medium px-3.5 py-2 xl:px-5 xl:py-2.5 rounded-full transition-all shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white ${
               isTransparent
                 ? 'bg-white/15 hover:bg-white/25 border border-white/35'
                 : 'bg-[#163d63] hover:bg-[#1d4e78] border border-[#7dd3fc]/35'
@@ -283,8 +283,8 @@ function HeaderNav() {
             </svg>
           </Link>
 
-          {/* Hamburger Mobile Menu */}
-          <div className="xl:hidden shrink-0">
+          {/* Hamburger Mobile Menu (Khusus layar < 1024px seperti HP & tablet potret) */}
+          <div className="lg:hidden shrink-0">
             <MobileMenu isLightMode={false} />
           </div>
         </div>
@@ -321,7 +321,7 @@ function HeaderFallback() {
         </Link>
         <div
           aria-hidden="true"
-          className="xl:hidden shrink-0 w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-xl border bg-white/15 border-white/25"
+          className="lg:hidden shrink-0 w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-xl border bg-white/15 border-white/25"
         >
           <span className="block w-5 h-0.5 bg-white" />
           <span className="block w-5 h-0.5 bg-white" />

@@ -29,8 +29,8 @@ const basePath = isGithubPages ? process.env.NEXT_PUBLIC_BASE_PATH ?? "" : "";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  cacheComponents: !isGithubPages,
-  partialPrefetching: !isGithubPages,
+  cacheComponents: false,
+  partialPrefetching: false,
   allowedDevOrigins: getLocalDevOrigins(),
   ...(isGithubPages && {
     output: "export" as const,

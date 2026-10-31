@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site';
 import { dataBerita } from '@/data/berita';
 
-export const dynamic = 'force-static';
+export const revalidate = false;
 
 /**
  * File generator sitemap.xml otomatis Next.js
@@ -32,15 +32,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: latestModifiedDate,
-    changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1.0 : 0.8,
+    changeFrequency: route === '' ? ('daily' as const) : ('weekly' as const),
+    priority: route === '' ? 1.0 : route === '/profil' ? 0.9 : 0.8,
   }));
 
   // Daftar rute dinamis berita
   const beritaRoutes = dataBerita.map((item) => ({
     url: `${baseUrl}/berita/${item.slug}`,
     lastModified: new Date(item.tanggal),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
 
