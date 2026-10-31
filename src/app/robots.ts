@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site';
 
+export const dynamic = 'force-static';
+
 /**
  * File generator robots.txt otomatis Next.js
  */

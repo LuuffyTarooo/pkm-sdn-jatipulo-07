@@ -24,8 +24,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # sitemap/robots adalah route handler dinamis yang tidak didukung ekspor statis
-      - run: rm src/app/sitemap.ts src/app/robots.ts
       - run: npm run build
         env:
           GITHUB_PAGES: "true"

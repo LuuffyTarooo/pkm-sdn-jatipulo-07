@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site';
 import { dataBerita } from '@/data/berita';
 
+export const dynamic = 'force-static';
+
 /**
  * File generator sitemap.xml otomatis Next.js
  */
