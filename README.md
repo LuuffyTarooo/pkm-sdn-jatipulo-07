@@ -168,7 +168,7 @@ npm run start
 | No | Foto | Nama Lengkap | NIM | Peran / Kontribusi |
 | :-: | :-: | :--- | :---: | :--- |
 | 1 | 👨‍💻 | **Fajar** | *(Isi NIM)* | **Project Lead & Frontend Developer**<br>Arsitektur Next.js, Routing, & State Management |
-| 2 | 👨‍💻 | **[Nama Anggota 2]** | *(Isi NIM)* | **UI/UX Designer & Frontend**<br>Desain Komponen, Styling Tailwind, & Responsivitas |
+| 2 | 👨‍💻 | **[Willky]** | *(Isi NIM)* | **UI/UX Designer & Frontend**<br>Desain Komponen, Styling Tailwind, & Responsivitas |
 | 3 | 👨‍💻 | **[Nama Anggota 3]** | *(Isi NIM)* | **Content Specialist & Data Integration**<br>Manajemen Data Sekolah, Penulisan Berita & Aset |
 | 4 | 👨‍💻 | **[Nama Anggota 4]** | *(Isi NIM)* | **Quality Assurance & Testing**<br>Pengujian Responsif, Cross-Browser, & Dokumentasi |
 
