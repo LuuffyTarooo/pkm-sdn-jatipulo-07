@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default function ProfilPage() {
   return (
-    <div className="profil-page bg-[#f4f9f6] min-h-screen">
+    <div className="profil-page bg-[#f8fafc] min-h-screen">
       {/* 1. Hero Banner */}
       <HeroBanner
         breadcrumbs={[

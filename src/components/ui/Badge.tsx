@@ -15,8 +15,17 @@ export default function Badge({
   variant = 'default',
   className = '',
 }: BadgeProps) {
+  const variantStyles: Record<NonNullable<BadgeProps['variant']>, string> = {
+    default: 'bg-neutral-100 text-neutral-800 border border-neutral-200',
+    success: 'bg-[#eff6ff] text-[#0f2d4a] border border-[#bfdbfe]',
+    warning: 'bg-slate-100 text-[#0f2d4a] border border-slate-300',
+    info: 'bg-[#eff6ff] text-[#1d4e78] border border-[#bfdbfe]',
+  };
+
   return (
-    <span className={`badge badge-${variant} inline-block px-2.5 py-0.5 text-xs font-semibold rounded-full ${className}`}>
+    <span
+      className={`inline-flex items-center px-3 py-0.5 text-xs font-semibold rounded-full border ${variantStyles[variant]} ${className}`}
+    >
       {children}
     </span>
   );

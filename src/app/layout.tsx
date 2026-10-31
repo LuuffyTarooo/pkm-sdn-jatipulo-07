@@ -73,30 +73,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable}`}>
-      <head>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              html, body, * {
-                scrollbar-width: none !important;
-                -ms-overflow-style: none !important;
-              }
-              ::-webkit-scrollbar, *::-webkit-scrollbar {
-                display: none !important;
-                width: 0 !important;
-                height: 0 !important;
-                background: transparent !important;
-              }
-              ::-webkit-scrollbar-track, *::-webkit-scrollbar-track,
-              ::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb {
-                display: none !important;
-                background: transparent !important;
-              }
-            `,
-          }}
-        />
-      </head>
-      <body className="min-h-screen flex flex-col font-sans bg-[#f8fdf9] text-slate-900 antialiased">
+      <body className="min-h-screen flex flex-col font-sans bg-[#f8fafc] text-neutral-900 antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <SocialSidebar />

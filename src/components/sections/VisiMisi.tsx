@@ -4,11 +4,11 @@ import { dataSekolah } from '@/data/sekolah';
 
 /**
  * Komponen Seksi Visi dan Misi Sekolah (Compact Edge-to-Edge Showcase)
- * Menerapkan Palet "Emerald Academy & Sun Gold":
+ * Menerapkan Palet Royal Academic Navy Bersih & Institusional:
  * - Foto latar belakang panjang mentok sisi kanan & kiri (full-width horizontal)
- * - Dimensi vertikal (lebar/tinggi) dibuat lebih ringkas dan proporsional (tidak bulky)
- * - Gradasi hitam dibuat lebih terang dan transparan (tidak terlalu gelap) sehingga foto sekolah terlihat jelas
- * - Tipografi berkarakter dengan kartu putih kontras tinggi
+ * - Dimensi vertikal dibuat ringkas dan proporsional
+ * - Gradasi hitam halus sehingga foto sekolah tetap terlihat jelas
+ * - Kartu putih bersih dengan aksen Academic Navy (bebas blob sudut, watermark, & warna oranye)
  */
 export default function VisiMisi() {
   return (
@@ -27,13 +27,13 @@ export default function VisiMisi() {
           className="object-cover object-[center_35%]"
         />
 
-        {/* 2. Lapisan Overlay Hitam Halus (Lebih Terang, Tidak Terlalu Gelap) */}
+        {/* 2. Lapisan Overlay Hitam Halus */}
         <div
           className="absolute inset-0 bg-black/25 pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* 3. Gradasi Sinematik Hitam Ringan (Menjaga Foto Tetap Terlihat Hidup) */}
+        {/* 3. Gradasi Sinematik Hitam Ringan */}
         <div
           className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/60 pointer-events-none"
           aria-hidden="true"
@@ -44,12 +44,9 @@ export default function VisiMisi() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Header Seksi Ringkas */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-          {/* Eyebrow: Garis Emas Kiri - Teks - Garis Emas Kanan */}
-          <div className="inline-flex items-center gap-2.5 text-xs font-bold tracking-[0.2em] text-[#fbbf24] uppercase mb-1.5">
-            <span className="w-6 sm:w-8 h-[2px] bg-[#fbbf24] rounded-full" />
-            <span>ARAH &amp; TUJUAN</span>
-            <span className="w-6 sm:w-8 h-[2px] bg-[#fbbf24] rounded-full" />
-          </div>
+          <p className="text-xs font-bold tracking-[0.2em] text-[#7dd3fc] uppercase mb-1.5">
+            Arah &amp; Tujuan
+          </p>
 
           <h2
             id="visimisi-heading"
@@ -66,22 +63,11 @@ export default function VisiMisi() {
         {/* Dua Kartu Visi dan Misi */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 items-stretch">
           {/* KARTU KIRI: VISI */}
-          <div className="relative bg-white rounded-2xl p-5 sm:p-6 md:p-7 shadow-xl overflow-hidden flex flex-col justify-between border border-white/80">
-            {/* Watermark Mata */}
-            <div
-              className="absolute -top-3 -right-3 text-[#064e3b]/[0.05] pointer-events-none select-none"
-              aria-hidden="true"
-            >
-              <svg className="w-28 h-28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-            </div>
-
+          <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xl flex flex-col justify-between border border-white/80">
             <div>
               {/* Header Kartu Visi */}
-              <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3.5 border-b border-gray-100">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#0f2d4a] text-white flex items-center justify-center shrink-0 shadow-xs">
                   <svg
                     className="w-5 h-5 text-white"
                     viewBox="0 0 24 24"
@@ -98,56 +84,29 @@ export default function VisiMisi() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-[#064e3b] uppercase">
-                    VISI
+                  <h3 className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-[#0f2d4a] uppercase">
+                    Visi Sekolah
                   </h3>
-                  <div className="w-8 h-1 bg-[#f59e0b] rounded-full mt-0.5" />
+                  <p className="text-xs text-neutral-500 font-sans">
+                    Cita-cita utama satuan pendidikan
+                  </p>
                 </div>
               </div>
 
               {/* Kutipan Utama Visi */}
-              <div className="my-auto py-1 sm:py-2 pr-1 pb-4 sm:pb-6">
-                <blockquote className="font-heading font-bold text-base sm:text-lg md:text-xl text-gray-900 leading-snug tracking-tight">
+              <div className="py-2 sm:py-3">
+                <blockquote className="font-heading font-bold text-base sm:text-lg md:text-xl text-gray-900 leading-relaxed tracking-tight">
                   &ldquo;{dataSekolah.visi}&rdquo;
                 </blockquote>
               </div>
             </div>
-
-            {/* Aksen Lengkungan Pojok Kiri Bawah */}
-            <div
-              className="absolute bottom-0 left-0 w-24 h-24 sm:w-28 sm:h-28 pointer-events-none overflow-hidden rounded-bl-2xl"
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 160 160" fill="none" className="w-full h-full">
-                <path
-                  d="M -10 65 C 45 65 95 98 105 170 L -10 170 Z"
-                  fill="#f59e0b"
-                />
-                <path
-                  d="M -10 92 C 30 92 68 122 78 170 L -10 170 Z"
-                  fill="#059669"
-                />
-              </svg>
-            </div>
           </div>
 
           {/* KARTU KANAN: MISI */}
-          <div className="relative bg-white rounded-2xl p-5 sm:p-6 md:p-7 shadow-xl overflow-hidden flex flex-col border border-white/80">
-            {/* Watermark Sasaran Target */}
-            <div
-              className="absolute -top-4 -right-4 text-[#064e3b]/[0.05] pointer-events-none select-none"
-              aria-hidden="true"
-            >
-              <svg className="w-32 h-32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="6" />
-                <circle cx="12" cy="12" r="2" />
-              </svg>
-            </div>
-
+          <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xl flex flex-col border border-white/80">
             {/* Header Kartu Misi */}
-            <div className="flex items-center gap-3 mb-4 sm:mb-5">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#064e3b] text-white flex items-center justify-center shrink-0 shadow-xs">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3.5 border-b border-gray-100">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#0f2d4a] text-white flex items-center justify-center shrink-0 shadow-xs">
                 <svg
                   className="w-5 h-5 text-white"
                   viewBox="0 0 24 24"
@@ -165,27 +124,29 @@ export default function VisiMisi() {
               </div>
 
               <div>
-                <h3 className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-[#064e3b] uppercase">
-                  MISI
+                <h3 className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-[#0f2d4a] uppercase">
+                  Misi Sekolah
                 </h3>
-                <div className="w-8 h-1 bg-[#f59e0b] rounded-full mt-0.5" />
+                <p className="text-xs text-neutral-500 font-sans">
+                  Langkah strategis penyelenggaraan pendidikan
+                </p>
               </div>
             </div>
 
             {/* Daftar Butir Misi (1 s.d. 6 dengan Garis Penghubung Halus) */}
             <div className="relative flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-3">
               <div
-                className="absolute left-[13px] sm:left-[15px] top-3 bottom-5 w-[2px] bg-[#a7f3d0] pointer-events-none -z-0"
+                className="absolute left-[13px] sm:left-[15px] top-3 bottom-5 w-[2px] bg-[#bfdbfe] pointer-events-none"
                 aria-hidden="true"
               />
 
               {dataSekolah.misi.map((misiItem, idx) => (
                 <div key={idx} className="relative z-10 flex items-start gap-3">
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#ecfdf5] text-[#064e3b] font-heading font-bold text-xs flex items-center justify-center shrink-0 shadow-2xs border border-[#a7f3d0]">
+                  <div className="w-7 h-7 rounded-full bg-[#eff6ff] text-[#0f2d4a] font-heading font-bold text-xs flex items-center justify-center shrink-0 shadow-2xs border border-[#bfdbfe]">
                     {idx + 1}
                   </div>
 
-                  <p className="text-xs sm:text-[13px] text-gray-800 leading-snug font-normal pt-0.5">
+                  <p className="text-xs sm:text-sm text-gray-800 leading-snug font-normal pt-0.5">
                     {misiItem}
                   </p>
                 </div>

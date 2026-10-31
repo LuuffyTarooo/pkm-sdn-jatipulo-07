@@ -20,23 +20,10 @@ interface BeritaCardProps {
 export default function BeritaCard({ berita }: BeritaCardProps) {
   const [imgError, setImgError] = useState(false);
 
-  // Kategori badge dengan warna flat solid
-  const getBadgeStyle = () => {
-    switch (berita.kategori) {
-      case 'Pengumuman':
-        return 'bg-[#064e3b] text-white';
-      case 'Agenda':
-        return 'bg-[#b45309] text-white';
-      case 'Berita':
-      default:
-        return 'bg-[#ecfdf5] text-[#064e3b]';
-    }
-  };
-
   return (
-    <article className="group bg-white rounded-2xl flex flex-col h-full overflow-hidden">
+    <article className="group bg-white rounded-2xl border border-gray-200/80 shadow-2xs hover:shadow-md hover:border-[#93c5fd] transition-all duration-300 flex flex-col h-full overflow-hidden">
       {/* Gambar Thumbnail Berita */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#ecfdf5]">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-white">
         {!imgError && berita.gambarUtama ? (
           <Image
             src={berita.gambarUtama}
@@ -47,9 +34,9 @@ export default function BeritaCard({ berita }: BeritaCardProps) {
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-[#064e3b] text-white p-4 text-center">
+          <div className="w-full h-full flex flex-col items-center justify-center bg-[#4c637a] text-white p-4 text-center">
             <svg
-              className="w-10 h-10 mb-2 text-[#a7f3d0]"
+              className="w-10 h-10 mb-2 text-white/85"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -63,15 +50,15 @@ export default function BeritaCard({ berita }: BeritaCardProps) {
               <path d="M15 18h-5" />
               <path d="M10 6h8v4h-8V6Z" />
             </svg>
-            <span className="text-xs font-semibold text-white/90">
+            <span className="text-xs font-semibold text-white">
               SDN Jatipulo 07
             </span>
           </div>
         )}
 
-        {/* Badge Kategori Solid di Sudut Atas */}
-        <div className="absolute top-3 left-3">
-          <span className={`inline-block px-2.5 py-1 text-xs font-bold rounded-md ${getBadgeStyle()}`}>
+        {/* Badge Kategori di Sudut Atas */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/45 backdrop-blur-md border border-white/25 text-white/95">
             {berita.kategori}
           </span>
         </div>
@@ -92,7 +79,7 @@ export default function BeritaCard({ berita }: BeritaCardProps) {
           </div>
 
           {/* Judul Berita */}
-          <h3 className="font-heading font-bold text-base sm:text-lg text-neutral-900 group-hover:text-[#064e3b] transition-colors line-clamp-2 mb-2 leading-snug">
+          <h3 className="font-heading font-bold text-base sm:text-lg text-neutral-900 group-hover:text-[#0f2d4a] transition-colors line-clamp-2 mb-2 leading-snug">
             <Link href={`/berita/${berita.slug}`} className="focus:outline-none focus:underline">
               {berita.judul}
             </Link>
@@ -108,7 +95,7 @@ export default function BeritaCard({ berita }: BeritaCardProps) {
         <div className="pt-2 mt-auto">
           <Link
             href={`/berita/${berita.slug}`}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#064e3b] group-hover:text-[#059669] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0f2d4a] group-hover:text-[#1d4e78] transition-colors"
           >
             <span>Baca Selengkapnya</span>
             <span aria-hidden="true">&rarr;</span>

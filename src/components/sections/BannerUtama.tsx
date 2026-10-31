@@ -5,8 +5,8 @@ import Link from 'next/link';
  * Komponen Banner Utama / Hero Section Sinematik Hitam (Server Component)
  * - Foto udara gedung SDN Jatipulo 07 Jakarta sebagai background full-screen (100svh)
  * - Lapisan overlay sinematik warna hitam (Black Gradient) yang netral, tajam, dan elegan
- * - Tipografi berkarakter: Eyebrow uppercase emerald (#34d399), Judul Montserrat putih tebal, Deskripsi bersih
- * - Tombol CTA putih sudut membulat dengan teks hijau Deep Forest (#064e3b)
+ * - Tipografi berkarakter: Eyebrow uppercase Sky-Navy (#7dd3fc), Judul Montserrat putih tebal, Deskripsi bersih
+ * - Tombol CTA putih sudut membulat dengan teks Academic Navy (#0f2d4a)
  */
 export default function BannerUtama() {
   return (
@@ -17,7 +17,7 @@ export default function BannerUtama() {
           src="/images/hero/hero-image.png"
           alt="Pemandangan Udara Gedung dan Lapangan SDN Jatipulo 07 Jakarta"
           fill
-          priority
+          preload
           sizes="100vw"
           quality={90}
           className="object-cover object-[60%_35%] md:object-[56%_32%]"
@@ -45,8 +45,8 @@ export default function BannerUtama() {
       {/* Konten Hero Teks (Sisi Kiri, 5vw dari viewport, vertikal di tengah) */}
       <div className="relative z-10 w-full px-[5vw] pt-[100px] pb-16 flex flex-col justify-center">
         <div className="max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-          {/* Eyebrow: Montserrat huruf kapital berjarak renggang dengan aksen Emerald Cerah */}
-          <p className="font-heading text-xs sm:text-sm font-semibold tracking-[0.28em] text-[#34d399] uppercase mb-3 sm:mb-4">
+          {/* Eyebrow: Montserrat huruf kapital berjarak renggang dengan aksen Sky-Navy Cerah */}
+          <p className="font-heading text-xs sm:text-sm font-semibold tracking-[0.28em] text-[#7dd3fc] uppercase mb-3 sm:mb-4">
             SELAMAT DATANG DI
           </p>
 
@@ -60,15 +60,15 @@ export default function BannerUtama() {
             Membangun generasi cerdas, berkarakter mulia, dan berprestasi unggul.
           </p>
 
-          {/* Tombol CTA: Putih, Teks Deep Forest Green, Sudut Membulat, Ikon Panah */}
+          {/* Tombol CTA: Putih, Teks Academic Navy, Sudut Membulat, Ikon Panah */}
           <div>
             <Link
               href="/profil"
-              className="inline-flex items-center gap-3 bg-white text-[#064e3b] hover:bg-[#ecfdf5] font-bold px-7 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-[1.02] border border-[#a7f3d0] text-base group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#10b981]"
+              className="inline-flex items-center gap-3 bg-white text-[#0f2d4a] hover:bg-[#eff6ff] font-bold px-7 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-[1.02] border border-[#bfdbfe] text-base group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8]"
             >
               <span>Jelajahi Profil Sekolah</span>
               <svg
-                className="w-5 h-5 text-[#059669] transition-transform duration-200 group-hover:translate-x-1"
+                className="w-5 h-5 text-[#1d4e78] transition-transform duration-200 group-hover:translate-x-1"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

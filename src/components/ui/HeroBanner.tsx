@@ -38,7 +38,7 @@ export default function HeroBanner({
             src={backgroundImage}
             alt={title}
             fill
-            priority
+            preload
             sizes="100vw"
             quality={90}
             className="object-cover object-[center_35%]"
@@ -74,13 +74,13 @@ export default function HeroBanner({
         {/* Breadcrumb Navigasi Halus */}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-2 sm:mb-2.5">
-            <ol className="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-neutral-300 font-sans">
+            <ol className="inline-flex items-center justify-center gap-1.5 text-xs text-neutral-300 font-sans">
               {breadcrumbs.map((item, index) => {
                 const isLast = index === breadcrumbs.length - 1;
                 return (
                   <li key={item.label} className="inline-flex items-center gap-1.5">
                     {index > 0 && (
-                      <span className="text-emerald-400/80" aria-hidden="true">
+                      <span className="text-[#7dd3fc]/85" aria-hidden="true">
                         /
                       </span>
                     )}
@@ -103,9 +103,9 @@ export default function HeroBanner({
           </nav>
         )}
 
-        {/* Eyebrow / Badge dengan Aksen Emerald Cerah */}
+        {/* Eyebrow / Badge dengan Aksen Sky Mist */}
         {badge && (
-          <p className="font-heading text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-[#34d399] uppercase mb-2">
+          <p className="font-heading text-xs font-semibold tracking-[0.22em] text-[#7dd3fc] uppercase mb-2">
             {badge}
           </p>
         )}

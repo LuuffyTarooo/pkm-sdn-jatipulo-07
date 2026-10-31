@@ -35,17 +35,6 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
   const [activeTab, setActiveTab] = useState<TabType>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Hitung jumlah guru per kategori untuk tab counter
-  const counts = useMemo(() => {
-    return {
-      all: initialGuru.length,
-      pimpinan: initialGuru.filter((g) => g.kategori === 'pimpinan').length,
-      'guru-kelas': initialGuru.filter((g) => g.kategori === 'guru-kelas').length,
-      'guru-mapel': initialGuru.filter((g) => g.kategori === 'guru-mapel').length,
-      staf: initialGuru.filter((g) => g.kategori === 'staf').length,
-    };
-  }, [initialGuru]);
-
   // Filter daftar guru berdasarkan tab dan search query
   const filteredGuru = useMemo(() => {
     return initialGuru.filter((guru) => {
@@ -115,7 +104,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari nama guru, mata pelajaran, kelas, atau jabatan..."
-              className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50/50 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#064e3b] focus:bg-white transition-colors"
+              className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50/50 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0f2d4a] focus:bg-white transition-colors"
             />
             {searchQuery && (
               <button
@@ -126,7 +115,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="6" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
             )}
@@ -135,7 +124,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
           {/* Indikator Hasil Pencarian */}
           <div className="flex items-center gap-3">
             <div className="text-xs sm:text-sm text-neutral-600 font-sans">
-              Menampilkan <span className="font-bold text-[#064e3b]">{filteredGuru.length}</span> dari{' '}
+              Menampilkan <span className="font-bold text-[#0f2d4a]">{filteredGuru.length}</span> dari{' '}
               <span className="font-semibold text-neutral-800">{initialGuru.length}</span> pendidik &amp; staf
             </div>
 
@@ -143,7 +132,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-xs font-bold text-[#059669] hover:text-[#064e3b] underline cursor-pointer"
+                className="text-xs font-bold text-[#1d4e78] hover:text-[#0f2d4a] underline cursor-pointer"
               >
                 Reset
               </button>
@@ -159,28 +148,21 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
         >
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;
-            const count = counts[tab.id];
 
             return (
               <button
                 key={tab.id}
+                type="button"
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab.id)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#064e3b] ${
+                className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
                   isActive
-                    ? 'bg-[#064e3b] text-white shadow-xs'
-                    : 'bg-white text-neutral-700 hover:bg-neutral-50 border border-gray-200'
+                    ? 'bg-[#0f2d4a] text-white'
+                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
                 }`}
               >
-                <span>{tab.label}</span>
-                <span
-                  className={`px-1.5 py-0.5 rounded-md text-[11px] font-bold ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-neutral-100 text-neutral-600'
-                  }`}
-                >
-                  {count}
-                </span>
+                {tab.label}
               </button>
             );
           })}
@@ -191,8 +173,8 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
       {kepalaSekolah && (
         <section aria-labelledby="featured-kepsek-heading" className="space-y-4">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-4 bg-[#059669] rounded-full" />
-            <h2 id="featured-kepsek-heading" className="font-heading text-lg sm:text-xl font-bold text-[#064e3b]">
+            <span className="w-1.5 h-4 bg-[#1d4e78] rounded-full" />
+            <h2 id="featured-kepsek-heading" className="font-heading text-lg sm:text-xl font-bold text-[#0f2d4a]">
               Pimpinan Satuan Pendidikan
             </h2>
           </div>
@@ -204,8 +186,8 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
       {regularGuru.length > 0 && (
         <section aria-labelledby="dewan-guru-heading" className="space-y-5">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-4 bg-[#059669] rounded-full" />
-            <h2 id="dewan-guru-heading" className="font-heading text-lg sm:text-xl font-bold text-[#064e3b]">
+            <span className="w-1.5 h-4 bg-[#1d4e78] rounded-full" />
+            <h2 id="dewan-guru-heading" className="font-heading text-lg sm:text-xl font-bold text-[#0f2d4a]">
               {activeTab === 'all'
                 ? 'Dewan Guru & Tenaga Kependidikan'
                 : TABS.find((t) => t.id === activeTab)?.label}
@@ -232,7 +214,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#064e3b] hover:bg-[#059669] text-white font-bold text-sm transition-colors cursor-pointer shadow-xs"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0f2d4a] hover:bg-[#1d4e78] text-white font-bold text-sm transition-colors cursor-pointer shadow-xs"
           >
             <span>Reset Pencarian</span>
           </button>

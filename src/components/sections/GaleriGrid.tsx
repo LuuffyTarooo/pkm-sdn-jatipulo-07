@@ -22,6 +22,7 @@ const TABS: KategoriTab[] = ['Semua', 'Akademik', 'Kegiatan', 'Umum'];
 export default function GaleriGrid({ initialItems }: GaleriGridProps) {
   const [activeTab, setActiveTab] = useState<KategoriTab>('Semua');
   const [selectedPhoto, setSelectedPhoto] = useState<FotoGaleri | null>(null);
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
   const filteredPhotos = useMemo(() => {
     if (activeTab === 'Semua') return initialItems;
@@ -43,8 +44,8 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
   }, [handleKeyDown]);
 
   useEffect(() => {
-    document.body.style.overflow = selectedPhoto ? 'hidden' : 'unset';
-    return () => { document.body.style.overflow = 'unset'; };
+    document.body.style.overflow = selectedPhoto ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [selectedPhoto]);
 
   return (
@@ -64,9 +65,9 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#064e3b] ${
+              className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
                 isActive
-                  ? 'bg-[#064e3b] text-white'
+                  ? 'bg-[#0f2d4a] text-white'
                   : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
               }`}
             >
@@ -95,22 +96,53 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
             return (
               <article
                 key={item.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`Lihat foto: ${item.judul}`}
                 onClick={() => setSelectedPhoto(item)}
-                className={`group relative rounded-xl overflow-hidden cursor-pointer bg-neutral-200 ${spanClass}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedPhoto(item);
+                  }
+                }}
+                className={`group relative rounded-xl overflow-hidden cursor-pointer bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] focus-visible:ring-offset-2 ${spanClass}`}
               >
                 {/* Foto */}
-                <Image
-                  src={item.foto}
-                  alt={item.judul}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-                />
+                {!imgErrors[item.id] && item.foto ? (
+                  <Image
+                    src={item.foto}
+                    alt={item.judul}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                    onError={() =>
+                      setImgErrors((prev) => ({ ...prev, [item.id]: true }))
+                    }
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-[#4c637a] text-white p-4 text-center">
+                    <svg
+                      className="w-10 h-10 text-white/85"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                      <circle cx="9" cy="9" r="2" />
+                      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                    </svg>
+                  </div>
+                )}
 
                 {/* Badge Kategori */}
                 {item.kategori && (
                   <div className="absolute top-2.5 left-2.5 z-20">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-bold bg-[#064e3b]/85 text-white">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/45 backdrop-blur-md border border-white/20 text-white/95">
                       {item.kategori}
                     </span>
                   </div>
@@ -128,7 +160,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                     {item.judul}
                   </h3>
                   {item.tanggal && (
-                    <p className="text-[10px] sm:text-[11px] text-white/70 mt-1 font-sans">
+                    <p className="text-xs text-white/75 mt-1 font-sans">
                       {item.tanggal}
                     </p>
                   )}
@@ -145,7 +177,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="lightbox-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90"
+          className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8 bg-black/90"
           onClick={() => setSelectedPhoto(null)}
         >
           <div
@@ -167,14 +199,42 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
 
             {/* Foto Besar */}
             <div className="relative w-full aspect-[16/10] bg-black">
-              <Image
-                src={selectedPhoto.foto}
-                alt={selectedPhoto.judul}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 900px"
-                className="object-contain"
-              />
+              {!imgErrors[selectedPhoto.id] && selectedPhoto.foto ? (
+                <Image
+                  src={selectedPhoto.foto}
+                  alt={selectedPhoto.judul}
+                  fill
+                  loading="eager"
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                  className="object-contain"
+                  onError={() =>
+                    setImgErrors((prev) => ({
+                      ...prev,
+                      [selectedPhoto.id]: true,
+                    }))
+                  }
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-[#4c637a] text-white p-6 text-center">
+                  <svg
+                    className="w-12 h-12 mb-2 text-white/85"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                  </svg>
+                  <span className="text-xs font-semibold text-white">
+                    SDN Jatipulo 07
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Keterangan */}
@@ -188,7 +248,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
 
               <div className="flex items-center gap-3">
                 {selectedPhoto.kategori && (
-                  <span className="text-xs font-semibold text-emerald-400">
+                  <span className="text-xs font-semibold text-[#7dd3fc]">
                     {selectedPhoto.kategori}
                   </span>
                 )}
