@@ -30,6 +30,9 @@ export interface Fasilitas {
   kategori?: string;
 }
 
+// Tipe Kategori Ekstrakurikuler
+export type KategoriEkskul = 'Wajib' | 'Olahraga' | 'Bela Diri' | 'Seni & Budaya' | 'Keagamaan';
+
 // Tipe untuk Kegiatan Ekstrakurikuler
 export interface Ekskul {
   id: string;
@@ -38,6 +41,10 @@ export interface Ekskul {
   pembina?: string;
   jadwal?: string;
   foto: string;
+  kategori?: KategoriEkskul;
+  tempat?: string;
+  sasaran?: string;
+  prestasi?: string;
 }
 
 // Tipe untuk Prestasi Sekolah & Siswa
