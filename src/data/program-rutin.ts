@@ -1,202 +1,164 @@
 import { ProgramRutin } from '@/types';
 
 /**
- * Data Program Rutin dan Pembiasaan Siswa SDN Jatipulo 07 Jakarta
- * Terjadwal dari Hari Senin hingga Jumat.
+ * Data Program Kedisiplinan dan Pembiasaan Positif
+ * SDN Jatipulo 07 Jakarta
+ * Terjadwal rutin dari Hari Senin hingga Jumat.
  */
 export const dataProgramRutin: ProgramRutin[] = [
   {
-    id: 'senin-pembiasaan',
+    id: 'senin-upacara',
     hari: 'Senin',
-    nama: 'Pembiasaan Kesiswaan',
+    nama: 'Upacara Bendera',
     waktu: '07.00 - 08.00 WIB',
-    fotoCover: '/images/program-rutin/rutin-senin.jpg',
+    fotoCover: '/images/program-rutin/upacara-bendera.webp',
+    kegiatanUtama: ['Upacara Bendera'],
     deskripsi:
-      'Program pembiasaan dan penguatan karakter peserta didik SDN Jatipulo 07 Jakarta setiap hari Senin pagi yang dilaksanakan secara bergilir setiap pekannya.',
+      'Pelaksanaan upacara bendera rutin untuk melatih kedisiplinan, penghormatan lambang negara, dan menumbuhkan semangat nasionalisme seluruh peserta didik.',
     rotasi: [
       {
-        minggu: 'Minggu 1',
-        judul: 'Dongeng Pagi',
+        minggu: 'Minggu 1 - 4',
+        judul: 'Upacara Bendera Rutin',
         deskripsi:
-          'Kegiatan mendongeng cerita inspiratif dan bermakna untuk mengasah imajinasi anak, menanamkan nilai-nilai moral budi pekerti luhur, serta membangun budaya tutur yang positif.',
-        fokus: 'Pendidikan Budi Pekerti & Imajinasi',
-      },
-      {
-        minggu: 'Minggu 2',
-        judul: 'Upacara Bendera',
-        deskripsi:
-          'Pelaksanaan upacara bendera bersama seluruh dewan guru dan siswa sebagai bentuk pembiasaan kedisiplinan, penghormatan lambang negara, dan penguatan cinta tanah air.',
-        fokus: 'Kedisiplinan & Nasionalisme',
-      },
-      {
-        minggu: 'Minggu 3',
-        judul: 'Literasi & Resensi Buku',
-        deskripsi:
-          'Aktivitas membaca hening dan presentasi ulasan buku terpilih oleh siswa untuk menumbuhkan minat baca, wawasan literasi, dan kepercayaan diri di depan umum.',
-        fokus: 'Gerakan Literasi Sekolah',
-      },
-      {
-        minggu: 'Minggu 4',
-        judul: 'Senam Pagi',
-        deskripsi:
-          'Senam kebugaran jasmani bersama untuk menjaga stamina, kesehatan fisik, dan keceriaan seluruh warga sekolah dalam mengawali pekan pembelajaran.',
-        fokus: 'Kebugaran & Kesehatan Jasmani',
+          'Upacara pengibaran sang merah putih yang diikuti secara khidmat oleh seluruh dewan guru dan siswa dengan petugas upacara bergilir setiap pekannya.',
+        fokus: 'Kedisiplinan & Jiwa Nasionalisme',
       },
     ],
   },
   {
-    id: 'selasa-literasi-numerasi',
+    id: 'selasa-literasi',
     hari: 'Selasa',
-    nama: 'Pembiasaan Literasi & Numerasi',
+    nama: 'Literasi',
     waktu: '06.45 - 07.15 WIB',
-    fotoCover: '/images/program-rutin/rutin-selasa.png',
+    fotoCover: '/images/program-rutin/literasi.webp',
     deskripsi:
-      'Penguatan kecakapan membaca pemahaman, numerasi ceria, dan logika berpikir kritis untuk mendukung capaian belajar siswa.',
+      'Program penguatan minat baca, kecakapan berbahasa asing secara kontekstual, dan daya kreasi menulis karya sendiri.',
     rotasi: [
       {
         minggu: 'Minggu 1',
-        judul: 'Literasi Membaca Ceria',
+        judul: 'Mendongeng',
         deskripsi:
-          'Membaca teks cerita inspiratif bersama wali kelas dilanjutkan diskusi pemahaman isi bacaan.',
-        fokus: 'Membaca Pemahaman',
+          'Menyimak dan menceritakan kembali kisah-kisah inspiratif bermakna untuk mengasah imajinasi serta nilai budi pekerti luhur.',
+        fokus: 'Budi Pekerti & Imajinasi',
       },
       {
         minggu: 'Minggu 2',
-        judul: 'Numerasi Ceria & Logika',
+        judul: 'English Day (Speech)',
         deskripsi:
-          'Teka-teki matematika, perhitungan cepat kontekstual, dan simulasi pemecahan masalah sederhana.',
-        fokus: 'Numerasi & Pola Pikir Logis',
+          'Praktik pidato dan percakapan bahasa Inggris dasar untuk melatih kepercayaan diri dan kemampuan public speaking sejak dini.',
+        fokus: 'Public Speaking Bahasa Inggris',
       },
       {
         minggu: 'Minggu 3',
-        judul: 'Eksplorasi Sains Dasar',
+        judul: 'English Day (News Anchor)',
         deskripsi:
-          'Pengamatan fenomena alam sekitar dan percobaan sains sederhana yang interaktif.',
-        fokus: 'Rasa Ingin Tahu & Saintifik',
+          'Simulasi membaca berita bahasa Inggris untuk mengasah pelafalan (pronunciation), intonasi, dan wawasan informasi global.',
+        fokus: 'Pelafalan & Wawasan Global',
       },
       {
         minggu: 'Minggu 4',
-        judul: 'Kuis Tematik Kelas',
+        judul: 'Menulis Cerita Sendiri (Mentari)',
         deskripsi:
-          'Kuis cerdas cermat antarkelompok seputar wawasan umum, sains, dan literasi dasar.',
-        fokus: 'Kolaborasi & Keaktifan',
+          'Program Mentari (Menulis Cerita Sendiri) sebagai wadah menuangkan kreativitas, ide orisinal, dan karya tulis siswa.',
+        fokus: 'Kreativitas Menulis & Ekspresi Diri',
       },
     ],
   },
   {
-    id: 'rabu-bahasa-budaya',
+    id: 'rabu-07-beraksi-mijel',
     hari: 'Rabu',
-    nama: 'Pembiasaan Bahasa & Budaya',
+    nama: '07 Beraksi & Mijel',
     waktu: '06.45 - 07.15 WIB',
-    fotoCover: '/images/program-rutin/rutin-rabu.jpg',
+    fotoCover: '/images/program-rutin/07-beraksi-mijel.webp',
     deskripsi:
-      'Pengembangan kemampuan berbahasa asing dasar, apresiasi budaya lokal Betawi, serta etika bertutur kata yang santun.',
+      'Panggung unjuk bakat seni, budaya daerah nusantara, ketangkasan beladiri, dan kecakapan kemandirian kepramukaan siswa SDN Jatipulo 07.',
     rotasi: [
       {
         minggu: 'Minggu 1',
-        judul: 'English Morning Call',
+        judul: 'Solo Vocal',
         deskripsi:
-          'Mengenal kosakata bahasa Inggris tematik, sapaan santun, dan menyanyikan lagu edukatif.',
-        fokus: 'Wawasan Bahasa Global',
+          'Pentas vokal solo lagu anak dan daerah nusantara untuk melatih olah vokal, musikalitas, dan keberanian tampil di depan umum.',
+        fokus: 'Olah Vokal & Kepercayaan Diri',
       },
       {
         minggu: 'Minggu 2',
-        judul: 'Kearifan Budaya Betawi',
+        judul: 'Menari',
         deskripsi:
-          'Mengenal pantun Betawi, bahasa daerah, pakaian tradisional, dan kesenian khas Jakarta.',
-        fokus: 'Pelestarian Budaya Lokal',
+          'Apresiasi seni tari tradisional dan kreasi nusantara untuk melatih keluwesan gerak dan menumbuhkan kecintaan budaya bangsa.',
+        fokus: 'Keluwesan Gerak & Apresiasi Seni',
       },
       {
         minggu: 'Minggu 3',
-        judul: 'Pentas Orasi & Puisi',
+        judul: 'Beladiri',
         deskripsi:
-          'Siswa berlatih membacakan puisi atau bercerita singkat untuk memupuk keberanian tampil.',
-        fokus: 'Kepercayaan Diri & Bahasa',
+          'Peragaan jurus dan teknik dasar beladiri pencak silat untuk membangun refleks, ketangkasan fisik, dan kedisiplinan mental.',
+        fokus: 'Ketangkasan & Disiplin Beladiri',
       },
       {
         minggu: 'Minggu 4',
-        judul: 'Tata Krama & Komunikasi Santun',
+        judul: 'Kepramukaan',
         deskripsi:
-          'Praktik 5S (Senyum, Sapa, Salam, Sopan, Santun) dalam interaksi antarwarga sekolah.',
-        fokus: 'Karakter Sopan Santun',
+          'Latihan kepanduan pramuka siaga dan penggalang untuk memupuk kemandirian, kerja sama tim, dan penghayatan Dasa Darma.',
+        fokus: 'Kemandirian & Dasa Darma Pramuka',
       },
     ],
   },
   {
-    id: 'kamis-seni-kebangsaan',
+    id: 'kamis-senam-makan-bersama',
     hari: 'Kamis',
-    nama: 'Pembiasaan Seni & Kebangsaan',
-    waktu: '06.45 - 07.15 WIB',
-    fotoCover: '/images/program-rutin/rutin-kamis.jpg',
+    nama: 'Senam & Makan Bersama',
+    waktu: '06.45 - 07.30 WIB',
+    fotoCover: '/images/program-rutin/senam-makan-bersama.webp',
+    kegiatanUtama: ['Senam Bersama', 'Makan Bersama'],
     deskripsi:
-      'Penguatan rasa cinta tanah air, penghayatan sejarah perjuangan bangsa, serta apresiasi ragam kesenian tradisional.',
+      'Pembiasaan pola hidup bersih dan bugar melalui senam jasmani ceria dilanjutkan dengan menyantap bekal sehat bersama seluruh warga sekolah.',
     rotasi: [
       {
-        minggu: 'Minggu 1',
-        judul: 'Gita Wajib Nasional',
+        minggu: 'Minggu 1 - 4',
+        judul: 'Senam Bersama & Makan Bersama',
         deskripsi:
-          'Menyanyikan bersama lagu-lagu wajib nasional dan memahami makna lirik perjuangannya.',
-        fokus: 'Jiwa Patriotisme',
-      },
-      {
-        minggu: 'Minggu 2',
-        judul: 'Cerita Rakyat Nusantara',
-        deskripsi:
-          'Mendengarkan kisah keteladanan tokoh sejarah dan cerita rakyat dari berbagai pulau di Indonesia.',
-        fokus: 'Wawasan Kebangsaan',
-      },
-      {
-        minggu: 'Minggu 3',
-        judul: 'Permainan Tradisional Edukatif',
-        deskripsi:
-          'Mengenal dan mempraktikkan permainan tradisional yang membangun kerja sama tim.',
-        fokus: 'Sosialisasi & Kebugaran',
-      },
-      {
-        minggu: 'Minggu 4',
-        judul: 'Apresiasi Seni & Kriya',
-        deskripsi:
-          'Membuat kerajinan tangan sederhana atau menggambar motif nusantara bersama.',
-        fokus: 'Kreativitas & Estetika',
+          'Senam kebugaran jasmani bersama di lapangan sekolah, dilanjutkan dengan makan bersama bekal bergizi seimbang untuk mempererat kebersamaan dan adab makan sehat.',
+        fokus: 'Kebugaran Fisik & Gizi Seimbang',
       },
     ],
   },
   {
-    id: 'jumat-rohani-sehat',
+    id: 'jumat-sholat-dhuha-tadarus-psn',
     hari: 'Jumat',
-    nama: 'Pembiasaan Rohani & Jumat Bersih',
-    waktu: '06.45 - 07.30 WIB',
-    fotoCover: '/images/program-rutin/rutin-jumat.jpg',
+    nama: 'Sholat Dhuha, Tadarus, & PSN',
+    waktu: '06.45 - 07.45 WIB',
+    fotoCover: '/images/program-rutin/sholat-dhuha-tadarus-psn.webp',
+    kegiatanUtama: ['Sholat Dhuha & Tadarus', 'PSN (Pemberantasan Sarang Nyamuk)'],
     deskripsi:
-      'Pembentukan karakter religius, pembiasaan hidup bersih dan sehat, serta menumbuhkan jiwa kepedulian sosial.',
+      'Penguatan karakter religius melalui ibadah berjamaah dan tadarus Al-Qur\'an, gerakan PSN peduli kesehatan lingkungan, serta kompetisi unjuk bakat keagamaan mingguan.',
     rotasi: [
       {
         minggu: 'Minggu 1',
-        judul: 'Doa & Tadarus Bersama',
+        judul: 'Pildacil',
         deskripsi:
-          'Pembacaan doa pagi, surat-surat pendek/Yasin bagi muslim, dan bimbingan rohani kebaktian bagi non-muslim.',
-        fokus: 'Keimanan & Ketakwaan',
+          'Pemilihan Da\'i Cilik dan ceramah agama singkat oleh perwakilan siswa untuk melatih kemampuan bertausiyah dan berdakwah santun.',
+        fokus: 'Karakter Da\'i & Komunikasi Islami',
       },
       {
         minggu: 'Minggu 2',
-        judul: 'Jumat Bersih & Peduli Lingkungan',
+        judul: 'Marawis',
         deskripsi:
-          'Operasi semut dan gotong royong membersihkan ruang kelas serta halaman sekolah.',
-        fokus: 'Kepedulian Lingkungan',
+          'Penampilan dan apresiasi seni musik marawis islami untuk mempererat kekompakan dan syiar kesenian religius.',
+        fokus: 'Seni Musik Islami & Harmoni',
       },
       {
         minggu: 'Minggu 3',
-        judul: 'Kultum Budi Pekerti',
+        judul: 'MTQ',
         deskripsi:
-          'Nasihat agama dan penanaman akhlak mulia oleh guru pembina dalam kehidupan sehari-hari.',
-        fokus: 'Akhlakul Karimah',
+          'Musabaqah Tilawatil Qur\'an untuk mengasah keindahan tajwid, makhraj, dan seni membaca ayat suci Al-Qur\'an.',
+        fokus: 'Tartil & Seni Baca Al-Qur\'an',
       },
       {
         minggu: 'Minggu 4',
-        judul: 'Jumat Berbagi & Kasih Sayang',
+        judul: 'MHQ',
         deskripsi:
-          'Infaq sukarela dan sedekah peduli kawan untuk melatih empati sosial sejak dini.',
-        fokus: 'Empati & Kepedulian Sosial',
+          'Musabaqah Hifdzil Qur\'an untuk menguji kelancaran hafalan surat-surat juz 30 dan memotivasi budaya tahfidz.',
+        fokus: 'Hafalan Al-Qur\'an (Tahfidz)',
       },
     ],
   },

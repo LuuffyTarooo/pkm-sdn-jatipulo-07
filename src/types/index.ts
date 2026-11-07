@@ -104,6 +104,7 @@ export interface ProgramRutin {
   waktu: string; // Misal: "07.00 - 08.00 WIB"
   deskripsi: string;
   fotoCover: string;
+  kegiatanUtama?: string[];
   rotasi: RotasiMingguan[];
   jadwal?: string; // fallback legacy
   foto?: string;   // fallback legacy
