@@ -33,6 +33,15 @@ export const dataFasilitas: Fasilitas[] = [
     fitur: ['Upacara Bendera', 'Sarana Olahraga', 'Kegiatan Luar Ruangan'],
   },
   {
+    id: 'mushola',
+    nama: 'Mushola',
+    kategori: 'Sarana Ibadah',
+    foto: '/images/fasilitas/mushola.jpg',
+    deskripsi:
+      'Sarana ibadah yang bersih, tenang, dan nyaman yang berlokasi di lantai 1 untuk pelaksanaan sholat berjamaah, tadarus, dan pembinaan karakter religius siswa.',
+    fitur: ['Lantai 1', 'Tempat Wudhu Bersih', 'Sholat Berjamaah'],
+  },
+  {
     id: 'lift-gedung',
     nama: 'Lift Gedung Sekolah',
     kategori: 'Aksesibilitas',
