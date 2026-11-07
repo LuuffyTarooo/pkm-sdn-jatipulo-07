@@ -29,6 +29,7 @@ export interface Fasilitas {
   deskripsi: string;
   foto: string;
   kategori?: string;
+  fitur?: string[];
 }
 
 // Tipe Kategori Ekstrakurikuler

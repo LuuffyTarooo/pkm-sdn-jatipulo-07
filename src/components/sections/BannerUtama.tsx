@@ -6,7 +6,7 @@ import Link from 'next/link';
  * - Foto udara gedung SDN Jatipulo 07 Jakarta sebagai background full-screen (100svh)
  * - Lapisan overlay sinematik warna hitam (Black Gradient) yang netral, tajam, dan elegan
  * - Tipografi berkarakter: Eyebrow uppercase Sky-Navy (#7dd3fc), Judul Montserrat putih tebal, Deskripsi bersih
- * - Tombol CTA putih sudut membulat dengan teks Academic Navy (#0f2d4a)
+ * - Tombol CTA Royal Academic Navy (#1d4e78) dengan aksen Sky Mist (#7dd3fc) dan teks putih bersih
  */
 export default function BannerUtama() {
   return (
@@ -60,15 +60,15 @@ export default function BannerUtama() {
             Membangun generasi cerdas, berkarakter mulia, dan berprestasi unggul.
           </p>
 
-          {/* Tombol CTA: Putih, Teks Academic Navy, Sudut Membulat, Ikon Panah */}
+          {/* Tombol CTA: Royal Academic Navy (#1d4e78) dengan aksen Sky Mist (#7dd3fc) */}
           <div>
             <Link
               href="/profil"
-              className="inline-flex items-center gap-3 bg-white text-[#0f2d4a] hover:bg-[#eff6ff] font-bold px-7 py-3.5 sm:px-8 sm:py-4 rounded-full transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-[1.02] border border-[#bfdbfe] text-base group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8]"
+              className="inline-flex items-center gap-3 bg-[#1d4e78] hover:bg-[#163d63] text-white font-semibold px-7 py-3.5 sm:px-8 sm:py-4 rounded-full transition-colors border border-[#7dd3fc]/40 text-base group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8]"
             >
-              <span>Jelajahi Profil Sekolah</span>
+              <span>Lihat Profil Sekolah</span>
               <svg
-                className="w-5 h-5 text-[#1d4e78] transition-transform duration-200 group-hover:translate-x-1"
+                className="w-5 h-5 text-[#7dd3fc] transition-transform duration-150 group-hover:translate-x-1"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
