@@ -31,8 +31,10 @@ export const dataSekolah: DataSekolah = {
     'Meningkatkan sarana dan prasarana pendukung proses belajar mengajar.',
   ],
   kontak: {
-    telepon: '(021) 5683236',
-    whatsapp: '0812-9876-5432',
+    telepon: '0812-1272-2758',
+    telepon2: '0856-9107-4386',
+    whatsapp: '0812-1272-2758',
+    whatsapp2: '0856-9107-4386',
     email: 'sdnjatipulo07@gmail.com',
     googleMapsEmbedUrl: 'https://www.google.com/maps?q=SDN+Jatipulo+07+Pagi+Palmerah+Jakarta+Barat&output=embed',
   },
@@ -49,8 +51,8 @@ export const dataSekolah: DataSekolah = {
     },
     {
       platform: 'tiktok',
-      url: 'https://www.tiktok.com/@sdnjatipulo07',
-      handle: '@sdnjatipulo07',
+      url: 'https://www.tiktok.com/@sdnjatipulo07_',
+      handle: '@sdnjatipulo07_',
     },
     {
       platform: 'youtube',
@@ -59,7 +61,7 @@ export const dataSekolah: DataSekolah = {
     },
     {
       platform: 'facebook',
-      url: 'https://facebook.com/sdnjatipulo07',
+      url: 'https://www.facebook.com/share/16PWfNsgDAz/',
       handle: 'SDN Jatipulo 07 Jakarta',
     },
   ],

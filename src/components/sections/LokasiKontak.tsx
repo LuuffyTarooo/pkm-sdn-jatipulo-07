@@ -81,12 +81,25 @@ export default function LokasiKontak() {
                     </svg>
                     <span>Telepon</span>
                   </span>
-                  <a
-                    href={`tel:${dataSekolah.kontak.telepon.replace(/\D/g, '')}`}
-                    className="font-bold text-neutral-900 hover:text-[#0f2d4a] transition-colors text-right"
-                  >
-                    {dataSekolah.kontak.telepon}
-                  </a>
+                  <span className="font-bold text-neutral-900 text-right text-xs sm:text-sm">
+                    <a
+                      href={`tel:${dataSekolah.kontak.telepon.replace(/\D/g, '')}`}
+                      className="hover:text-[#0f2d4a] transition-colors"
+                    >
+                      {dataSekolah.kontak.telepon}
+                    </a>
+                    {dataSekolah.kontak.telepon2 && (
+                      <>
+                        <span className="text-neutral-400 mx-1.5">/</span>
+                        <a
+                          href={`tel:${dataSekolah.kontak.telepon2.replace(/\D/g, '')}`}
+                          className="hover:text-[#0f2d4a] transition-colors"
+                        >
+                          {dataSekolah.kontak.telepon2}
+                        </a>
+                      </>
+                    )}
+                  </span>
                 </div>
 
                 <div className="flex items-center justify-between gap-3">

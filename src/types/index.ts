@@ -158,7 +158,9 @@ export interface DataSekolah {
   tujuan?: string[];
   kontak: {
     telepon: string;
+    telepon2?: string;
     whatsapp?: string;
+    whatsapp2?: string;
     email: string;
     googleMapsEmbedUrl: string;
   };
