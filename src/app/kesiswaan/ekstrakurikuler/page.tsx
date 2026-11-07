@@ -23,14 +23,9 @@ export default function EkstrakurikulerPage() {
     <div className="ekstrakurikuler-page bg-[#f8fafc] min-h-screen pb-16 sm:pb-20">
       {/* 1. Hero Banner Sub-Page */}
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Kesiswaan' },
-          { label: 'Ekstrakurikuler' },
-        ]}
-        badge="Pengembangan Bakat &amp; Minat"
         title="Kegiatan Ekstrakurikuler"
         subtitle="12 pilihan wadah eksplorasi potensi kepemimpinan, seni budaya, olahraga, dan karakter religius putra-putri kami."
+        preserveSpacing={true}
       />
 
       {/* 2. Direktori Interaktif Ekstrakurikuler */}

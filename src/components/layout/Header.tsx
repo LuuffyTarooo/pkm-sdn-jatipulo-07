@@ -80,8 +80,8 @@ function HeaderNav() {
     };
   }, [isKesiswaanOpen]);
 
-  // Transparan di bagian atas semua halaman (Beranda & Sub-halaman berfoto), berubah menjadi Dark Navy Glass saat di-scroll
-  const isTransparent = !isScrolled;
+  // Hanya transparan di halaman Beranda saat belum di-scroll. Halaman Profil hingga Kontak selalu solid
+  const isTransparent = pathname === '/' && !isScrolled;
 
   const isLinkActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -109,7 +109,7 @@ function HeaderNav() {
         className={`absolute inset-0 z-0 pointer-events-none transition-all duration-300 ${
           isTransparent
             ? 'bg-gradient-to-b from-black/48 to-transparent border-b border-transparent'
-            : 'bg-[#0b182a]/85 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15'
+            : 'bg-[#0b182a] shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15'
         }`}
       />
 

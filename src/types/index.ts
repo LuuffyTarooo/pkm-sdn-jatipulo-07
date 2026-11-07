@@ -14,6 +14,7 @@ export interface Guru {
   kategori?: KategoriGuru;
   mataPelajaran?: string;
   kelasDiampu?: string;
+  tugasTambahan?: string[];
   pendidikanTerakhir?: string;
   email?: string;
   kataMutiara?: string;
@@ -87,13 +88,25 @@ export interface FotoGaleri {
   tanggal?: string;
 }
 
+// Tipe untuk Item Rotasi Mingguan Program Rutin
+export interface RotasiMingguan {
+  minggu: string; // Misal: "Minggu 1", "Minggu 2"
+  judul: string;  // Misal: "Dongeng Pagi", "Upacara Bendera"
+  deskripsi?: string;
+  fokus?: string;
+}
+
 // Tipe untuk Program Rutin / Pembiasaan Siswa
 export interface ProgramRutin {
   id: string;
+  hari: string;
   nama: string;
+  waktu: string; // Misal: "07.00 - 08.00 WIB"
   deskripsi: string;
-  jadwal: string; // Misal: "Setiap Senin", "Setiap Jumat"
-  foto?: string;
+  fotoCover: string;
+  rotasi: RotasiMingguan[];
+  jadwal?: string; // fallback legacy
+  foto?: string;   // fallback legacy
 }
 
 // Tipe untuk Menu Navigasi (Navbar & Footer)

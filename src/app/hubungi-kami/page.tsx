@@ -24,13 +24,9 @@ export default function HubungiKamiPage() {
     <div className="hubungi-kami-page bg-[#f8fafc] min-h-screen pb-16">
       {/* 1. Hero Banner Bersih */}
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Hubungi Kami' },
-        ]}
-        badge="Pusat Informasi & Layanan"
         title="Hubungi &amp; Kunjungi Kami"
         subtitle="Kami siap melayani kebutuhan informasi, konsultasi, dan kemitraan pendidikan dengan ramah dan solutif."
+        preserveSpacing={true}
       />
 
       {/* 2. Konten Utama Kontak */}

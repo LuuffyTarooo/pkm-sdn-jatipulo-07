@@ -17,13 +17,9 @@ export default function GaleriPage() {
   return (
     <div className="galeri-page bg-[#f8fafc] min-h-[100svh] pb-20">
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Galeri Foto' },
-        ]}
-        badge="Dokumentasi Visual Sekolah"
         title="Galeri Aktivitas Siswa"
         subtitle="Momen-momen berharga, kreativitas, dan keceriaan peserta didik di lingkungan sekolah."
+        preserveSpacing={true}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
         <GaleriGrid initialItems={dataGaleri} />
