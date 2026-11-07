@@ -17,7 +17,7 @@ export default function FasilitasCard({ fasilitas, priority = false }: Fasilitas
   const [imgError, setImgError] = useState(false);
 
   return (
-    <article className="bg-white rounded-2xl overflow-hidden flex flex-col justify-between">
+    <article className="bg-white border border-slate-200/90 shadow-xs rounded-2xl overflow-hidden flex flex-col justify-between">
       {/* 1. Foto Dokumentasi Fasilitas */}
       <div className="relative aspect-[16/10] w-full bg-slate-100 overflow-hidden shrink-0">
         {!imgError && fasilitas.foto ? (

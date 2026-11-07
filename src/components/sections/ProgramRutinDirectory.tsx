@@ -58,8 +58,8 @@ export default function ProgramRutinDirectory({ programs }: ProgramRutinDirector
                 }}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors cursor-pointer shrink-0 ${
                   isActive
-                    ? 'bg-[#0b182a] text-white'
-                    : 'bg-white hover:bg-slate-100 text-slate-700'
+                    ? 'bg-[#0f2d4a] text-white shadow-xs'
+                    : 'bg-white border border-slate-200/90 hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 {day}
@@ -78,7 +78,7 @@ export default function ProgramRutinDirectory({ programs }: ProgramRutinDirector
               if (selectedDay !== 'Semua') setSelectedDay('Semua');
             }}
             placeholder="Cari kegiatan pembiasaan..."
-            className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-white rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b182a] transition-colors"
+            className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm bg-white border border-slate-200/90 shadow-xs rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0f2d4a] transition-colors"
           />
           <svg
             className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -113,7 +113,7 @@ export default function ProgramRutinDirectory({ programs }: ProgramRutinDirector
       {/* 2. Mode Tampilan Berdasarkan Pilihan */}
       {selectedProgram ? (
         /* Tampilan Fokus Hari yang Bersih */
-        <div className="bg-white rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="bg-white border border-slate-200/90 shadow-xs rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Kolom Kiri: Foto & Detail Pokok */}
           <div className="lg:col-span-5 space-y-4">
@@ -206,7 +206,7 @@ export default function ProgramRutinDirectory({ programs }: ProgramRutinDirector
         </div>
       ) : (
         /* Status Kosong */
-        <div className="text-center py-16 bg-white rounded-2xl p-8">
+        <div className="text-center py-16 bg-white border border-slate-200/90 shadow-xs rounded-2xl p-8">
           <p className="font-heading font-semibold text-base text-slate-800">
             Tidak ada kegiatan yang cocok
           </p>

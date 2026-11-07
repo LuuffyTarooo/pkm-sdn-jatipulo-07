@@ -35,8 +35,14 @@ export default function HeroBanner({
   preserveSpacing = false,
   highContrast = false,
 }: HeroBannerProps) {
+  const spacingClasses = preserveSpacing
+    ? 'min-h-[260px] sm:min-h-[290px] md:min-h-[320px] pt-[114px] sm:pt-[134px] md:pt-[148px] pb-10 sm:pb-12 md:pb-14'
+    : 'min-h-[240px] sm:min-h-[270px] md:min-h-[300px] pt-[108px] sm:pt-[126px] md:pt-[140px] pb-9 sm:pb-11 md:pb-12';
+
   return (
-    <section className="relative w-full min-h-[300px] sm:min-h-[340px] md:min-h-[380px] flex flex-col justify-center items-center pt-[124px] sm:pt-[152px] md:pt-[164px] pb-14 sm:pb-[76px] md:pb-[88px] px-4 text-white text-center overflow-hidden bg-black">
+    <section
+      className={`relative w-full ${spacingClasses} flex flex-col justify-center items-center px-4 text-white text-center overflow-hidden bg-black`}
+    >
       {/* 1. Latar Belakang Gambar / Foto Gedung */}
       {backgroundImage ? (
         <div className="absolute inset-0 z-0">

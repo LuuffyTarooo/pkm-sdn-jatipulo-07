@@ -65,10 +65,10 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
                 isActive
-                  ? 'bg-[#0f2d4a] text-white'
-                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
+                  ? 'bg-[#0f2d4a] text-white shadow-xs'
+                  : 'bg-white border border-slate-200/90 text-slate-700 hover:bg-slate-50'
               }`}
             >
               {tab}

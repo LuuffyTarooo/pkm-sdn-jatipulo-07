@@ -52,10 +52,10 @@ export default function EkskulDirectory({ initialEkskul }: EkskulDirectoryProps)
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-[#0f2d4a] text-white shadow-xs'
-                    : 'bg-white text-neutral-600 hover:bg-[#eff6ff] hover:text-[#0f2d4a] border border-gray-200/80'
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200/90'
                 }`}
               >
                 {tab.label}
