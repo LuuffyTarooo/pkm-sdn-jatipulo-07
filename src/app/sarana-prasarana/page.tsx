@@ -15,13 +15,9 @@ export default function SaranaPrasaranaPage() {
   return (
     <div className="sarana-prasarana-page bg-[#f8fafc] min-h-screen pb-20">
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Fasilitas & Sarpras' },
-        ]}
-        badge="Fasilitas & Lingkungan Belajar"
         title="Sarana & Prasarana Sekolah"
         subtitle="Fasilitas representatif dan ramah anak untuk mendukung proses belajar mengajar yang kondusif."
+        preserveSpacing={true}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
         {dataFasilitas.length === 0 ? (

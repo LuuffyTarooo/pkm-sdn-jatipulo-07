@@ -15,13 +15,9 @@ export default function BeritaPage() {
   return (
     <div className="berita-page bg-[#f8fafc] min-h-screen pb-20">
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Berita & Pengumuman' },
-        ]}
-        badge="Informasi & Agenda Terkini"
         title="Berita & Pengumuman Sekolah"
         subtitle="Dapatkan kabar terbaru seputar prestasi, agenda akademik, dan aktivitas SDN Jatipulo 07 Jakarta."
+        preserveSpacing={true}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
         <BeritaDirectory initialBerita={dataBerita} />

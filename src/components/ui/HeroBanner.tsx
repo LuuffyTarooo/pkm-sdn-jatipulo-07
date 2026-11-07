@@ -12,7 +12,10 @@ interface HeroBannerProps {
   subtitle?: string;
   badge?: string;
   backgroundImage?: string;
+  backgroundPosition?: string;
   breadcrumbs?: BreadcrumbItem[];
+  preserveSpacing?: boolean;
+  highContrast?: boolean;
 }
 
 /**
@@ -27,10 +30,13 @@ export default function HeroBanner({
   subtitle,
   badge,
   backgroundImage = '/images/hero/gedung-tampak-samping.jpeg',
+  backgroundPosition = 'object-[center_35%]',
   breadcrumbs,
+  preserveSpacing = false,
+  highContrast = false,
 }: HeroBannerProps) {
   return (
-    <section className="relative w-full pt-[96px] sm:pt-[108px] pb-9 sm:pb-12 px-4 text-white text-center overflow-hidden bg-black">
+    <section className="relative w-full min-h-[300px] sm:min-h-[340px] md:min-h-[380px] flex flex-col justify-center items-center pt-[124px] sm:pt-[152px] md:pt-[164px] pb-14 sm:pb-[76px] md:pb-[88px] px-4 text-white text-center overflow-hidden bg-black">
       {/* 1. Latar Belakang Gambar / Foto Gedung */}
       {backgroundImage ? (
         <div className="absolute inset-0 z-0">
@@ -41,24 +47,34 @@ export default function HeroBanner({
             preload
             sizes="100vw"
             quality={90}
-            className="object-cover object-[center_35%]"
+            className={`object-cover ${backgroundPosition}`}
           />
 
-          {/* 2. Overlay Hitam Halus Ringan */}
+          {/* 2. Overlay Hitam Halus / Kontras Seimbang */}
           <div
-            className="absolute inset-0 bg-black/30 pointer-events-none"
+            className={`absolute inset-0 pointer-events-none transition-colors duration-300 ${
+              highContrast ? 'bg-black/38' : 'bg-black/30'
+            }`}
             aria-hidden="true"
           />
 
-          {/* 3. Gradasi Sinematik Hitam Vertikal (Lembut & Tidak Terlalu Kontras) */}
+          {/* 3. Gradasi Sinematik Hitam Vertikal */}
           <div
-            className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/65 pointer-events-none"
+            className={`absolute inset-0 pointer-events-none transition-all duration-300 ${
+              highContrast
+                ? 'bg-gradient-to-b from-black/70 via-black/30 to-black/75'
+                : 'bg-gradient-to-b from-black/60 via-black/25 to-black/65'
+            }`}
             aria-hidden="true"
           />
 
-          {/* 4. Gradasi Sinematik Hitam Horizontal Halus */}
+          {/* 4. Gradasi Sinematik Hitam Horizontal */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/35 pointer-events-none"
+            className={`absolute inset-0 pointer-events-none transition-all duration-300 ${
+              highContrast
+                ? 'bg-gradient-to-r from-black/42 via-transparent to-black/42'
+                : 'bg-gradient-to-r from-black/35 via-transparent to-black/35'
+            }`}
             aria-hidden="true"
           />
         </div>
@@ -69,8 +85,8 @@ export default function HeroBanner({
         />
       )}
 
-      {/* Konten Utama Hero */}
-      <div className="relative z-10 container mx-auto max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+      {/* Konten Utama Hero - Tepat di Tengah Vertikal & Horizontal */}
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-4 flex flex-col items-center justify-center text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
         {/* Breadcrumb Navigasi Halus */}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-2 sm:mb-2.5">
@@ -105,19 +121,19 @@ export default function HeroBanner({
 
         {/* Eyebrow / Badge dengan Aksen Sky Mist */}
         {badge && (
-          <p className="font-heading text-xs font-semibold tracking-[0.22em] text-[#7dd3fc] uppercase mb-2">
+          <p className="font-heading text-xs font-semibold tracking-[0.22em] text-[#7dd3fc] uppercase mb-2 text-center">
             {badge}
           </p>
         )}
 
         {/* Judul: Font Montserrat, Proporsional & Berwibawa */}
-        <h1 className="font-heading text-2xl sm:text-3xl md:text-[2rem] font-bold text-white tracking-tight leading-snug mb-2.5">
+        <h1 className="font-heading text-2xl sm:text-3xl md:text-[2rem] font-bold text-white tracking-tight leading-snug mb-2.5 text-center mx-auto max-w-2xl text-balance">
           {title}
         </h1>
 
         {/* Subtitle: Font Plus Jakarta Sans, Jelas & Nyaman Dibaca */}
         {subtitle && (
-          <p className="font-sans text-xs sm:text-sm md:text-[15px] text-neutral-100 font-normal max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans text-xs sm:text-sm md:text-[15px] text-neutral-100 font-normal max-w-xl sm:max-w-2xl mx-auto leading-relaxed text-center text-balance">
             {subtitle}
           </p>
         )}

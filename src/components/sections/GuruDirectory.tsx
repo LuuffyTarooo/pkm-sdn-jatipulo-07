@@ -1,49 +1,88 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Guru, KategoriGuru } from '@/types';
+import { Guru } from '@/types';
 import GuruCard from '@/components/cards/GuruCard';
 
 interface GuruDirectoryProps {
   initialGuru: Guru[];
 }
 
-type TabType = 'all' | KategoriGuru;
+type TabKelas = 'all' | 'kelas-1' | 'kelas-2' | 'kelas-3' | 'kelas-4' | 'kelas-5' | 'kelas-6' | 'mapel';
 
-interface TabConfig {
-  id: TabType;
+interface TabItem {
+  id: TabKelas;
   label: string;
 }
 
-const TABS: TabConfig[] = [
-  { id: 'all', label: 'Semua Guru & Staf' },
-  { id: 'pimpinan', label: 'Pimpinan' },
-  { id: 'guru-kelas', label: 'Guru Kelas' },
-  { id: 'guru-mapel', label: 'Guru Mapel' },
-  { id: 'staf', label: 'Tenaga Kependidikan' },
+const TABS: TabItem[] = [
+  { id: 'all', label: 'Semua' },
+  { id: 'kelas-1', label: 'Kelas 1' },
+  { id: 'kelas-2', label: 'Kelas 2' },
+  { id: 'kelas-3', label: 'Kelas 3' },
+  { id: 'kelas-4', label: 'Kelas 4' },
+  { id: 'kelas-5', label: 'Kelas 5' },
+  { id: 'kelas-6', label: 'Kelas 6' },
+  { id: 'mapel', label: 'Guru Mapel' },
 ];
 
-/**
- * Komponen Interaktif Direktori Guru & Tenaga Kependidikan (Client Component)
- * Mengadopsi prinsip desain responsif, rapi, dan fungsional:
- * - Navigasi kategori dan pencarian langsung yang responsif
- * - Hitungan badge kategori per-tab yang akurat
- * - Spotlight pimpinan sekolah yang menonjol dan berwibawa
- * - Tata letak grid kartu potret yang proporsional dan sejajar
- */
+function matchesTab(guru: Guru, tab: TabKelas): boolean {
+  if (tab === 'all') return true;
+  if (tab === 'kelas-1') return guru.jabatan.includes('Kelas 1');
+  if (tab === 'kelas-2') return guru.jabatan.includes('Kelas 2');
+  if (tab === 'kelas-3') return guru.jabatan.includes('Kelas 3');
+  if (tab === 'kelas-4') return guru.jabatan.includes('Kelas 4');
+  if (tab === 'kelas-5') return guru.jabatan.includes('Kelas 5');
+  if (tab === 'kelas-6') return guru.jabatan.includes('Kelas 6');
+  if (tab === 'mapel') return guru.kategori === 'guru-mapel';
+  return true;
+}
+
 export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('all');
+  const [activeTab, setActiveTab] = useState<TabKelas>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Filter daftar guru berdasarkan tab dan search query
-  const filteredGuru = useMemo(() => {
-    return initialGuru.filter((guru) => {
-      // 1. Filter Kategori
-      if (activeTab !== 'all' && guru.kategori !== activeTab) {
+  // 1. Pimpinan / Kepala Sekolah
+  const kepalaSekolah = useMemo(() => {
+    return initialGuru.find((g) => g.kategori === 'pimpinan');
+  }, [initialGuru]);
+
+  // 2. Daftar Guru Reguler
+  const regularTeachers = useMemo(() => {
+    return initialGuru.filter((g) => g.kategori !== 'pimpinan');
+  }, [initialGuru]);
+
+  // Hitung jumlah guru per tab
+  const tabCounts = useMemo(() => {
+    const counts: Record<TabKelas, number> = {
+      all: regularTeachers.length,
+      'kelas-1': 0,
+      'kelas-2': 0,
+      'kelas-3': 0,
+      'kelas-4': 0,
+      'kelas-5': 0,
+      'kelas-6': 0,
+      mapel: 0,
+    };
+
+    regularTeachers.forEach((g) => {
+      (['kelas-1', 'kelas-2', 'kelas-3', 'kelas-4', 'kelas-5', 'kelas-6', 'mapel'] as TabKelas[]).forEach((t) => {
+        if (matchesTab(g, t)) {
+          counts[t] += 1;
+        }
+      });
+    });
+
+    return counts;
+  }, [regularTeachers]);
+
+  // Filter guru reguler
+  const displayedTeachers = useMemo(() => {
+    return regularTeachers.filter((guru) => {
+      if (!matchesTab(guru, activeTab)) {
         return false;
       }
 
-      // 2. Filter Search Query
       if (searchQuery.trim() !== '') {
         const query = searchQuery.toLowerCase().trim();
         const matchNama = guru.nama.toLowerCase().includes(query);
@@ -51,175 +90,129 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
         const matchMapel = guru.mataPelajaran?.toLowerCase().includes(query) ?? false;
         const matchKelas = guru.kelasDiampu?.toLowerCase().includes(query) ?? false;
         const matchNip = guru.nip?.replace(/\s/g, '').includes(query.replace(/\s/g, '')) ?? false;
+        const matchTugas = guru.tugasTambahan?.some((t) => t.toLowerCase().includes(query)) ?? false;
 
-        return matchNama || matchJabatan || matchMapel || matchKelas || matchNip;
+        return matchNama || matchJabatan || matchMapel || matchKelas || matchNip || matchTugas;
       }
 
       return true;
     });
-  }, [initialGuru, activeTab, searchQuery]);
-
-  // Pisahkan Kepala Sekolah jika ada di tab pimpinan atau all
-  const kepalaSekolah = useMemo(() => {
-    if (activeTab === 'all' || activeTab === 'pimpinan') {
-      return filteredGuru.find((g) => g.kategori === 'pimpinan');
-    }
-    return null;
-  }, [filteredGuru, activeTab]);
-
-  // Daftar kartu guru reguler
-  const regularGuru = useMemo(() => {
-    if (kepalaSekolah) {
-      return filteredGuru.filter((g) => g.id !== kepalaSekolah.id);
-    }
-    return filteredGuru;
-  }, [filteredGuru, kepalaSekolah]);
+  }, [regularTeachers, activeTab, searchQuery]);
 
   const handleReset = () => {
     setActiveTab('all');
     setSearchQuery('');
   };
 
-  const isFiltered = activeTab !== 'all' || searchQuery.trim() !== '';
-
   return (
     <div className="w-full space-y-10 sm:space-y-12">
-      {/* Kontrol Utama: Pencarian & Filter Kategori */}
-      <div className="bg-white rounded-2xl border border-gray-200/90 p-5 sm:p-7 shadow-xs space-y-5">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          {/* Input Pencarian */}
-          <div className="relative flex-1 max-w-lg">
-            <label htmlFor="search-guru" className="sr-only">
-              Cari nama guru, mata pelajaran, kelas, atau jabatan
-            </label>
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </div>
-            <input
-              id="search-guru"
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari nama guru, mata pelajaran, kelas, atau jabatan..."
-              className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50/50 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0f2d4a] focus:bg-white transition-colors"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                aria-label="Hapus kata kunci pencarian"
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-400 hover:text-neutral-600 focus:outline-none cursor-pointer"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            )}
-          </div>
-
-          {/* Indikator Hasil Pencarian */}
-          <div className="flex items-center gap-3">
-            <div className="text-xs sm:text-sm text-neutral-600 font-sans">
-              Menampilkan <span className="font-bold text-[#0f2d4a]">{filteredGuru.length}</span> dari{' '}
-              <span className="font-semibold text-neutral-800">{initialGuru.length}</span> pendidik &amp; staf
-            </div>
-
-            {isFiltered && (
-              <button
-                type="button"
-                onClick={handleReset}
-                className="text-xs font-bold text-[#1d4e78] hover:text-[#0f2d4a] underline cursor-pointer"
-              >
-                Reset
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Tab Filter Kategori */}
-        <div
-          role="tablist"
-          aria-label="Filter kategori pendidik"
-          className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100"
-        >
-          {TABS.map((tab) => {
-            const isActive = activeTab === tab.id;
-
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
-                  isActive
-                    ? 'bg-[#0f2d4a] text-white'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
-                }`}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Featured Spotlight: Kepala Sekolah */}
+      {/* 1. SPOTLIGHT KEPALA SEKOLAH */}
       {kepalaSekolah && (
-        <section aria-labelledby="featured-kepsek-heading" className="space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-4 bg-[#1d4e78] rounded-full" />
-            <h2 id="featured-kepsek-heading" className="font-heading text-lg sm:text-xl font-bold text-[#0f2d4a]">
-              Pimpinan Satuan Pendidikan
-            </h2>
-          </div>
+        <section aria-label="Profil Kepala Sekolah" className="w-full pb-8 border-b border-slate-200/80">
           <GuruCard guru={kepalaSekolah} isFeatured={true} />
         </section>
       )}
 
-      {/* Grid Kartu Guru & Staf Reguler */}
-      {regularGuru.length > 0 && (
-        <section aria-labelledby="dewan-guru-heading" className="space-y-5">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-4 bg-[#1d4e78] rounded-full" />
-            <h2 id="dewan-guru-heading" className="font-heading text-lg sm:text-xl font-bold text-[#0f2d4a]">
-              {activeTab === 'all'
-                ? 'Dewan Guru & Tenaga Kependidikan'
-                : TABS.find((t) => t.id === activeTab)?.label}
-            </h2>
+      {/* 2. SEKSI DEWAN GURU */}
+      <section aria-label="Daftar Dewan Guru" className="space-y-6">
+        {/* Judul: Seluruh Dewan Pendidik */}
+        <div className="flex items-center justify-between">
+          <h3 className="font-heading font-bold text-lg sm:text-xl text-[#0f2d4a]">
+            Seluruh Dewan Pendidik
+          </h3>
+          <span className="text-xs text-slate-500 font-medium">
+            {displayedTeachers.length} Guru
+          </span>
+        </div>
+
+        {/* Tab Navigasi Ringkas & Pencarian (Tepat di bawah kalimat Seluruh Dewan Pendidik) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+          {/* Tab Kelas 1 s.d. 6 Lebih Ringkas */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+            {TABS.map((tab) => {
+              const isActive = activeTab === tab.id;
+              const count = tabCounts[tab.id] ?? 0;
+
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+                    isActive
+                      ? 'bg-[#0f2d4a] text-white shadow-xs'
+                      : 'bg-white text-slate-600 hover:bg-[#eff6ff] hover:text-[#0f2d4a] hover:border-[#bfdbfe] border border-slate-200'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  <span
+                    className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-7">
-            {regularGuru.map((guru) => (
+          {/* Search Box Ringkas */}
+          <div className="relative w-full sm:w-60 shrink-0">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari guru atau tugas..."
+              className="w-full pl-8 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-1 focus:ring-[#0f2d4a] transition-all"
+            />
+            <svg
+              className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 cursor-pointer"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Grid Dewan Guru Reguler */}
+        {displayedTeachers.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 items-start pt-2">
+            {displayedTeachers.map((guru) => (
               <GuruCard key={guru.id} guru={guru} />
             ))}
           </div>
-        </section>
-      )}
-
-      {/* State Jika Pencarian Kosong */}
-      {filteredGuru.length === 0 && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-10 sm:p-14 text-center max-w-md mx-auto shadow-xs">
-          <h3 className="font-heading text-lg font-bold text-neutral-900 mb-1">
-            Data Tidak Ditemukan
-          </h3>
-          <p className="text-sm text-neutral-600 mb-6 leading-relaxed font-sans">
-            Tidak ada guru atau staf yang cocok dengan kriteria kata kunci &ldquo;<span className="text-neutral-900 font-semibold">{searchQuery}</span>&rdquo;.
-          </p>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0f2d4a] hover:bg-[#1d4e78] text-white font-bold text-sm transition-colors cursor-pointer shadow-xs"
-          >
-            <span>Reset Pencarian</span>
-          </button>
-        </div>
-      )}
+        ) : (
+          <div className="text-center py-14">
+            <h4 className="font-heading font-bold text-base text-slate-800">
+              Tidak ada guru yang ditemukan
+            </h4>
+            <p className="text-xs text-slate-500 mt-1">
+              Tidak ada data yang cocok dengan filter atau pencarian &quot;{searchQuery}&quot;.
+            </p>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="mt-3 px-4 py-2 rounded-full text-xs font-semibold bg-[#0f2d4a] text-white hover:bg-[#1d4e78] transition-colors cursor-pointer"
+            >
+              Tampilkan Semua Guru
+            </button>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

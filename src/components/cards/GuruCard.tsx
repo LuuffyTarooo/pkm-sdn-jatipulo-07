@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Guru } from '@/types';
 
 interface GuruCardProps {
@@ -10,18 +9,9 @@ interface GuruCardProps {
   isFeatured?: boolean;
 }
 
-/**
- * Komponen Kartu Profil Guru & Tenaga Kependidikan
- * Standar Desain Premium & Humanis:
- * - Rasio potret proporsional aspect-[4/4.5] dengan framing rapi
- * - Badge kategori tematik dengan identitas warna yang jelas
- * - Ketinggian kartu konsisten (baseline-aligned) antar kolom
- * - Informasi lengkap: Nama, Jabatan, Mapel, NIP, dan Pendidikan Terakhir
- */
 export default function GuruCard({ guru, isFeatured = false }: GuruCardProps) {
   const [imgError, setImgError] = useState(false);
 
-  // Inisial nama jika foto tidak tersedia
   const initials =
     guru.nama
       .replace(/(Dra\.|Hj\.|H\.|Ust\.|M\.Pd\.|S\.Pd\.|S\.Pd\.I\.|S\.Pd\.K\.|M\.M\.|A\.Md\.|S\.Kom\.|S\.I\.Pust\.)/g, '')
@@ -32,212 +22,100 @@ export default function GuruCard({ guru, isFeatured = false }: GuruCardProps) {
       .join('')
       .toUpperCase() || 'GT';
 
-  const getCategoryLabel = () => {
-    switch (guru.kategori) {
-      case 'pimpinan':
-        return 'Pimpinan';
-      case 'guru-kelas':
-        return guru.kelasDiampu ? guru.kelasDiampu : 'Guru Kelas';
-      case 'guru-mapel':
-        return 'Guru';
-      case 'staf':
-      default:
-        return 'Tenaga Kependidikan';
-    }
-  };
+  const roleText = guru.jabatan;
 
-  // 1. TAMPILAN SPOTLIGHT KHUSUS KEPALA SEKOLAH
+  // 1. SPOTLIGHT KEPALA SEKOLAH
   if (isFeatured) {
     return (
-      <article className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-10">
-        {/* Potret Kepala Sekolah */}
-        <div className="relative shrink-0 w-44 sm:w-52 aspect-[4/5] rounded-2xl overflow-hidden bg-white shadow-md border-2 border-slate-200">
-          {!imgError && guru.foto ? (
-            <Image
-              src={guru.foto}
-              alt={`Foto resmi ${guru.nama}`}
-              fill
-              sizes="(max-width: 640px) 192px, 224px"
-              className="object-cover object-top"
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <div className="flex flex-col items-center justify-center w-full h-full bg-[#4c637a] text-white p-4 text-center">
-              <svg
-                className="w-16 h-16 text-white/85 mb-2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span className="text-sm font-bold text-white">
-                {initials}
-              </span>
-            </div>
-          )}
-        </div>
+      <div className="w-full">
+        <div className="flex flex-col md:flex-row items-center md:items-end gap-0 md:gap-8">
+          <div className="shrink-0 w-48 sm:w-56 md:w-64">
+            {!imgError && guru.foto ? (
+              <Image
+                src={guru.foto}
+                alt={`Foto resmi ${guru.nama}`}
+                width={600}
+                height={750}
+                className="w-full h-auto block"
+                priority
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="aspect-[3/4] flex flex-col items-center justify-center text-slate-700 text-center">
+                <span className="text-4xl font-bold font-heading">{initials}</span>
+              </div>
+            )}
+          </div>
 
-        {/* Rincian Kredensial Pimpinan Sekolah */}
-        <div className="flex-1 text-center md:text-left space-y-3.5">
-          <p className="text-xs font-bold uppercase tracking-wider text-[#1d4e78]">
-            Pimpinan Satuan Pendidikan
-          </p>
-
-          <div>
-            <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#0f2d4a] leading-tight">
+          <div className="flex-1 text-center md:text-left space-y-2 pb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#0f2d4a] leading-tight">
               {guru.nama}
-            </h3>
-            <p className="text-neutral-700 font-semibold text-base mt-1">
-              {guru.jabatan}
+            </h2>
+            <p className="text-[#1d4e78] font-semibold text-sm sm:text-base">
+              {guru.jabatan} • SDN Jatipulo 07 Jakarta
             </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 pt-1 text-xs text-neutral-700 font-sans">
-            {guru.nip && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-neutral-200">
-                <svg className="w-3.5 h-3.5 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect width="20" height="14" x="2" y="5" rx="2" />
-                  <line x1="2" x2="22" y1="10" y2="10" />
-                </svg>
-                <span>NIP: {guru.nip}</span>
-              </span>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-1">
+              {guru.nip && (
+                <span className="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-mono border border-slate-200">
+                  NIP: {guru.nip}
+                </span>
+              )}
+              {guru.pendidikanTerakhir && (
+                <span className="px-3 py-1 rounded-lg bg-[#eff6ff] text-[#0f2d4a] text-xs font-medium border border-[#bfdbfe]">
+                  {guru.pendidikanTerakhir}
+                </span>
+              )}
+            </div>
+            {guru.kataMutiara && (
+              <p className="text-sm text-slate-600 italic leading-relaxed pt-1 max-w-lg">
+                &ldquo;{guru.kataMutiara}&rdquo;
+              </p>
             )}
-
-            {guru.pendidikanTerakhir && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#eff6ff] text-[#0f2d4a] border border-[#bfdbfe]">
-                <svg className="w-3.5 h-3.5 text-[#1d4e78]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                </svg>
-                <span>{guru.pendidikanTerakhir}</span>
-              </span>
-            )}
-          </div>
-
-          {guru.kataMutiara && (
-            <p className="font-heading italic text-sm sm:text-base text-neutral-700 pt-3 border-t border-slate-200/80 leading-relaxed max-w-2xl">
-              &ldquo;{guru.kataMutiara}&rdquo;
-            </p>
-          )}
-
-          <div className="pt-1.5">
-            <Link
-              href="/hubungi-kami"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0f2d4a] hover:bg-[#1d4e78] text-white text-xs sm:text-sm font-bold transition-colors shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]"
-            >
-              <span>Hubungi Satuan Pendidikan</span>
-            </Link>
           </div>
         </div>
-      </article>
+      </div>
     );
   }
 
-  // 2. TAMPILAN KARTU DEWAN GURU & STAF REGULER
+  // 2. TAMPILAN GURU REGULER
+  // Ukuran foto terkontrol max-w-[180px] dengan tinggi seragam rata bawah agar nama sejajar rapi
   return (
-    <article className="group bg-white rounded-2xl border border-gray-200/90 hover:border-[#93c5fd] shadow-xs hover:shadow-md transition-shadow flex flex-col h-full overflow-hidden text-left">
-      {/* Potret Wajah */}
-      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-white">
+    <div className="guru-item flex flex-col items-center text-center group w-full">
+      {/* Wadah Foto: Tinggi Seragam & Rata Bawah, Ukuran Terkontrol max-w-[180px] */}
+      <div className="w-full h-44 sm:h-48 md:h-52 flex items-end justify-center">
         {!imgError && guru.foto ? (
           <Image
             src={guru.foto}
             alt={`Foto ${guru.nama}`}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+            width={400}
+            height={500}
+            className={`max-h-full w-auto h-auto block object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-300 ${
+              guru.nama.includes('Dewi') ? 'max-w-[210px] scale-[1.08] origin-bottom' : 'max-w-[180px]'
+            }`}
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className="flex flex-col items-center justify-center w-full h-full bg-[#4c637a] text-white p-4 text-center">
-            <svg
-              className="w-12 h-12 text-white/85"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span className="text-xs font-bold text-white mt-1">
+          <div className="w-[180px] aspect-square flex flex-col items-center justify-center text-slate-600">
+            <div className="w-16 h-16 rounded-full bg-slate-200 flex items-center justify-center text-xl font-bold font-heading text-slate-700">
               {initials}
-            </span>
+            </div>
           </div>
         )}
-
-        {/* Badge Kategori di Sudut Foto */}
-        <div className="absolute top-2.5 left-2.5 z-10">
-          <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/45 backdrop-blur-md border border-white/20 text-white/95">
-            {getCategoryLabel()}
-          </span>
-        </div>
       </div>
 
-      {/* Konten Identitas Guru */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
-        <div>
-          {/* Nama Guru (Tinggi minimum tetap agar baris grid selalu sejajar rapi) */}
-          <h3 className="font-heading font-bold text-base text-neutral-900 group-hover:text-[#0f2d4a] transition-colors leading-snug line-clamp-2 min-h-[2.75rem]">
-            {guru.nama}
-          </h3>
+      {/* Nama & Info: Sejajar Sempurna Secara Horizontal */}
+      <div className="w-full flex flex-col items-center">
+        <h3 className="font-heading font-extrabold text-sm sm:text-base text-[#0f2d4a] group-hover:text-[#1d4e78] transition-colors leading-tight mt-2 min-h-[2.5rem] flex items-center justify-center text-center">
+          {guru.nama}
+        </h3>
+        <p className="text-xs sm:text-sm font-semibold text-[#1d4e78]">{roleText}</p>
 
-          <p className="text-xs sm:text-sm font-semibold text-[#1d4e78] mt-1">
-            {guru.jabatan}
+        {guru.tugasTambahan && guru.tugasTambahan.length > 0 && (
+          <p className="text-[11px] text-slate-500 mt-0.5 leading-snug text-center max-w-[220px]">
+            {guru.tugasTambahan.join(' • ')}
           </p>
-
-          {/* Mata Pelajaran jika ada */}
-          {guru.mataPelajaran && (
-            <div className="mt-2 p-2 rounded-lg bg-[#eff6ff] border border-[#bfdbfe]">
-              <p className="text-xs font-medium text-slate-800 line-clamp-1">
-                <span className="font-semibold text-[#0f2d4a]">Mapel:</span> {guru.mataPelajaran}
-              </p>
-            </div>
-          )}
-
-          {/* Kutipan Singkat jika ada */}
-          {guru.kataMutiara && !guru.mataPelajaran && (
-            <p className="text-xs text-neutral-500 italic mt-2 line-clamp-2 leading-relaxed font-sans">
-              &ldquo;{guru.kataMutiara}&rdquo;
-            </p>
-          )}
-        </div>
-
-        {/* NIP & Kualifikasi di Bawah */}
-        <div className="pt-3 border-t border-gray-100 flex flex-col gap-1 text-xs text-neutral-500 font-sans mt-auto">
-          {guru.nip ? (
-            <div className="flex items-center gap-1.5 text-neutral-600">
-              <svg className="w-3.5 h-3.5 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <line x1="2" x2="22" y1="10" y2="10" />
-              </svg>
-              <span className="truncate">NIP: {guru.nip}</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-1.5 text-neutral-500">
-              <span>Tenaga Kependidikan</span>
-            </div>
-          )}
-
-          {guru.pendidikanTerakhir && (
-            <div className="flex items-center gap-1.5 text-neutral-600 font-medium">
-              <svg className="w-3.5 h-3.5 text-[#1d4e78] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c3 3 9 3 12 0v-5" />
-              </svg>
-              <span className="truncate">{guru.pendidikanTerakhir}</span>
-            </div>
-          )}
-        </div>
+        )}
       </div>
-    </article>
+    </div>
   );
 }

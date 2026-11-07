@@ -22,13 +22,9 @@ export default function ProfilPage() {
     <div className="profil-page bg-[#f8fafc] min-h-screen">
       {/* 1. Hero Banner */}
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Profil Sekolah' },
-        ]}
-        badge="Tentang Satuan Pendidikan"
         title="Profil SDN Jatipulo 07 Jakarta"
         subtitle="Mengenal lebih dekat visi, misi, sejarah, dan nilai keunggulan lingkungan belajar kami."
+        preserveSpacing={true}
       />
 
       {/* 2. Sambutan Kepala Sekolah (Padding dirapikan agar tidak ada gap berlebih) */}

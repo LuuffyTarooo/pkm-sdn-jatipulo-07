@@ -15,14 +15,9 @@ export default function PrestasiPage() {
   return (
     <div className="prestasi-page bg-[#f8fafc] min-h-screen pb-20">
       <HeroBanner
-        breadcrumbs={[
-          { label: 'Beranda', href: '/' },
-          { label: 'Kesiswaan' },
-          { label: 'Prestasi' },
-        ]}
-        badge="Raihan & Kejuaraan"
         title="Prestasi Peserta Didik"
         subtitle="Apresiasi atas dedikasi dan kerja keras para peserta didik yang telah mengharumkan nama sekolah."
+        preserveSpacing={true}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
         {dataPrestasi.length === 0 ? (
