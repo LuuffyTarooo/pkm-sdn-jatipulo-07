@@ -191,24 +191,27 @@ function HeaderNav() {
               </svg>
             </button>
 
-            {/* Menu Dropdown Kesiswaan (Opsi A: Frosted Glass Ramping Senada Sosmed & Portal Archiva) */}
+            {/* Menu Dropdown Kesiswaan (Transparan Menyatu Tanpa Box) */}
             <div
               role="menu"
-              className={`absolute top-full left-0 pt-1.5 transition-all duration-200 ${
+              className={`absolute top-full left-0 pt-1 transition-all duration-200 ${
                 isKesiswaanOpen
                   ? 'opacity-100 visible pointer-events-auto translate-y-0'
                   : 'opacity-0 invisible pointer-events-none -translate-y-1'
               }`}
             >
-              <div className="w-44 p-1.5 rounded-2xl shadow-[0_10px_28px_rgba(8,23,38,0.32)] text-xs xl:text-[13px] border bg-[#1b314c]/70 backdrop-blur-xl border-white/25 text-white space-y-0.5">
+              <div
+                data-ui="dropdown-menu"
+                className="w-44 py-1 bg-transparent text-white space-y-1 text-xs xl:text-[13px]"
+              >
                 <Link
                   href="/kesiswaan/program-rutin"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block py-1 px-1 transition-colors rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] ${
                     pathname === '/kesiswaan/program-rutin'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
+                      ? 'text-[#7dd3fc] font-semibold'
+                      : 'text-white/85 font-medium hover:text-white'
                   }`}
                 >
                   Program Rutin
@@ -217,10 +220,10 @@ function HeaderNav() {
                   href="/kesiswaan/ekstrakurikuler"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block py-1 px-1 transition-colors rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] ${
                     pathname === '/kesiswaan/ekstrakurikuler'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
+                      ? 'text-[#7dd3fc] font-semibold'
+                      : 'text-white/85 font-medium hover:text-white'
                   }`}
                 >
                   Ekstrakurikuler
@@ -229,10 +232,10 @@ function HeaderNav() {
                   href="/kesiswaan/prestasi"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block py-1 px-1 transition-colors rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] ${
                     pathname === '/kesiswaan/prestasi'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
+                      ? 'text-[#7dd3fc] font-semibold'
+                      : 'text-white/85 font-medium hover:text-white'
                   }`}
                 >
                   Prestasi
