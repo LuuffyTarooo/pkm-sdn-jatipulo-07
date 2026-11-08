@@ -136,7 +136,6 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                     src={item.foto}
                     alt={item.judul}
                     fill
-                    unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                     onError={() =>
@@ -236,7 +235,6 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                   src={selectedPhoto.foto}
                   alt={selectedPhoto.judul}
                   fill
-                  unoptimized
                   loading="eager"
                   sizes="(max-width: 1024px) 100vw, 900px"
                   className="object-contain"
