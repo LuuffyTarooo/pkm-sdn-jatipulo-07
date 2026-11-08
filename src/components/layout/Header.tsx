@@ -80,8 +80,8 @@ function HeaderNav() {
     };
   }, [isKesiswaanOpen]);
 
-  // Hanya transparan di halaman Beranda saat belum di-scroll. Halaman Profil hingga Kontak selalu solid
-  const isTransparent = pathname === '/' && !isScrolled;
+  // Transparan saat berada di pucuk atas halaman (di atas foto HeroBanner / BannerUtama), lalu blur kaca saat di-scroll
+  const isTransparent = !isScrolled;
 
   const isLinkActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -109,7 +109,7 @@ function HeaderNav() {
         className={`absolute inset-0 z-0 pointer-events-none transition-all duration-300 ${
           isTransparent
             ? 'bg-gradient-to-b from-black/48 to-transparent border-b border-transparent'
-            : 'bg-[#0b182a] shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15'
+            : 'bg-[#0b182a]/85 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15'
         }`}
       />
 
@@ -191,24 +191,24 @@ function HeaderNav() {
               </svg>
             </button>
 
-            {/* Menu Dropdown Kesiswaan */}
+            {/* Menu Dropdown Kesiswaan (Opsi A: Frosted Glass Ramping Senada Sosmed & Portal Archiva) */}
             <div
               role="menu"
-              className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+              className={`absolute top-full left-0 pt-1.5 transition-all duration-200 ${
                 isKesiswaanOpen
-                  ? 'opacity-100 visible pointer-events-auto'
-                  : 'opacity-0 invisible pointer-events-none'
+                  ? 'opacity-100 visible pointer-events-auto translate-y-0'
+                  : 'opacity-0 invisible pointer-events-none -translate-y-1'
               }`}
             >
-              <div className="w-52 py-2 rounded-xl shadow-xl text-sm border bg-[#0b182a]/95 backdrop-blur-md border-white/15 text-white">
+              <div className="w-44 p-1.5 rounded-2xl shadow-[0_10px_28px_rgba(8,23,38,0.32)] text-xs xl:text-[13px] border bg-[#1b314c]/70 backdrop-blur-xl border-white/25 text-white space-y-0.5">
                 <Link
                   href="/kesiswaan/program-rutin"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-4 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/program-rutin'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/10'
-                      : 'text-white/85 hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
                   }`}
                 >
                   Program Rutin
@@ -217,10 +217,10 @@ function HeaderNav() {
                   href="/kesiswaan/ekstrakurikuler"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-4 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/ekstrakurikuler'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/10'
-                      : 'text-white/85 hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
                   }`}
                 >
                   Ekstrakurikuler
@@ -229,10 +229,10 @@ function HeaderNav() {
                   href="/kesiswaan/prestasi"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-4 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/prestasi'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/10'
-                      : 'text-white/85 hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/20'
                   }`}
                 >
                   Prestasi

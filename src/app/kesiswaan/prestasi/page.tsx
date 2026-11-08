@@ -21,7 +21,7 @@ export default function PrestasiPage() {
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
         {dataPrestasi.length === 0 ? (
-          <div className="bg-white rounded-2xl p-10 sm:p-16 text-center max-w-md mx-auto flex flex-col items-center justify-center">
+          <div className="bg-white border border-slate-200/90 shadow-xs rounded-2xl p-10 sm:p-16 text-center max-w-md mx-auto flex flex-col items-center justify-center">
             {/* Icon Kosong Minimalis */}
             <div
               className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 flex items-center justify-center mb-5 text-slate-400"

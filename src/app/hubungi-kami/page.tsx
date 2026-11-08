@@ -40,7 +40,7 @@ export default function HubungiKamiPage() {
         <section aria-label="Saluran Kontak Utama" className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           
           {/* Kartu WhatsApp */}
-          <div className="bg-white p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px]">
+          <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px]">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold text-slate-500">
@@ -82,7 +82,7 @@ export default function HubungiKamiPage() {
           </div>
 
           {/* Kartu Telepon Kantor */}
-          <div className="bg-white p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px]">
+          <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px]">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold text-slate-500">
@@ -127,7 +127,7 @@ export default function HubungiKamiPage() {
           {/* Kartu Email Resmi */}
           <a
             href={`mailto:${dataSekolah.kontak.email}`}
-            className="group bg-white p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px] hover:bg-slate-50 transition-colors"
+            className="group bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px] hover:bg-slate-50 transition-colors"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
@@ -167,7 +167,7 @@ export default function HubungiKamiPage() {
           <div className="lg:col-span-5 flex flex-col justify-between gap-5 sm:gap-6">
             
             {/* Box Alamat Sekolah */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl space-y-4">
+            <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-slate-500">
                   Alamat Sekolah
@@ -202,7 +202,7 @@ export default function HubungiKamiPage() {
             </div>
 
             {/* Box Jam Layanan */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl space-y-3">
+            <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl space-y-3">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-semibold text-slate-500">
                   Jam Layanan Tata Usaha
@@ -232,7 +232,7 @@ export default function HubungiKamiPage() {
             </div>
 
             {/* Kanal Media Sosial Resmi */}
-            <div className="bg-white p-6 sm:p-7 rounded-2xl space-y-3">
+            <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl space-y-3">
               <span className="text-xs font-semibold text-slate-500 block mb-1">
                 Media Sosial Resmi
               </span>
@@ -302,7 +302,7 @@ export default function HubungiKamiPage() {
           </div>
 
           {/* Kolom Kanan: Peta Google Maps (7 Kolom) */}
-          <div className="lg:col-span-7 bg-white rounded-2xl overflow-hidden flex flex-col min-h-[360px] sm:min-h-[440px]">
+          <div className="lg:col-span-7 bg-white border border-slate-200/90 shadow-xs rounded-2xl overflow-hidden flex flex-col min-h-[360px] sm:min-h-[440px]">
             <div className="px-6 py-4 bg-slate-100 flex items-center justify-between text-xs sm:text-sm font-sans">
               <span className="font-heading font-semibold text-[#0b182a]">
                 Peta Lokasi Satuan Pendidikan
