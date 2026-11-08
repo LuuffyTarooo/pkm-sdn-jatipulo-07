@@ -80,8 +80,10 @@ function HeaderNav() {
     };
   }, [isKesiswaanOpen]);
 
-  // Transparan saat berada di pucuk atas halaman (di atas foto HeroBanner / BannerUtama), lalu blur kaca saat di-scroll
-  const isTransparent = !isScrolled;
+  // Hanya halaman Beranda (/) yang transparan saat di pucuk atas banner hero.
+  // Halaman Profil hingga Kontak selalu menggunakan latar solid/kaca navy agar tidak transparan tembus pandang.
+  const isHomePage = pathname === '/';
+  const isTransparent = isHomePage && !isScrolled;
 
   const isLinkActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -301,10 +303,10 @@ function HeaderNav() {
  */
 function HeaderFallback() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full h-[76px] sm:h-[88px] flex items-center px-4 sm:px-[5vw]">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-[68px] sm:h-[76px] flex items-center px-4 sm:px-[5vw]">
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-black/48 to-transparent border-b border-transparent"
+        className="absolute inset-0 z-0 pointer-events-none bg-[#0b182a]/85 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15"
       />
       <div className="relative z-10 w-full flex items-center justify-between gap-2 min-w-0">
         <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
