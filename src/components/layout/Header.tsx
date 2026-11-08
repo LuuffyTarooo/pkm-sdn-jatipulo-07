@@ -202,16 +202,16 @@ function HeaderNav() {
             >
               <div
                 data-ui="dropdown-menu"
-                className="w-44 p-1.5 rounded-xl bg-[#0b182a]/80 backdrop-blur-md border border-white/20 text-white space-y-0.5 text-xs xl:text-[13px] shadow-lg"
+                className="w-44 p-1.5 rounded-xl bg-black/25 backdrop-blur-md border border-white/20 text-white space-y-0.5 text-xs xl:text-[13px] shadow-md"
               >
                 <Link
                   href="/kesiswaan/program-rutin"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
                     pathname === '/kesiswaan/program-rutin'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/15'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
                   }`}
                 >
                   Program Rutin
@@ -220,10 +220,10 @@ function HeaderNav() {
                   href="/kesiswaan/ekstrakurikuler"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
                     pathname === '/kesiswaan/ekstrakurikuler'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/15'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
                   }`}
                 >
                   Ekstrakurikuler
@@ -232,10 +232,10 @@ function HeaderNav() {
                   href="/kesiswaan/prestasi"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
                     pathname === '/kesiswaan/prestasi'
-                      ? 'text-[#7dd3fc] font-semibold bg-white/15'
-                      : 'text-white/90 font-medium hover:text-white hover:bg-white/10'
+                      ? 'text-[#7dd3fc] font-semibold bg-white/20'
+                      : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
                   }`}
                 >
                   Prestasi
