@@ -11,12 +11,10 @@ export const metadata: Metadata = {
 
 /**
  * Halaman Guru & Tenaga Kependidikan (/guru-dan-staf)
- * Dirombak secara komprehensif menggunakan standar UI/UX Pro Max:
  * - Menampilkan foto asli seluruh dewan pendidik
- * - Tata letak Bento & Portrait Grid 4-kolom yang proporsional
+ * - Tata letak Bento & Portrait Grid yang proporsional
  * - Filter kategori terpadu & pencarian instan
  * - Spotlight kepemimpinan Kepala Sekolah
- * - Seksi komitmen pengabdian dewan pendidik
  */
 export default function GuruDanStafPage() {
   return (

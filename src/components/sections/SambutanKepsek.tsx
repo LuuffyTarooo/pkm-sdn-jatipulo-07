@@ -31,9 +31,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
       className={`py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 bg-[#f8fafc] ${className}`}
     >
       <div className="container mx-auto max-w-6xl">
-        {/* Kartu Kontainer Utama */}
-        <div className="bg-white rounded-3xl border border-gray-100/90 shadow-[0_4px_30px_rgba(0,0,0,0.03)] p-6 sm:p-8 lg:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             
             {/* Kolom Kiri: Potret Kepala Sekolah (Besar, menyatu pas dengan nama) */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
@@ -41,10 +39,10 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                 {!imgError ? (
                   <Image
                     src="/images/kepala-sekolah/kepalasekolah.png"
-                    alt="Dra. Hj. Sri Wahyuni, M.Pd. - Kepala SDN Jatipulo 07 Jakarta Barat"
+                    alt="Hj. Emma SUSANTY, S.Pd. M.Pd - Kepala Sekolah SDN Jatipulo 07 Jakarta Barat"
                     width={734}
                     height={791}
-                    className="w-full h-auto object-contain mx-auto drop-shadow-sm block"
+                    className="w-full h-auto object-contain mx-auto block"
                     onError={() => setImgError(true)}
                   />
                 ) : (
@@ -60,10 +58,10 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                 {/* Nama & Jabatan Tepat Menempel di Bawah Foto (Tanpa Celah Kosong) */}
                 <div className="text-center mt-2.5 sm:mt-3">
                   <h3 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl text-[#0f2d4a] leading-tight tracking-tight">
-                    Dra. Hj. Sri Wahyuni, M.Pd.
+                    Hj. Emma SUSANTY, S.Pd. M.Pd
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-neutral-600 font-medium mt-1">
-                    Kepala SDN Jatipulo 07 Jakarta Barat
+                    Kepala Sekolah
                   </p>
                 </div>
               </div>
@@ -75,29 +73,23 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
               {/* Eyebrow Kicker dengan Garis Horizontal */}
               <div className="flex items-center gap-3">
                 <span className="w-8 sm:w-10 h-[2.5px] bg-[#0f2d4a] rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-wider text-[#1d4e78] font-sans">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#1d4e78] font-sans" /* taste-skill-ignore: official section label */>
                   KATA SAMBUTAN KEPALA SEKOLAH
                 </span>
               </div>
 
-              {/* Judul Utama */}
+              {/* Judul Utama / Motto Kepala Sekolah */}
               <h2
                 id="sambutan-title"
-                className="font-heading text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[#0f2d4a] leading-[1.2] tracking-tight"
+                className="font-heading text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-[#0f2d4a] leading-snug tracking-tight"
               >
-                Menyemai Karakter,<br />
-                Merawat Potensi Peserta Didik
+                Memimpin dengan Hati,<br className="hidden sm:inline" /> Mendidik dengan Kasih,<br className="hidden sm:inline" /> Menginspirasi untuk Berprestasi
               </h2>
-
-              {/* Kutipan Filosofis */}
-              <p className="italic text-neutral-600 font-sans text-sm sm:text-base leading-relaxed">
-                &ldquo;Pendidikan sejati membentuk pribadi yang berilmu, mandiri, dan berakhlak mulia.&rdquo;
-              </p>
 
               {/* 3 Kartu Pilar Komitmen Sekolah */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-2">
-                {/* Pilar 1: Sekolah Ramah Anak */}
-                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200/80 text-left flex flex-col justify-between">
+                {/* Pilar 1: Cerdas Berkarakter */}
+                <div data-ui="pilar-card-1" className="p-4 rounded-2xl bg-white border border-slate-200/90 text-left flex flex-col justify-between">
                   <div className="w-8 h-8 rounded-full bg-[#eff6ff] text-[#0f2d4a] flex items-center justify-center mb-3">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
@@ -105,16 +97,16 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                   </div>
                   <div>
                     <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
-                      Sekolah<br className="hidden sm:inline" /> Ramah Anak
+                      Cerdas<br className="hidden sm:inline" /> Berkarakter
                     </h4>
                     <p className="text-xs text-neutral-500 font-sans mt-1">
-                      Aman dan nyaman
+                      Berakhlak mulia &amp; berintegritas
                     </p>
                   </div>
                 </div>
 
-                {/* Pilar 2: Karakter Pancasila */}
-                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200/80 text-left flex flex-col justify-between">
+                {/* Pilar 2: Berbudaya Lingkungan */}
+                <div data-ui="pilar-card-2" className="p-4 rounded-2xl bg-white border border-slate-200/90 text-left flex flex-col justify-between">
                   <div className="w-8 h-8 rounded-full bg-[#eff6ff] text-[#0f2d4a] flex items-center justify-center mb-3">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
@@ -123,16 +115,16 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                   </div>
                   <div>
                     <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
-                      Karakter<br className="hidden sm:inline" /> Pancasila
+                      Berbudaya<br className="hidden sm:inline" /> Lingkungan
                     </h4>
                     <p className="text-xs text-neutral-500 font-sans mt-1">
-                      Berakhlak mulia
+                      Peduli alam &amp; asri
                     </p>
                   </div>
                 </div>
 
-                {/* Pilar 3: Prestasi Nyata */}
-                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200/80 text-left flex flex-col justify-between">
+                {/* Pilar 3: Berprestasi Tiada Henti */}
+                <div data-ui="pilar-card-3" className="p-4 rounded-2xl bg-white border border-slate-200/90 text-left flex flex-col justify-between">
                   <div className="w-8 h-8 rounded-full bg-[#eff6ff] text-[#0f2d4a] flex items-center justify-center mb-3">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
@@ -145,7 +137,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                   </div>
                   <div>
                     <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-900 leading-snug">
-                      Prestasi<br className="hidden sm:inline" /> Nyata
+                      Berprestasi<br className="hidden sm:inline" /> Tiada Henti
                     </h4>
                     <p className="text-xs text-neutral-500 font-sans mt-1">
                       Akademik &amp; non-akademik
@@ -207,7 +199,6 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
 
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 }
