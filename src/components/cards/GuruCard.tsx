@@ -52,16 +52,16 @@ export default function GuruCard({ guru, isFeatured = false }: GuruCardProps) {
               {guru.nama}
             </h2>
             <p className="text-[#1d4e78] font-semibold text-sm sm:text-base">
-              {guru.jabatan} • SDN Jatipulo 07 Jakarta
+              {guru.jabatan} SDN Jatipulo 07 Jakarta
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-1">
               {guru.nip && (
-                <span className="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-mono border border-slate-200">
+                <span data-ui="nip-badge" className="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-sans tabular-nums border border-slate-200">
                   NIP: {guru.nip}
                 </span>
               )}
               {guru.pendidikanTerakhir && (
-                <span className="px-3 py-1 rounded-lg bg-[#eff6ff] text-[#0f2d4a] text-xs font-medium border border-[#bfdbfe]">
+                <span data-ui="edu-badge" className="px-3 py-1 rounded-lg bg-[#eff6ff] text-[#0f2d4a] text-xs font-medium border border-[#bfdbfe]">
                   {guru.pendidikanTerakhir}
                 </span>
               )}

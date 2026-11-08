@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 
 /**
  * Halaman Galeri Foto (/galeri)
- * Menampilkan dokumentasi kegiatan sekolah dalam tata letak asimetris (Bento Grid)
- * dilengkapi tab filter kategori dan fitur perbesar (Lightbox).
+ * Menampilkan dokumentasi visual kegiatan sekolah dari public/images/galeri
  */
 export default function GaleriPage() {
   return (

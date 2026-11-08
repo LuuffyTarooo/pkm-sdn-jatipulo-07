@@ -8,15 +8,13 @@ export const dataGuru: Guru[] = [
   // 1. Pimpinan Sekolah
   {
     id: 'guru-01',
-    nama: 'Dra. Hj. Sri Wahyuni, M.Pd.',
-    nip: '19680512 199203 2 004',
+    nama: 'Hj. Emma SUSANTY, S.Pd. M.Pd',
     jabatan: 'Kepala Sekolah',
     kategori: 'pimpinan',
-    pendidikanTerakhir: 'S2 Manajemen Pendidikan',
     foto: '/images/kepala-sekolah/kepalasekolah.png',
     email: 'kepsek@sdnjatipulo07.sch.id',
     kataMutiara:
-      'Mewujudkan sekolah ramah anak yang unggul dalam prestasi, berakhlak mulia, cerdas literasi dan berwawasan lingkungan.',
+      'Memimpin dengan Hati, Mendidik dengan Kasih, Menginspirasi untuk Berprestasi',
     urutan: 1,
   },
 

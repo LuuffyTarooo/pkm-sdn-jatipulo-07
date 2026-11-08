@@ -8,19 +8,23 @@ interface GaleriGridProps {
   initialItems: FotoGaleri[];
 }
 
-type KategoriTab = 'Semua' | 'Akademik' | 'Kegiatan' | 'Umum';
-
-const TABS: KategoriTab[] = ['Semua', 'Akademik', 'Kegiatan', 'Umum'];
-
 /**
  * Galeri Foto SDN Jatipulo 07 Jakarta
- * Grid bento 3 kolom kompak dengan:
- * - Tab filter kategori rata kiri
- * - Layout asimetris: item 0 = tall (2 baris), item 3 = wide (2 kolom)
- * - Kartu kompak dengan overlay teks, badge kategori, dan lightbox
+ * Grid galeri responsif dengan:
+ * - Tab filter kategori dinamis
+ * - Tata letak adaptif: grid seimbang untuk koleksi terkurasi, dan bento grid untuk koleksi banyak foto
+ * - Kartu foto dengan overlay teks, badge kategori, dan modal Lightbox perbesar foto
  */
 export default function GaleriGrid({ initialItems }: GaleriGridProps) {
-  const [activeTab, setActiveTab] = useState<KategoriTab>('Semua');
+  const tabs = useMemo(() => {
+    const rawCategories = initialItems
+      .map((item) => item.kategori)
+      .filter(Boolean) as string[];
+    const unique = Array.from(new Set(rawCategories));
+    return ['Semua', ...unique];
+  }, [initialItems]);
+
+  const [activeTab, setActiveTab] = useState<string>('Semua');
   const [selectedPhoto, setSelectedPhoto] = useState<FotoGaleri | null>(null);
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
@@ -45,52 +49,70 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
 
   useEffect(() => {
     document.body.style.overflow = selectedPhoto ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [selectedPhoto]);
 
   return (
     <div className="w-full space-y-6 sm:space-y-8">
+      {/* Tab Filter Kategori (hanya tampil jika terdapat lebih dari 1 opsi tab) */}
+      {tabs.length > 1 && (
+        <div
+          role="tablist"
+          aria-label="Filter kategori galeri"
+          className="flex flex-wrap items-center gap-2"
+        >
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
+                  isActive
+                    ? 'bg-[#0f2d4a] text-white'
+                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
+                }`}
+              >
+                {tab}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
-      {/* Tab Filter Kategori */}
-      <div
-        role="tablist"
-        aria-label="Filter kategori galeri"
-        className="flex flex-wrap items-center gap-2"
-      >
-        {TABS.map((tab) => {
-          const isActive = activeTab === tab;
-          return (
-            <button
-              key={tab}
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] ${
-                isActive
-                  ? 'bg-[#0f2d4a] text-white'
-                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900'
-              }`}
-            >
-              {tab}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Grid Bento 3 Kolom Kompak */}
+      {/* Grid Galeri Adaptif */}
       {filteredPhotos.length === 0 ? (
         <p className="text-neutral-500 text-sm py-16 text-center font-sans">
           Belum ada dokumentasi untuk kategori ini.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[200px]">
+        <div
+          className={`grid gap-4 sm:gap-6 ${
+            filteredPhotos.length <= 2
+              ? 'grid-cols-1 sm:grid-cols-2 auto-rows-[280px] sm:auto-rows-[340px]'
+              : filteredPhotos.length === 3
+              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[260px] sm:auto-rows-[300px]'
+              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[180px] sm:auto-rows-[200px]'
+          }`}
+        >
           {filteredPhotos.map((item, index) => {
-            // Layout asimetris: item pertama tall, item keempat wide
+            // Layout asimetris hanya berlaku saat koleksi berisi 4 foto atau lebih
             let spanClass = '';
-            if (activeTab === 'Semua' && index === 0) {
-              spanClass = 'sm:row-span-2';
-            } else if (activeTab === 'Semua' && index === 3) {
-              spanClass = 'lg:col-span-2';
+            if (activeTab === 'Semua') {
+              if (filteredPhotos.length >= 4 && index === 0) {
+                spanClass = 'sm:row-span-2';
+              } else if (filteredPhotos.length === 4 && index === 3) {
+                spanClass = 'sm:col-span-2 lg:col-span-2';
+              } else if (filteredPhotos.length === 6) {
+                if (index === 3) spanClass = 'lg:col-span-2';
+                if (index === 5) spanClass = 'sm:col-span-2 lg:col-span-2';
+              } else if (filteredPhotos.length === 7 && index === 6) {
+                spanClass = 'lg:col-span-2';
+              }
             }
 
             return (
@@ -106,7 +128,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                     setSelectedPhoto(item);
                   }
                 }}
-                className={`group relative rounded-xl overflow-hidden cursor-pointer bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] focus-visible:ring-offset-2 ${spanClass}`}
+                className={`group relative rounded-xl overflow-hidden cursor-pointer bg-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f2d4a] focus-visible:ring-offset-2 ${spanClass}`}
               >
                 {/* Foto */}
                 {!imgErrors[item.id] && item.foto ? (
@@ -114,6 +136,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                     src={item.foto}
                     alt={item.judul}
                     fill
+                    unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                     onError={() =>
@@ -150,13 +173,13 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
 
                 {/* Scrim bawah untuk keterbacaan teks */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent pointer-events-none" /* taste-skill-ignore: neutral photo scrim */
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" /* taste-skill-ignore: neutral photo scrim */
                   aria-hidden="true"
                 />
 
                 {/* Judul & Tanggal */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 z-10">
-                  <h3 className="font-heading font-bold text-white text-xs sm:text-sm leading-snug line-clamp-2">
+                <div className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-5 z-10">
+                  <h3 className="font-heading font-bold text-white text-sm sm:text-base leading-snug line-clamp-2">
                     {item.judul}
                   </h3>
                   {item.tanggal && (
@@ -191,19 +214,29 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
               aria-label="Tutup"
               className="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors duration-150 cursor-pointer"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
 
             {/* Foto Besar */}
-            <div className="relative w-full aspect-[16/10] bg-black">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-black max-h-[70vh]">
               {!imgErrors[selectedPhoto.id] && selectedPhoto.foto ? (
                 <Image
                   src={selectedPhoto.foto}
                   alt={selectedPhoto.judul}
                   fill
+                  unoptimized
                   loading="eager"
                   sizes="(max-width: 1024px) 100vw, 900px"
                   className="object-contain"
