@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default function ProfilPage() {
   return (
-    <div className="profil-page bg-[#f8fafc] min-h-screen">
+    <div className="profil-page bg-[#f8fafc] min-h-[100svh]">
       {/* 1. Hero Banner */}
       <HeroBanner
         title="Profil SDN Jatipulo 07 Jakarta"
@@ -31,7 +31,7 @@ export default function ProfilPage() {
       <SambutanKepsek className="py-6 sm:py-8 lg:py-10" isSubPage={true} />
 
       {/* 3. Visi & Misi (Langsung menempel ke Footer tanpa celah pb-20) */}
-      <VisiMisi />
+      <VisiMisi isSubPage={true} />
     </div>
   );
 }

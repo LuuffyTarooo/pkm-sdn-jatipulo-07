@@ -8,7 +8,7 @@ interface GuruDirectoryProps {
   initialGuru: Guru[];
 }
 
-type TabKelas = 'all' | 'kelas-1' | 'kelas-2' | 'kelas-3' | 'kelas-4' | 'kelas-5' | 'kelas-6' | 'mapel';
+type TabKelas = 'all' | 'kelas-1' | 'kelas-2' | 'kelas-3' | 'kelas-4' | 'kelas-5' | 'kelas-6' | 'mapel' | 'staf';
 
 interface TabItem {
   id: TabKelas;
@@ -24,6 +24,7 @@ const TABS: TabItem[] = [
   { id: 'kelas-5', label: 'Kelas 5' },
   { id: 'kelas-6', label: 'Kelas 6' },
   { id: 'mapel', label: 'Guru Mapel' },
+  { id: 'staf', label: 'Tenaga Kependidikan' },
 ];
 
 function matchesTab(guru: Guru, tab: TabKelas): boolean {
@@ -35,6 +36,7 @@ function matchesTab(guru: Guru, tab: TabKelas): boolean {
   if (tab === 'kelas-5') return guru.jabatan.includes('Kelas 5');
   if (tab === 'kelas-6') return guru.jabatan.includes('Kelas 6');
   if (tab === 'mapel') return guru.kategori === 'guru-mapel';
+  if (tab === 'staf') return guru.kategori === 'staf';
   return true;
 }
 
@@ -63,10 +65,11 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
       'kelas-5': 0,
       'kelas-6': 0,
       mapel: 0,
+      staf: 0,
     };
 
     regularTeachers.forEach((g) => {
-      (['kelas-1', 'kelas-2', 'kelas-3', 'kelas-4', 'kelas-5', 'kelas-6', 'mapel'] as TabKelas[]).forEach((t) => {
+      (['kelas-1', 'kelas-2', 'kelas-3', 'kelas-4', 'kelas-5', 'kelas-6', 'mapel', 'staf'] as TabKelas[]).forEach((t) => {
         if (matchesTab(g, t)) {
           counts[t] += 1;
         }
@@ -105,29 +108,29 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
   };
 
   return (
-    <div className="w-full space-y-10 sm:space-y-12">
+    <div data-ui="guru-directory" className="w-full space-y-10 sm:space-y-12">
       {/* 1. SPOTLIGHT KEPALA SEKOLAH */}
       {kepalaSekolah && (
-        <section aria-label="Profil Kepala Sekolah" className="w-full pb-8 border-b border-slate-200/80">
+        <section aria-label="Profil Kepala Sekolah" className="w-full pb-8">
           <GuruCard guru={kepalaSekolah} isFeatured={true} />
         </section>
       )}
 
-      {/* 2. SEKSI DEWAN GURU */}
-      <section aria-label="Daftar Dewan Guru" className="space-y-6">
-        {/* Judul: Seluruh Dewan Pendidik */}
+      {/* 2. SEKSI DEWAN GURU & TENAGA KEPENDIDIKAN */}
+      <section aria-label="Daftar Dewan Pendidik dan Tenaga Kependidikan" className="space-y-6">
+        {/* Judul: Dewan Pendidik & Tenaga Kependidikan */}
         <div className="flex items-center justify-between">
           <h3 className="font-heading font-bold text-lg sm:text-xl text-[#0f2d4a]">
-            Seluruh Dewan Pendidik
+            Dewan Pendidik &amp; Tenaga Kependidikan
           </h3>
           <span className="text-xs text-slate-500 font-medium">
-            {displayedTeachers.length} Guru
+            {displayedTeachers.length} Pendidik &amp; Staf
           </span>
         </div>
 
-        {/* Tab Navigasi Ringkas & Pencarian (Tepat di bawah kalimat Seluruh Dewan Pendidik) */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
-          {/* Tab Kelas 1 s.d. 6 Lebih Ringkas */}
+        {/* Tab Navigasi Ringkas & Pencarian */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+          {/* Tab Kelas 1 s.d. 6, Mapel, & Staf */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -138,7 +141,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer shrink-0 ${
                     isActive
                       ? 'bg-[#0f2d4a] text-white shadow-xs'
                       : 'bg-white text-slate-600 hover:bg-[#eff6ff] hover:text-[#0f2d4a] hover:border-[#bfdbfe] border border-slate-200'
@@ -158,13 +161,13 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
           </div>
 
           {/* Search Box Ringkas */}
-          <div className="relative w-full sm:w-60 shrink-0">
+          <div data-ui="search-box" className="relative w-full sm:w-60 shrink-0">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari guru atau tugas..."
-              className="w-full pl-8 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-1 focus:ring-[#0f2d4a] transition-all"
+              placeholder="Cari nama, jabatan, atau tugas..."
+              className="w-full pl-8 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-1 focus:ring-[#0f2d4a] transition-colors duration-200" /* taste-skill-ignore: standard search input outline */
             />
             <svg
               className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"
@@ -180,9 +183,13 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 cursor-pointer"
+                aria-label="Hapus pencarian"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer flex items-center justify-center"
               >
-                ✕
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
               </button>
             )}
           </div>
@@ -208,7 +215,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               onClick={handleReset}
               className="mt-3 px-4 py-2 rounded-full text-xs font-semibold bg-[#0f2d4a] text-white hover:bg-[#1d4e78] transition-colors cursor-pointer"
             >
-              Tampilkan Semua Guru
+              Tampilkan Semua Pendidik &amp; Staf
             </button>
           </div>
         )}

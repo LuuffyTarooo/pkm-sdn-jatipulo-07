@@ -7,7 +7,7 @@ import { Ekskul } from '@/types';
 export const dataEkstrakurikuler: Ekskul[] = [
   {
     id: 'ekskul-pramuka',
-    nama: 'Pramuka (Praja Muda Karana)',
+    nama: 'Pramuka',
     deskripsi:
       'Ekstrakurikuler wajib pembentukan karakter, kepemimpinan, kemandirian, kedisiplinan, kecintaan alam, dan ketangkasan kepanduan bagi seluruh siswa.',
     jadwal: 'Rabu, Jam 10.00 - 12.00 WIB',
@@ -34,7 +34,7 @@ export const dataEkstrakurikuler: Ekskul[] = [
   },
   {
     id: 'ekskul-bulutangkis',
-    nama: 'Bulutangkis (Badminton)',
+    nama: 'Bulutangkis',
     deskripsi:
       'Melatih teknik dasar servis, smash, footwork, ketepatan refleks, dan stamina fisik untuk mencetak atlet bulutangkis usia dini.',
     jadwal: 'Cut Off Sementara',
@@ -43,7 +43,7 @@ export const dataEkstrakurikuler: Ekskul[] = [
   },
   {
     id: 'ekskul-karate',
-    nama: 'Karate (INKAI)',
+    nama: 'Karate',
     deskripsi:
       'Seni bela diri karate untuk mengasah ketahanan mental, konsentrasi, kontrol emosi, bela diri praktis, serta teknik kata dan kumite.',
     jadwal: 'Senin, Jam 16.00 - 17.30 WIB',
@@ -88,7 +88,7 @@ export const dataEkstrakurikuler: Ekskul[] = [
   },
   {
     id: 'ekskul-padus',
-    nama: 'Paduan Suara (Choir)',
+    nama: 'Paduan Suara',
     deskripsi:
       'Mengasah olah vokal pernapasan, intonasi, artikulasi, dan harmonisasi paduan suara dalam membawakan lagu-lagu nasional serta daerah.',
     jadwal: 'Jumat, Jam 15.00 - 16.30 WIB',
@@ -97,7 +97,7 @@ export const dataEkstrakurikuler: Ekskul[] = [
   },
   {
     id: 'ekskul-drumband',
-    nama: 'Drumband (Gita Ceria)',
+    nama: 'Drumband',
     deskripsi:
       'Korps musik instrumen tiup dan perkusi yang memadukan kedisiplinan barisan, musikalitas ritmis dinamis, dan kepercayaan diri di depan publik.',
     jadwal: 'Cut Off Sementara',

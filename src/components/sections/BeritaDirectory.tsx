@@ -14,7 +14,6 @@ const TABS: KategoriTab[] = ['Semua', 'Berita', 'Pengumuman', 'Agenda'];
 
 /**
  * Direktori Berita, Pengumuman, & Agenda dengan Filter Kategori Interaktif
- * Selaras dengan komponen BeritaTerbaru di halaman Beranda.
  */
 export default function BeritaDirectory({ initialBerita }: BeritaDirectoryProps) {
   const [activeTab, setActiveTab] = useState<KategoriTab>('Semua');
@@ -26,9 +25,34 @@ export default function BeritaDirectory({ initialBerita }: BeritaDirectoryProps)
 
   if (initialBerita.length === 0) {
     return (
-      <p className="text-neutral-500 text-center py-12 text-sm">
-        Belum ada berita atau pengumuman yang diunggah.
-      </p>
+      <div
+        data-ui="berita-directory-empty"
+        className="text-center py-20 px-6 bg-white rounded-3xl border border-slate-200/90 max-w-md mx-auto shadow-xs"
+      >
+        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#eff6ff] text-[#1d4e78] flex items-center justify-center">
+          <svg
+            className="w-8 h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+            <path d="M18 14h-8" />
+            <path d="M15 18h-5" />
+            <path d="M10 6h8v4h-8V6Z" />
+          </svg>
+        </div>
+        <h3 className="font-heading font-bold text-lg sm:text-xl text-[#0f2d4a]">
+          Belum Ada Data
+        </h3>
+        <p className="font-sans text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+          Belum ada publikasi berita, pengumuman, atau agenda resmi yang diunggah saat ini.
+        </p>
+      </div>
     );
   }
 
@@ -64,9 +88,32 @@ export default function BeritaDirectory({ initialBerita }: BeritaDirectoryProps)
 
       {/* Grid Kartu Berita */}
       {filteredBerita.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-gray-200/80 p-10 text-center">
-          <p className="text-sm text-neutral-600">
-            Belum ada publikasi pada kategori <span className="font-semibold">{activeTab}</span>.
+        <div
+          data-ui="berita-tab-empty"
+          className="text-center py-16 px-6 bg-white rounded-3xl border border-slate-200/90 max-w-md mx-auto shadow-xs"
+        >
+          <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-[#eff6ff] text-[#1d4e78] flex items-center justify-center">
+            <svg
+              className="w-7 h-7"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+              <path d="M18 14h-8" />
+              <path d="M15 18h-5" />
+              <path d="M10 6h8v4h-8V6Z" />
+            </svg>
+          </div>
+          <h3 className="font-heading font-bold text-base sm:text-lg text-[#0f2d4a]">
+            Belum Ada Data
+          </h3>
+          <p className="font-sans text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
+            Belum ada publikasi pada kategori <strong className="font-semibold text-slate-700">{activeTab}</strong>.
           </p>
         </div>
       ) : (
@@ -79,4 +126,3 @@ export default function BeritaDirectory({ initialBerita }: BeritaDirectoryProps)
     </div>
   );
 }
-

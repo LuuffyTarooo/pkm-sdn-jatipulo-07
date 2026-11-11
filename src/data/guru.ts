@@ -231,6 +231,30 @@ export const dataGuru: Guru[] = [
       'Mendidik dengan Al-Quran dan keteladanan untuk membentuk insan yang berakhlak mulia.',
     urutan: 16,
   },
+
+  // 4. Tenaga Kependidikan & Staf
+  {
+    id: 'guru-17',
+    nama: 'Neneng Nurhidayah',
+    jabatan: 'Operator Sekolah',
+    kategori: 'staf',
+    tugasTambahan: ['Operator Dapodik', 'Administrasi Sekolah'],
+    foto: '/images/guru/neneng-nurhidayah.png',
+    kataMutiara:
+      'Ketelitian data dan pelayanan prima mendukung kelancaran administrasi serta kemajuan sekolah.',
+    urutan: 17,
+  },
+  {
+    id: 'guru-18',
+    nama: 'Suratmin',
+    jabatan: 'Caraka',
+    kategori: 'staf',
+    tugasTambahan: ['Pemeliharaan Lingkungan & Kebersihan Sekolah'],
+    foto: '/images/guru/suratmin.png',
+    kataMutiara:
+      'Lingkungan sekolah yang bersih, sehat, dan asri menciptakan suasana belajar yang nyaman bagi seluruh warga sekolah.',
+    urutan: 18,
+  },
 ];
 
 /**

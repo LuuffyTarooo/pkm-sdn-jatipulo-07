@@ -24,6 +24,15 @@ export const dataFasilitas: Fasilitas[] = [
     fitur: ['Pencahayaan Baik', 'Meja & Kursi Ergonomis', 'Ventilasi Alami'],
   },
   {
+    id: 'lab-komputer',
+    nama: 'Laboratorium Komputer',
+    kategori: 'Ruang Belajar',
+    foto: '/images/fasilitas/lab-komputer.webp',
+    deskripsi:
+      'Laboratorium komputer representatif dengan perangkat PC lengkap, koneksi internet stabil, dan ruangan ber-AC untuk menunjang literasi digital, Asesmen Nasional (ANBK), serta pembelajaran TIK peserta didik.',
+    fitur: ['Perangkat PC Lengkap', 'Ruangan Ber-AC', 'Koneksi Internet'],
+  },
+  {
     id: 'lapangan-multifungsi',
     nama: 'Lapangan Multifungsi',
     kategori: 'Olahraga & Kegiatan',
