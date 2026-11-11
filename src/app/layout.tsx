@@ -56,9 +56,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/images/logo/favicon.ico',
-    shortcut: '/images/logo/favicon.ico',
-    apple: '/images/logo/favicon.ico',
+    icon: [
+      { url: '/images/logo/logo.png', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/images/logo/logo.png',
   },
 };
 

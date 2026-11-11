@@ -108,10 +108,15 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
     });
   }, [regularTeachers, activeTab, searchQuery]);
 
-  // Reset jumlah tampil saat berpindah tab atau mengubah kata kunci pencarian
-  useEffect(() => {
+  const handleTabChange = (tabId: TabKelas) => {
+    setActiveTab(tabId);
     setVisibleCount(INITIAL_VISIBLE);
-  }, [activeTab, searchQuery]);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setVisibleCount(INITIAL_VISIBLE);
+  };
 
   // Lazy loading otomatis saat pengguna menggulir mendekati batas bawah daftar
   useEffect(() => {
@@ -179,7 +184,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
                   <button
                     key={tab.id}
                     type="button"
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer shrink-0 ${
                       isActive
                         ? 'bg-[#0f2d4a] text-white shadow-xs'
@@ -204,7 +209,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Cari nama, jabatan, atau tugas..."
                 className="w-full pl-8 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-1 focus:ring-[#0f2d4a] transition-colors duration-200" /* taste-skill-ignore: standard search input outline */
               />
@@ -221,7 +226,7 @@ export default function GuruDirectory({ initialGuru }: GuruDirectoryProps) {
               {searchQuery && (
                 <button
                   type="button"
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => handleSearchChange('')}
                   aria-label="Hapus pencarian"
                   className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer flex items-center justify-center"
                 >

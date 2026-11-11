@@ -6,7 +6,9 @@ import BeritaTerbaru from '@/components/sections/BeritaTerbaru';
 import LokasiKontak from '@/components/sections/LokasiKontak';
 
 export const metadata: Metadata = {
-  title: 'Beranda',
+  title: {
+    absolute: 'SDN Jatipulo 07',
+  },
   description:
     'Selamat datang di website resmi SDN Jatipulo 07 Jakarta Barat. Pusat informasi akademik, profil sekolah, kesiswaan, dan prestasi.',
 };
