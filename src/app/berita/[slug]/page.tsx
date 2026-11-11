@@ -18,6 +18,12 @@ interface DetailBeritaPageProps {
  * Prerender daftar slug artikel berita statis (kompatibel dengan Next.js 16 Cache Components)
  */
 export function generateStaticParams() {
+  // Pada mode static export (output: 'export'), route dinamis [slug] mewajibkan
+  // generateStaticParams menghasilkan minimal 1 parameter. Jika data berita belum tersedia,
+  // gunakan placeholder agar build pipeline tidak gagal (saat diakses akan diarahkan ke 404).
+  if (dataBerita.length === 0) {
+    return [{ slug: '_placeholder' }];
+  }
   return dataBerita.map((berita) => ({
     slug: berita.slug,
   }));
@@ -36,6 +42,10 @@ export async function generateMetadata({
     return {
       title: 'Artikel Tidak Ditemukan',
       description: 'Artikel berita yang Anda cari tidak ditemukan.',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
