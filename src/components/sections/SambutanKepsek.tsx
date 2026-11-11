@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
 
 interface SambutanKepsekProps {
   className?: string;
@@ -21,13 +23,13 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
       aria-labelledby="sambutan-title"
       className={`relative w-full ${
         !isSubPage ? 'min-h-[100svh] flex items-center' : ''
-      } py-14 sm:py-18 lg:py-20 px-4 sm:px-6 lg:px-8 bg-[#f8fafc] ${className}`}
+      } px-4 sm:px-6 lg:px-8 bg-[#f8fafc] ${className || "py-14 sm:py-18 lg:py-20"}`}
     >
       <div className="container mx-auto max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
             
           {/* Kolom Kiri: Potret Kepala Sekolah (Besar, menyatu pas dengan nama) */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
+          <AnimateIn variant="fade-right" delay={50} className="lg:col-span-5 flex flex-col items-center justify-center" as="div">
             <div className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] flex flex-col items-center">
               {!imgError ? (
                 <Image
@@ -59,10 +61,10 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                 </p>
               </div>
             </div>
-          </div>
+          </AnimateIn>
 
           {/* Kolom Kanan: Narasi Sambutan, 3 Pilar & Tombol Aksi */}
-          <div className="lg:col-span-7 space-y-5 lg:space-y-6 text-left">
+          <AnimateIn variant="fade-left" delay={140} className="lg:col-span-7 space-y-5 lg:space-y-6 text-left" as="div">
             
             {/* Eyebrow Kicker dengan Garis Horizontal */}
             <div className="flex items-center gap-3">
@@ -91,7 +93,12 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
             </div>
 
             {/* 3 Kartu Pilar Komitmen Sekolah */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-1">
+            <StaggerChildren
+              baseDelay={80}
+              staggerDelay={70}
+              variant="fade-up"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-1"
+            >
               {/* Pilar 1: Cerdas Berkarakter */}
               <div data-ui="pilar-card-1" className="p-4 rounded-2xl bg-white border border-slate-200/90 text-left flex flex-col justify-between shadow-xs">
                 <div className="w-8 h-8 rounded-full bg-[#eff6ff] text-[#0f2d4a] flex items-center justify-center mb-3">
@@ -148,7 +155,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
                   </p>
                 </div>
               </div>
-            </div>
+            </StaggerChildren>
 
             {/* Dua Tombol Aksi Berdampingan */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -199,7 +206,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
               </Link>
             </div>
 
-          </div>
+          </AnimateIn>
 
         </div>
       </div>

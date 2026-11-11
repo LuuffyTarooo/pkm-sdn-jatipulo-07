@@ -1,5 +1,8 @@
 'use client';
 
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
+
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { FotoGaleri } from '@/types';

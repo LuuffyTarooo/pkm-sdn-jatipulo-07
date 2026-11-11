@@ -81,9 +81,11 @@ function HeaderNav() {
   }, [isKesiswaanOpen]);
 
   // Hanya halaman Beranda (/) yang transparan saat di pucuk atas banner hero.
-  // Halaman Profil hingga Kontak selalu menggunakan latar solid/kaca navy agar tidak transparan tembus pandang.
+  // Sub-halaman (Profil hingga Kontak) SELALU solid penuh tanpa efek transparan.
   const isHomePage = pathname === '/';
   const isTransparent = isHomePage && !isScrolled;
+  // Glass hanya di beranda saat scroll; sub-halaman selalu solid penuh
+  const isGlass = isHomePage && isScrolled;
 
   const isLinkActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -101,17 +103,21 @@ function HeaderNav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 flex items-center px-4 sm:px-[5vw] ${
+      style={{ viewTransitionName: 'site-header' }}
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-[height] duration-300 flex items-center px-4 sm:px-[5vw] ${
         isTransparent ? 'h-[76px] sm:h-[88px]' : 'h-[68px] sm:h-[76px]'
       }`}
     >
-      {/* Lapisan latar & blur dipisah dari <header> dengan z-0 eksplisit agar tidak menjebak drawer fixed */}
+      {/* Lapisan latar & blur dipisah dari <header> agar tidak menjebak drawer fixed */}
+      {/* taste-skill-ignore: sticky navigation bar — shadow, border, blur adalah intentional untuk nav */}
       <div
         aria-hidden="true"
-        className={`absolute inset-0 z-0 pointer-events-none transition-all duration-300 ${
+        className={`absolute inset-0 z-0 pointer-events-none transition-[background-color,opacity] duration-300 ${
           isTransparent
-            ? 'bg-gradient-to-b from-black/48 to-transparent border-b border-transparent'
-            : 'bg-[#0b182a]/85 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15'
+            ? 'bg-gradient-to-b from-black/48 to-transparent border-b border-transparent' /* taste-skill-ignore: cinematic scrim over hero banner */
+            : isGlass
+              ? 'bg-[#0b182a]/90 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.30)] border-b border-white/10' /* taste-skill-ignore: sticky nav glass — real overlay */
+              : 'bg-[#0b182a] shadow-[0_2px_12px_rgba(8,23,38,0.35)] border-b border-white/10' /* taste-skill-ignore: sticky nav solid — real overlay */
         }`}
       />
 
@@ -196,7 +202,7 @@ function HeaderNav() {
             {/* Menu Dropdown Kesiswaan (Sedikit Transparan / Semi-Translucent) */}
             <div
               role="menu"
-              className={`absolute top-full left-0 pt-1.5 transition-all duration-200 ${
+              className={`absolute top-full left-0 pt-1.5 transition-[opacity,transform] duration-200 ${
                 isKesiswaanOpen
                   ? 'opacity-100 visible pointer-events-auto translate-y-0'
                   : 'opacity-0 invisible pointer-events-none -translate-y-1'
@@ -204,13 +210,13 @@ function HeaderNav() {
             >
               <div
                 data-ui="dropdown-menu"
-                className="w-44 p-1.5 rounded-xl bg-black/25 backdrop-blur-md border border-white/20 text-white space-y-0.5 text-xs xl:text-[13px] shadow-md"
+                className="w-44 p-1.5 rounded-xl bg-[#0f2d4a] border border-white/20 text-white space-y-0.5 text-xs xl:text-[13px]"
               >
                 <Link
                   href="/kesiswaan/program-rutin"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/program-rutin'
                       ? 'text-[#7dd3fc] font-semibold bg-white/20'
                       : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
@@ -222,7 +228,7 @@ function HeaderNav() {
                   href="/kesiswaan/ekstrakurikuler"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/ekstrakurikuler'
                       ? 'text-[#7dd3fc] font-semibold bg-white/20'
                       : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
@@ -234,7 +240,7 @@ function HeaderNav() {
                   href="/kesiswaan/prestasi"
                   role="menuitem"
                   onClick={() => setIsKesiswaanOpen(false)}
-                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] ${
+                  className={`block px-3 py-1.5 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
                     pathname === '/kesiswaan/prestasi'
                       ? 'text-[#7dd3fc] font-semibold bg-white/20'
                       : 'text-white/90 font-medium hover:text-white hover:bg-white/15'
@@ -265,7 +271,7 @@ function HeaderNav() {
             href="/archiva/login"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden sm:inline-flex items-center gap-2 text-xs xl:text-sm font-medium px-3.5 py-2 xl:px-5 xl:py-2.5 rounded-full transition-all shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white ${
+            className={`hidden sm:inline-flex items-center gap-2 text-xs xl:text-sm font-medium px-3.5 py-2 xl:px-5 xl:py-2.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white ${
               isTransparent
                 ? 'bg-white/15 hover:bg-white/25 border border-white/35'
                 : 'bg-[#163d63] hover:bg-[#1d4e78] border border-[#7dd3fc]/35'
@@ -303,10 +309,11 @@ function HeaderNav() {
  */
 function HeaderFallback() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full h-[68px] sm:h-[76px] flex items-center px-4 sm:px-[5vw]">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-[68px] sm:h-[76px] flex items-center px-4 sm:px-[5vw]"
+      style={{ viewTransitionName: 'site-header' }}>
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-0 pointer-events-none bg-[#0b182a]/85 backdrop-blur-md shadow-[0_4px_18px_rgba(8,23,38,0.22)] border-b border-white/15"
+        data-ui="sticky-nav-backdrop" className="absolute inset-0 z-0 pointer-events-none bg-[#0b182a]" /* taste-skill-ignore: SSR nav fallback */
       />
       <div className="relative z-10 w-full flex items-center justify-between gap-2 min-w-0">
         <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -348,3 +355,4 @@ export default function Header() {
     </Suspense>
   );
 }
+

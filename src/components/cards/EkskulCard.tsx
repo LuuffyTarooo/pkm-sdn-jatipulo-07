@@ -12,7 +12,7 @@ export default function EkskulCard({ ekskul }: EkskulCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <article className="group bg-white rounded-2xl border border-gray-200/80 shadow-[0_2px_12px_rgba(15,45,74,0.04)] hover:shadow-[0_10px_28px_rgba(15,45,74,0.08)] hover:border-[#1d4e78]/40 transition-all duration-300 flex flex-col h-full overflow-hidden">
+    <article data-ui="ekskul-card" className="group bg-white rounded-2xl border border-gray-200/80 hover:border-[#1d4e78]/40 transition-colors duration-300 flex flex-col h-full overflow-hidden hover:-translate-y-1" style={{ transition: 'transform 300ms cubic-bezier(0.25,0.46,0.45,0.94), border-color 300ms ease' }}>
       {/* Thumbnail Foto Kegiatan */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50">
         {!imgError && ekskul.foto ? (
@@ -61,7 +61,7 @@ export default function EkskulCard({ ekskul }: EkskulCardProps) {
 
         {/* Jadwal Latihan */}
         {ekskul.jadwal && (
-          <div className="mt-3.5 pt-3 border-t border-gray-100 flex items-center gap-2 text-xs text-[#1d4e78] font-sans font-medium">
+          <div className="mt-3.5 pt-3 flex items-center gap-2 text-xs text-[#1d4e78] font-sans font-medium">
             <svg
               className="w-3.5 h-3.5 text-[#1d4e78] shrink-0"
               viewBox="0 0 24 24"

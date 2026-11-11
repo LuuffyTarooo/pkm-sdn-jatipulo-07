@@ -29,7 +29,8 @@ export default function PrestasiCard({ prestasi, onOpenModal }: PrestasiCardProp
       role="button"
       tabIndex={0}
       aria-label={`Dokumentasi prestasi ${prestasi.judul} - ${prestasi.peraih}`}
-      className="group bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#1d4e78]/50 transition-colors duration-200 flex flex-col h-full overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1d4e78]"
+      className="group bg-white rounded-2xl border border-slate-200/90 hover:border-[#1d4e78]/50 hover:-translate-y-1 transition-colors duration-200 flex flex-col h-full overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1d4e78]"
+      style={{ transition: 'transform 300ms cubic-bezier(0.25,0.46,0.45,0.94), border-color 200ms ease' }}
     >
       {/* 1. Foto Dokumentasi Poster Beraspek 4:3 dengan Framing Kepala Proporsional */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 shrink-0">

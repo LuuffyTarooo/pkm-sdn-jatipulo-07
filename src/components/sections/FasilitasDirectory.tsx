@@ -3,6 +3,8 @@
 import React, { useState, useMemo } from 'react';
 import { Fasilitas } from '@/types';
 import FasilitasCard from '@/components/cards/FasilitasCard';
+import StaggerChildren from '@/components/ui/StaggerChildren';
+import AnimateIn from '@/components/ui/AnimateIn';
 
 interface FasilitasDirectoryProps {
   fasilitas: Fasilitas[];
@@ -105,7 +107,13 @@ export default function FasilitasDirectory({ fasilitas }: FasilitasDirectoryProp
 
       {/* 2. Grid Fasilitas Bersih */}
       {filteredFasilitas.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch">
+        <StaggerChildren
+          key={`${selectedKategori}-${searchQuery}`}
+          baseDelay={50}
+          staggerDelay={80}
+          variant="fade-up"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch"
+        >
           {filteredFasilitas.map((item, idx) => (
             <FasilitasCard
               key={item.id}
@@ -113,7 +121,7 @@ export default function FasilitasDirectory({ fasilitas }: FasilitasDirectoryProp
               priority={idx < 3}
             />
           ))}
-        </div>
+        </StaggerChildren>
       ) : (
         /* Status Kosong */
         <div className="text-center py-16 bg-white border border-slate-200/90 shadow-xs rounded-2xl p-8">

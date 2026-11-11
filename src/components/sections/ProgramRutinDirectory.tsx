@@ -4,6 +4,8 @@ import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { ProgramRutin } from '@/types';
 import ProgramRutinCard from '@/components/cards/ProgramRutinCard';
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
 
 interface ProgramRutinDirectoryProps {
   programs: ProgramRutin[];

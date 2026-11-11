@@ -3,6 +3,8 @@
 import React, { useState, useMemo } from 'react';
 import { Ekskul, KategoriEkskul } from '@/types';
 import EkskulCard from '@/components/cards/EkskulCard';
+import StaggerChildren from '@/components/ui/StaggerChildren';
+import AnimateIn from '@/components/ui/AnimateIn';
 
 interface EkskulDirectoryProps {
   initialEkskul: Ekskul[];
@@ -69,11 +71,18 @@ export default function EkskulDirectory({ initialEkskul }: EkskulDirectoryProps)
       </div>
 
       {/* Grid Kartu Ekstrakurikuler */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+      {/* key={activeTab} → StaggerChildren remount & re-animate saat filter berubah */}
+      <StaggerChildren
+        key={activeTab}
+        baseDelay={60}
+        staggerDelay={100}
+        variant="fade-up"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
+      >
         {filteredEkskul.map((ekskul) => (
           <EkskulCard key={ekskul.id} ekskul={ekskul} />
         ))}
-      </div>
+      </StaggerChildren>
     </div>
   );
 }

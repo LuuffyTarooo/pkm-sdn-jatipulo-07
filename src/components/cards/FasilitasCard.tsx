@@ -17,7 +17,7 @@ export default function FasilitasCard({ fasilitas, priority = false }: Fasilitas
   const [imgError, setImgError] = useState(false);
 
   return (
-    <article className="bg-white border border-slate-200/90 shadow-xs rounded-2xl overflow-hidden flex flex-col justify-between">
+    <article data-ui="fasilitas-card" className="group bg-white border border-slate-200/90 rounded-2xl overflow-hidden flex flex-col justify-between hover:-translate-y-1" style={{ transition: 'transform 300ms cubic-bezier(0.25,0.46,0.45,0.94), border-color 300ms ease' }}>
       {/* 1. Foto Dokumentasi Fasilitas */}
       <div className="relative aspect-[16/10] w-full bg-slate-100 overflow-hidden shrink-0">
         {!imgError && fasilitas.foto ? (
@@ -26,7 +26,7 @@ export default function FasilitasCard({ fasilitas, priority = false }: Fasilitas
             alt={fasilitas.nama}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             priority={priority}
             onError={() => setImgError(true)}
           />

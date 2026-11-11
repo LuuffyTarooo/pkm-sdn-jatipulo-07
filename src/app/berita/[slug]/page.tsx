@@ -6,6 +6,7 @@ import { formatTanggal } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import HeroBanner from '@/components/ui/HeroBanner';
 import BeritaCoverImage from '@/components/ui/BeritaCoverImage';
+import AnimateIn from '@/components/ui/AnimateIn';
 
 interface DetailBeritaPageProps {
   params: Promise<{
@@ -79,7 +80,7 @@ export default async function DetailBeritaPage({ params }: DetailBeritaPageProps
       : 'success';
 
   return (
-    <div className="detail-berita-page bg-[#f8fafc] min-h-screen pb-20">
+    <div className="detail-berita-page bg-[#f8fafc] min-h-[100dvh] pb-20">
       <HeroBanner
         breadcrumbs={[
           { label: 'Beranda', href: '/' },
@@ -120,7 +121,7 @@ export default async function DetailBeritaPage({ params }: DetailBeritaPageProps
             kategori={artikel.kategori}
           />
 
-          <div className="flex flex-wrap items-center gap-3 mb-6 pb-6 border-b border-gray-100">
+          <div className="flex flex-wrap items-center gap-3 mb-6 pb-2">
             <Badge variant={badgeVariant}>{artikel.kategori}</Badge>
             <time dateTime={artikel.tanggal} className="text-sm text-neutral-500 font-medium">
               {formatTanggal(artikel.tanggal)}
@@ -140,7 +141,7 @@ export default async function DetailBeritaPage({ params }: DetailBeritaPageProps
           </div>
 
           {artikel.tags && artikel.tags.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center gap-2">
+            <div className="mt-8 pt-4 flex flex-wrap items-center gap-2">
               {artikel.tags.map((tag) => (
                 <span
                   key={tag}

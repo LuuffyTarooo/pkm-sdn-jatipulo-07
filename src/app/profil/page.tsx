@@ -28,7 +28,7 @@ export default function ProfilPage() {
       />
 
       {/* 2. Sambutan Kepala Sekolah (Padding dirapikan agar tidak ada gap berlebih) */}
-      <SambutanKepsek className="py-6 sm:py-8 lg:py-10" isSubPage={true} />
+      <SambutanKepsek className="py-14 sm:py-18 lg:py-20" isSubPage={true} />
 
       {/* 3. Visi & Misi (Langsung menempel ke Footer tanpa celah pb-20) */}
       <VisiMisi isSubPage={true} />

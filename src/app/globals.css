@@ -92,3 +92,145 @@ body {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
+
+/* =====================================================================
+ * ANIMASI GLOBAL — SDN JATIPULO 07 JAKARTA
+ * Keyframe animations untuk hero banner, page transitions, dan pulse
+ * =====================================================================
+ */
+
+/* Animasi Hero Banner Sub-Page: judul dan subtitle muncul dengan fade-up */
+@keyframes hero-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi fade-in murni untuk elemen overlay */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Animasi skala halus untuk foto background hero */
+@keyframes subtle-zoom {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+/* Animasi counting number StatsBar */
+@keyframes count-up-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* Animasi perpindahan halaman antar sub-page (fade + subtle glide up) */
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Kelas utility animasi yang bisa dipakai langsung di className */
+.animate-page-enter {
+  animation: page-enter 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-hero-entrance {
+  animation: hero-entrance 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-entrance-delay-1 {
+  animation: hero-entrance 480ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+}
+
+.animate-hero-entrance-delay-2 {
+  animation: hero-entrance 480ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
+}
+
+.animate-fade-in {
+  animation: fade-in 360ms ease both;
+}
+
+.animate-subtle-zoom {
+  animation: subtle-zoom 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Preferensi reduced-motion: matikan semua animasi untuk aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-enter,
+  .animate-hero-entrance,
+  .animate-hero-entrance-delay-1,
+  .animate-hero-entrance-delay-2,
+  .animate-fade-in,
+  .animate-subtle-zoom {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =====================================================================
+ * VIEW TRANSITIONS — Page-level crossfade dengan React <ViewTransition>
+ * Kompatibel: Chrome 125+, Safari 18+, Firefox 130+ (progressive enhancement)
+ * =====================================================================
+ */
+
+/* Keyframes untuk view-transition page */
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-page {
+  from { transform: translateY(16px); }
+  to   { transform: translateY(0); }
+}
+
+/* Animasi keluar halaman lama: fade cepat */
+::view-transition-old(root) {
+  animation: 180ms ease-in both fade reverse;
+}
+
+/* Animasi masuk halaman baru: fade + geser dari bawah */
+::view-transition-new(root) {
+  animation:
+    320ms ease-out 120ms both fade,
+    420ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both slide-page;
+}
+
+/* Header tidak ikut animasi — tetap diam sebagai anchor */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* Pastikan klik tetap berfungsi selama transisi */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Reduced-motion: matikan view transitions juga */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

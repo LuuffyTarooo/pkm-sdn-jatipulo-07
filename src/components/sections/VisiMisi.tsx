@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { dataSekolah } from '@/data/sekolah';
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
 
 interface VisiMisiProps {
   className?: string;
@@ -40,7 +42,7 @@ export default function VisiMisi({ className = '', isSubPage = false }: VisiMisi
       {/* 2. Konten Utama Visi & Misi Terpusat dan Proporsional */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
         {/* Header Seksi */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <AnimateIn variant="fade-up" delay={0} className="text-center max-w-2xl mx-auto mb-8 sm:mb-10" as="div">
           <p className="text-xs font-bold tracking-[0.2em] text-[#7dd3fc] uppercase mb-2">
             Arah &amp; Tujuan
           </p>
@@ -55,10 +57,10 @@ export default function VisiMisi({ className = '', isSubPage = false }: VisiMisi
           <p className="font-sans text-xs sm:text-sm text-neutral-200 max-w-lg mx-auto leading-relaxed">
             Sebagai dasar langkah bersama dalam mewujudkan pendidikan yang berkualitas untuk generasi masa depan.
           </p>
-        </div>
+        </AnimateIn>
 
         {/* Dua Kartu Visi dan Misi */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+        <StaggerChildren baseDelay={80} staggerDelay={100} variant="fade-up" className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {/* KARTU KIRI: VISI */}
           <div
             data-ui="visi-card"
@@ -132,7 +134,7 @@ export default function VisiMisi({ className = '', isSubPage = false }: VisiMisi
               ))}
             </div>
           </div>
-        </div>
+        </StaggerChildren>
       </div>
     </section>
   );

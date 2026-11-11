@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import HeroBanner from '@/components/ui/HeroBanner';
 import { dataSekolah } from '@/data/sekolah';
 import MapEmbed from '@/components/ui/MapEmbed';
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
 
 export const metadata: Metadata = {
   title: 'Hubungi Kami | SDN Jatipulo 07 Jakarta',
@@ -37,7 +39,13 @@ export default function HubungiKamiPage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-10 sm:pt-14 space-y-8 sm:space-y-10">
         
         {/* Tiga Saluran Kontak Seragam Putih dengan Aksen Navy */}
-        <section aria-label="Saluran Kontak Utama" className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <section aria-label="Saluran Kontak Utama">
+          <StaggerChildren
+            baseDelay={60}
+            staggerDelay={100}
+            variant="fade-up"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"
+          >
           
           {/* Kartu WhatsApp */}
           <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl flex flex-col justify-between min-h-[160px]">
@@ -157,14 +165,14 @@ export default function HubungiKamiPage() {
               <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
             </div>
           </a>
-
+          </StaggerChildren>
         </section>
 
         {/* Lokasi, Jam Layanan, & Peta Terpadu */}
         <section aria-label="Lokasi dan Jam Layanan" className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           
           {/* Kolom Kiri: Alamat, Jam Operasional & Media Sosial (5 Kolom) */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-5 sm:gap-6">
+          <AnimateIn variant="fade-right" delay={120} className="lg:col-span-5 flex flex-col justify-between gap-5 sm:gap-6">
             
             {/* Box Alamat Sekolah */}
             <div className="bg-white border border-slate-200/90 shadow-xs p-6 sm:p-7 rounded-2xl space-y-4">
@@ -298,11 +306,10 @@ export default function HubungiKamiPage() {
                 })}
               </div>
             </div>
-
-          </div>
+          </AnimateIn>
 
           {/* Kolom Kanan: Peta Google Maps (7 Kolom) */}
-          <div className="lg:col-span-7 bg-white border border-slate-200/90 shadow-xs rounded-2xl overflow-hidden flex flex-col min-h-[360px] sm:min-h-[440px]">
+          <AnimateIn variant="fade-left" delay={200} className="lg:col-span-7 bg-white border border-slate-200/90 shadow-xs rounded-2xl overflow-hidden flex flex-col min-h-[360px] sm:min-h-[440px]">
             <div className="px-6 py-4 bg-slate-100 flex items-center justify-between text-xs sm:text-sm font-sans">
               <span className="font-heading font-semibold text-[#0b182a]">
                 Peta Lokasi Satuan Pendidikan
@@ -318,7 +325,7 @@ export default function HubungiKamiPage() {
                 className="h-full w-full rounded-none"
               />
             </div>
-          </div>
+          </AnimateIn>
 
         </section>
 

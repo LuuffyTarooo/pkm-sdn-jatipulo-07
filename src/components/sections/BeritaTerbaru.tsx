@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { dataBerita } from '@/data/berita';
 import { formatTanggal } from '@/lib/utils';
+import AnimateIn from '@/components/ui/AnimateIn';
+import StaggerChildren from '@/components/ui/StaggerChildren';
 
 type KategoriTab = 'Semua' | 'Berita' | 'Pengumuman' | 'Agenda';
 
@@ -36,7 +38,7 @@ export default function BeritaTerbaru() {
       <div className="container mx-auto max-w-6xl space-y-6 sm:space-y-8">
         
         {/* Header Seksi Kompak: Judul, Subjudul & Tombol Arsip */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
+        <AnimateIn variant="fade-up" delay={0} className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2" as="div">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-[#1d4e78] font-sans mb-1" /* taste-skill-ignore: official section label */>
               Informasi &amp; Publikasi Sekolah
@@ -60,7 +62,7 @@ export default function BeritaTerbaru() {
             <span>Semua Berita &amp; Pengumuman</span>
             <span aria-hidden="true">&rarr;</span>
           </Link>
-        </div>
+        </AnimateIn>
 
         {/* Tab Filter Interaktif */}
         <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter kategori berita">
@@ -88,7 +90,12 @@ export default function BeritaTerbaru() {
 
         {/* Grid Kartu Berita / Empty State */}
         {filteredBerita.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <StaggerChildren
+            baseDelay={80}
+            staggerDelay={100}
+            variant="fade-up"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          >
             {filteredBerita.slice(0, 3).map((item) => {
               const hasError = imgErrors[item.id];
 
@@ -196,7 +203,7 @@ export default function BeritaTerbaru() {
                 </article>
               );
             })}
-          </div>
+          </StaggerChildren>
         ) : (
           <div
             data-ui="berita-empty-state"

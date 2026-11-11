@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Prestasi } from '@/types';
 import PrestasiCard from '@/components/cards/PrestasiCard';
+import StaggerChildren from '@/components/ui/StaggerChildren';
+import AnimateIn from '@/components/ui/AnimateIn';
 
 interface PrestasiDirectoryProps {
   initialPrestasi: Prestasi[];
@@ -41,7 +43,12 @@ export default function PrestasiDirectory({ initialPrestasi }: PrestasiDirectory
     <div className="w-full">
       {/* Grid Kartu Prestasi 4 Kolom Rapi & Proporsional */}
       {initialPrestasi.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6">
+        <StaggerChildren
+          baseDelay={50}
+          staggerDelay={70}
+          variant="fade-up"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:gap-6"
+        >
           {initialPrestasi.map((prestasi) => (
             <PrestasiCard
               key={prestasi.id}
@@ -49,16 +56,18 @@ export default function PrestasiDirectory({ initialPrestasi }: PrestasiDirectory
               onOpenModal={(p) => setSelectedPrestasi(p)}
             />
           ))}
-        </div>
+        </StaggerChildren>
       ) : (
-        <div className="text-center py-16 bg-white rounded-2xl border border-slate-200/90 p-8 max-w-md mx-auto">
+        <AnimateIn variant="fade-up">
+          <div className="text-center py-16 bg-white rounded-2xl border border-slate-200/90 p-8 max-w-md mx-auto">
           <p className="font-heading font-semibold text-base text-slate-800">
             Belum ada dokumentasi prestasi
           </p>
           <p className="font-sans text-xs sm:text-sm text-slate-500 mt-1">
             Data raihan prestasi peserta didik sedang dalam proses verifikasi arsip sekolah.
           </p>
-        </div>
+          </div>
+        </AnimateIn>
       )}
 
       {/* Modal Lightbox Resolusi Penuh Minimalis */}
