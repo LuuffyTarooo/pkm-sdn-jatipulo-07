@@ -11,7 +11,7 @@ export const dataGuru: Guru[] = [
     nama: 'Hj. Emma SUSANTY, S.Pd. M.Pd',
     jabatan: 'Kepala Sekolah',
     kategori: 'pimpinan',
-    foto: '/images/kepala-sekolah/kepalasekolah.png',
+    foto: '/images/kepala-sekolah/kepalasekolah.webp',
     email: 'kepsek@sdnjatipulo07.sch.id',
     kataMutiara:
       'Memimpin dengan Hati, Mendidik dengan Kasih, Menginspirasi untuk Berprestasi',
@@ -28,7 +28,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 1A',
     tugasTambahan: ['Kepala UKS', 'PJ Paduan Suara', 'Pendamping FLS3N'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/ine-anriyanti.png',
+    foto: '/images/guru/ine-anriyanti.webp',
     kataMutiara:
       'Setiap anak adalah bintang yang bersinar terang pada waktunya masing-masing.',
     urutan: 2,
@@ -42,7 +42,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 1B',
     tugasTambahan: ['PJ Pramuka Siaga', 'PJ Seni Tari', 'Pendamping FLS3N'],
     pendidikanTerakhir: 'S1 PGSD - Uhamka',
-    foto: '/images/guru/elminah.png',
+    foto: '/images/guru/elminah.webp',
     kataMutiara:
       'Menanamkan budi pekerti luhur dan kebiasaan saling menghargai sejak fase fondasi awal.',
     urutan: 3,
@@ -56,7 +56,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 1C',
     tugasTambahan: ['Koordinator 7K'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/siti-aisah.png',
+    foto: '/images/guru/siti-aisah.webp',
     kataMutiara:
       'Kebersihan, kenyamanan, dan keteraturan kelas adalah awal pembelajaran yang bermakna.',
     urutan: 4,
@@ -70,7 +70,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 2A',
     tugasTambahan: ['Koordinator 7 KAIH'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Terbuka',
-    foto: '/images/guru/jamilah.png',
+    foto: '/images/guru/jamilah.webp',
     kataMutiara:
       'Mendidik dengan keteladanan karakter, kasih sayang, dan keikhlasan budi.',
     urutan: 5,
@@ -84,7 +84,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 2B',
     tugasTambahan: ['PJ Karate', 'Tim Dokumentasi'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/sekar-ayu-fenina.png',
+    foto: '/images/guru/sekar-ayu-fenina.webp',
     kataMutiara:
       'Pembelajaran berbasis eksplorasi menghidupkan daya nalar kritis dan keceriaan kolaborasi.',
     urutan: 6,
@@ -98,7 +98,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 3A',
     tugasTambahan: ['Wakil Kepala Sekolah', 'Koordinator Proyek Kokurikuler'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/sri-rahayu.png',
+    foto: '/images/guru/sri-rahayu.webp',
     kataMutiara:
       'Kolaborasi guru dan siswa melahirkan pembelajaran bermakna dan berdaya guna.',
     urutan: 7,
@@ -112,7 +112,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 3B',
     tugasTambahan: ['PJ Pramuka Penggalang', 'PJ Drum Band', 'Pendamping TKA'],
     pendidikanTerakhir: 'S1 PGSD - Uhamka',
-    foto: '/images/guru/firmansyah.png',
+    foto: '/images/guru/firmansyah.webp',
     kataMutiara:
       'Disiplin, kepemimpinan, dan keceriaan berkarya adalah modal generasi berkarakter unggul.',
     urutan: 8,
@@ -126,7 +126,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 4A',
     tugasTambahan: ['Kepala Perpustakaan', 'PJ Pencak Silat', 'Pendamping OSN'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/dewi-cahyu-armania-v2.png',
+    foto: '/images/guru/dewi-cahyu-armania-v2.webp',
     kataMutiara:
       'Membaca membuka cakrawala dunia, olahraga dan seni melatih ketangguhan mental.',
     urutan: 9,
@@ -140,7 +140,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 4B',
     tugasTambahan: ['PJ Melukis', 'Pendamping OSN'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Pendidikan Indonesia',
-    foto: '/images/guru/ulfa-fujiah-fasha.png',
+    foto: '/images/guru/ulfa-fujiah-fasha.webp',
     kataMutiara:
       'Seni dan kreativitas membebaskan imajinasi anak untuk berani bermimpi dan berkarya.',
     urutan: 10,
@@ -154,7 +154,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 5',
     tugasTambahan: ['PJ Paskibra', 'Humas'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Terbuka',
-    foto: '/images/guru/masitoh.png',
+    foto: '/images/guru/masitoh.webp',
     kataMutiara:
       'Kreativitas tumbuh subur saat rasa ingin tahu anak didampingi dengan kesabaran dan dorongan positif.',
     urutan: 11,
@@ -168,7 +168,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 6A',
     tugasTambahan: ['PJ Drum Band', 'Pendamping OSN', 'Pendamping TKA', 'PBPP'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/sarah-fransiska-agata.png',
+    foto: '/images/guru/sarah-fransiska-agata.webp',
     kataMutiara:
       'Mempersiapkan lulusan berkarakter tangguh, berprestasi akademik, dan siap menyongsong masa depan.',
     urutan: 12,
@@ -182,7 +182,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 6B',
     tugasTambahan: ['Bendahara Barang', 'PJ Futsal', 'Pendamping TKA'],
     pendidikanTerakhir: 'S1 PGSD - Uhamka',
-    foto: '/images/guru/jaya-kusumah.png',
+    foto: '/images/guru/jaya-kusumah.webp',
     kataMutiara:
       'Sportivitas di lapangan cerminan kejujuran dan integritas dalam kehidupan bermasyarakat.',
     urutan: 13,
@@ -198,7 +198,7 @@ export const dataGuru: Guru[] = [
     mataPelajaran: 'Guru PJOK Kelas 1-6',
     tugasTambahan: ['Koordinator O2SN', 'PJ Bulutangkis', 'Tim Dokumentasi'],
     pendidikanTerakhir: 'S1 Pendidikan Jasmani - UNJ',
-    foto: '/images/guru/jepri-handani.png',
+    foto: '/images/guru/jepri-handani.webp',
     kataMutiara:
       'Di dalam tubuh yang sehat terdapat jiwa yang kuat; sportivitas adalah cermin watak ksatria.',
     urutan: 14,
@@ -212,7 +212,7 @@ export const dataGuru: Guru[] = [
     mataPelajaran: 'Guru PAI Kelas 1, 2, & 5',
     tugasTambahan: ['PJ Marawis', 'Pendamping'],
     pendidikanTerakhir: 'S1 Tarbiyah - UIN Syarif Hidayatullah',
-    foto: '/images/guru/haratul-juliyah.png',
+    foto: '/images/guru/haratul-juliyah.webp',
     kataMutiara:
       'Adab mendahului ilmu; akhlak mulia dan ketakwaan adalah perhiasan terbaik seorang insan berilmu.',
     urutan: 15,
@@ -226,7 +226,7 @@ export const dataGuru: Guru[] = [
     mataPelajaran: 'Guru PAI Kelas 3, 4, & 6',
     tugasTambahan: ['PJ BTQ & Rohis', 'Operator Dapodik', 'Koordinator PHBI'],
     pendidikanTerakhir: 'S1 Pendidikan Agama Islam - UIN Syarif Hidayatullah',
-    foto: '/images/guru/hanif-azhar.png',
+    foto: '/images/guru/hanif-azhar.webp',
     kataMutiara:
       'Mendidik dengan Al-Quran dan keteladanan untuk membentuk insan yang berakhlak mulia.',
     urutan: 16,
@@ -239,7 +239,7 @@ export const dataGuru: Guru[] = [
     jabatan: 'Operator Sekolah',
     kategori: 'staf',
     tugasTambahan: ['Operator Dapodik', 'Administrasi Sekolah'],
-    foto: '/images/guru/neneng-nurhidayah.png',
+    foto: '/images/guru/neneng-nurhidayah.webp',
     kataMutiara:
       'Ketelitian data dan pelayanan prima mendukung kelancaran administrasi serta kemajuan sekolah.',
     urutan: 17,
@@ -250,7 +250,7 @@ export const dataGuru: Guru[] = [
     jabatan: 'Caraka',
     kategori: 'staf',
     tugasTambahan: ['Pemeliharaan Lingkungan & Kebersihan Sekolah'],
-    foto: '/images/guru/suratmin.png',
+    foto: '/images/guru/suratmin.webp',
     kataMutiara:
       'Lingkungan sekolah yang bersih, sehat, dan asri menciptakan suasana belajar yang nyaman bagi seluruh warga sekolah.',
     urutan: 18,

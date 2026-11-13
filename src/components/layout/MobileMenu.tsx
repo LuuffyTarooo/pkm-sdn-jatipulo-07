@@ -105,7 +105,7 @@ export default function MobileMenu({ isLightMode = false }: MobileMenuProps) {
               <Link href="/" onClick={closeMenu} className="flex items-center gap-3">
                 <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center">
                   <Image
-                    src="/images/logo/logo.png"
+                    src="/images/logo/logo.webp"
                     alt="Logo SDN Jatipulo 07"
                     width={36}
                     height={34}

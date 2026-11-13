@@ -55,7 +55,7 @@ export default function BannerUtama() {
       {/* 1. Foto Background Udara Sekolah */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero/hero-image.png"
+          src="/images/hero/hero-image.webp"
           alt="Pemandangan Udara Gedung dan Lapangan SDN Jatipulo 07 Jakarta"
           fill
           preload

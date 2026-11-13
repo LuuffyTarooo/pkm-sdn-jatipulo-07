@@ -23,7 +23,7 @@ export default function GuruDanStafPage() {
       <HeroBanner
         title="Dewan Guru & Tenaga Kependidikan"
         subtitle="Mengenal sosok-sosok pendidik berintegritas yang membimbing dan mendampingi tumbuh kembang putra-putri di SDN Jatipulo 07 Jakarta."
-        backgroundImage="/images/guru/hero-dewan-guru.png"
+        backgroundImage='/images/guru/hero-dewan-guru.webp'
         backgroundPosition="object-center"
         preserveSpacing={true}
         highContrast={true}

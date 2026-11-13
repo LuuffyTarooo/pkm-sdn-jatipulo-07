@@ -9,7 +9,7 @@ export const siteConfig = {
   description:
     'Website resmi SDN Jatipulo 07 Jakarta Barat. Informasi profil sekolah, tenaga pendidik, sarana prasarana, kegiatan kesiswaan, prestasi, dan berita terkini.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://sdnjatipulo07.sch.id',
-  ogImage: '/images/hero/hero-image.png',
+  ogImage: '/images/hero/hero-og.jpg',
   links: {
     portalArchiva: '/archiva/login',
   },

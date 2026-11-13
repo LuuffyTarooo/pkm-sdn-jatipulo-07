@@ -129,7 +129,7 @@ function HeaderNav() {
         >
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
             <Image
-              src="/images/logo/logo.png"
+              src="/images/logo/logo.webp"
               alt="Logo Resmi SDN Jatipulo 07 Jakarta"
               width={38}
               height={36}
@@ -319,7 +319,7 @@ function HeaderFallback() {
         <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center">
             <Image
-              src="/images/logo/logo.png"
+              src="/images/logo/logo.webp"
               alt="Logo Resmi SDN Jatipulo 07 Jakarta"
               width={38}
               height={36}

@@ -32,7 +32,7 @@ export default function HeroBanner({
   title,
   subtitle,
   badge,
-  backgroundImage = '/images/hero/gedung-tampak-samping.jpeg',
+  backgroundImage = '/images/hero/gedung-tampak-samping.webp',
   backgroundPosition = 'object-[center_35%]',
   breadcrumbs,
   preserveSpacing = false,

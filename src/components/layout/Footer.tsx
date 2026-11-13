@@ -67,7 +67,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5">
               <div className="relative w-8 h-8 shrink-0 flex items-center justify-center">
                 <Image
-                  src="/images/logo/logo.png"
+                  src="/images/logo/logo.webp"
                   alt="Logo SDN Jatipulo 07 Jakarta"
                   width={34}
                   height={32}

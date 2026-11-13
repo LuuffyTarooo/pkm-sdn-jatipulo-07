@@ -33,7 +33,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
             <div className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] flex flex-col items-center">
               {!imgError ? (
                 <Image
-                  src="/images/kepala-sekolah/kepalasekolah.png"
+                  src="/images/kepala-sekolah/kepalasekolah.webp"
                   alt="Hj. Emma SUSANTY, S.Pd. M.Pd - Kepala Sekolah SDN Jatipulo 07 Jakarta Barat"
                   width={734}
                   height={791}

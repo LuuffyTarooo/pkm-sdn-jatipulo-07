@@ -9,7 +9,7 @@ export const dataFasilitas: Fasilitas[] = [
     id: 'gedung-lima-lantai',
     nama: 'Gedung Lima Lantai',
     kategori: 'Infrastruktur',
-    foto: '/images/fasilitas/gedung-lima-lantai.png',
+    foto: '/images/fasilitas/gedung-lima-lantai.webp',
     deskripsi:
       'Gedung utama sekolah bertingkat lima yang kokoh, modern, dan tertata rapi untuk menunjang seluruh kegiatan pembelajaran dan operasional sekolah.',
     fitur: ['Konstruksi Kokoh', '5 Lantai Terpadu', 'Sirkulasi Nyaman'],
@@ -36,7 +36,7 @@ export const dataFasilitas: Fasilitas[] = [
     id: 'lapangan-multifungsi',
     nama: 'Lapangan Multifungsi',
     kategori: 'Olahraga & Kegiatan',
-    foto: '/images/fasilitas/lapangan-multi-fungsi.jpeg',
+    foto: '/images/fasilitas/lapangan-multi-fungsi.webp',
     deskripsi:
       'Lapangan serbaguna luar ruangan yang luas dan terawat untuk kegiatan upacara bendera, olahraga, senam bersama, serta berbagai kegiatan kesiswaan.',
     fitur: ['Upacara Bendera', 'Sarana Olahraga', 'Kegiatan Luar Ruangan'],
@@ -45,7 +45,7 @@ export const dataFasilitas: Fasilitas[] = [
     id: 'mushola',
     nama: 'Mushola',
     kategori: 'Sarana Ibadah',
-    foto: '/images/fasilitas/mushola.jpg',
+    foto: '/images/fasilitas/mushola.webp',
     deskripsi:
       'Sarana ibadah yang bersih, tenang, dan nyaman yang berlokasi di lantai 1 untuk pelaksanaan sholat berjamaah, tadarus, dan pembinaan karakter religius siswa.',
     fitur: ['Lantai 1', 'Tempat Wudhu Bersih', 'Sholat Berjamaah'],
