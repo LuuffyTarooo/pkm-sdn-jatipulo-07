@@ -164,14 +164,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                   </div>
                 )}
 
-                {/* Badge Kategori */}
-                {item.kategori && (
-                  <div className="absolute top-2.5 left-2.5 z-20">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/45 backdrop-blur-md border border-white/20 text-white/95">
-                      {item.kategori}
-                    </span>
-                  </div>
-                )}
+                
 
                 {/* Scrim bawah untuk keterbacaan teks */}
                 <div
@@ -181,7 +174,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
 
                 {/* Judul & Tanggal */}
                 <div className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-5 z-10">
-                  <h3 className="font-heading font-bold text-white text-sm sm:text-base leading-snug line-clamp-2">
+                  <h3 className="font-heading font-semibold text-white text-[11px] sm:text-xs leading-snug line-clamp-2">
                     {item.judul}
                   </h3>
                   {item.tanggal && (
@@ -275,17 +268,13 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
             <div className="p-4 sm:p-6 bg-neutral-950 text-left space-y-1.5">
               <h2
                 id="lightbox-title"
-                className="font-heading text-base sm:text-lg font-bold text-white leading-snug"
+                className="font-heading text-xs sm:text-sm font-semibold text-white leading-snug"
               >
                 {selectedPhoto.judul}
               </h2>
 
               <div className="flex items-center gap-3">
-                {selectedPhoto.kategori && (
-                  <span className="text-xs font-semibold text-[#7dd3fc]">
-                    {selectedPhoto.kategori}
-                  </span>
-                )}
+                
                 {selectedPhoto.tanggal && (
                   <span className="text-xs text-neutral-500 font-sans">
                     {selectedPhoto.tanggal}
@@ -293,11 +282,7 @@ export default function GaleriGrid({ initialItems }: GaleriGridProps) {
                 )}
               </div>
 
-              {selectedPhoto.deskripsi && (
-                <p className="text-sm text-neutral-300 font-sans leading-relaxed mt-2 max-w-2xl">
-                  {selectedPhoto.deskripsi}
-                </p>
-              )}
+              
             </div>
           </div>
         </div>

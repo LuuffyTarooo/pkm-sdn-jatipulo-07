@@ -33,8 +33,8 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
             <div className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] flex flex-col items-center">
               {!imgError ? (
                 <Image
-                  src="/images/kepala-sekolah/kepalasekolah.webp"
-                  alt="Hj. Emma SUSANTY, S.Pd. M.Pd - Kepala Sekolah SDN Jatipulo 07 Jakarta Barat"
+                  src="/images/kepala-sekolah/emma-susanty.webp"
+                  alt="Hj. Emma Susanty, S.Pd. M.Pd - Kepala Sekolah SDN Jatipulo 07 Jakarta Barat"
                   width={734}
                   height={791}
                   className="w-full h-auto object-contain mx-auto block"
@@ -54,7 +54,7 @@ export default function SambutanKepsek({ className = '', isSubPage = false }: Sa
               {/* Nama & Jabatan Tepat Menempel di Bawah Foto */}
               <div className="text-center mt-3 sm:mt-4">
                 <h3 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl text-[#0f2d4a] leading-tight tracking-tight">
-                  Hj. Emma SUSANTY, S.Pd. M.Pd
+                  Hj. Emma Susanty, S.Pd. M.Pd
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-neutral-600 font-medium mt-1">
                   Kepala Sekolah SDN Jatipulo 07

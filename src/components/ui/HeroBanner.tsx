@@ -139,7 +139,7 @@ export default function HeroBanner({
                 {breadcrumbs.map((item, index) => {
                   const isLast = index === breadcrumbs.length - 1;
                   return (
-                    <li key={item.label} className="inline-flex items-center gap-1.5">
+                    <li key={`${item.label}-${index}`} className="inline-flex items-center gap-1.5">
                       {index > 0 && (
                         <span className="text-[#7dd3fc]/85" aria-hidden="true">
                           /

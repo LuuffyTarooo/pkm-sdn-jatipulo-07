@@ -8,10 +8,10 @@ export const dataGuru: Guru[] = [
   // 1. Pimpinan Sekolah
   {
     id: 'guru-01',
-    nama: 'Hj. Emma SUSANTY, S.Pd. M.Pd',
+    nama: 'Hj. Emma Susanty, S.Pd. M.Pd',
     jabatan: 'Kepala Sekolah',
     kategori: 'pimpinan',
-    foto: '/images/kepala-sekolah/kepalasekolah.webp',
+    foto: '/images/kepala-sekolah/emma-susanty.webp',
     email: 'kepsek@sdnjatipulo07.sch.id',
     kataMutiara:
       'Memimpin dengan Hati, Mendidik dengan Kasih, Menginspirasi untuk Berprestasi',
@@ -28,7 +28,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 1A',
     tugasTambahan: ['Kepala UKS', 'PJ Paduan Suara', 'Pendamping FLS3N'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/ine-anriyanti.webp',
+    foto: '/images/guru/ine-andriyanti.webp',
     kataMutiara:
       'Setiap anak adalah bintang yang bersinar terang pada waktunya masing-masing.',
     urutan: 2,
@@ -70,7 +70,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 2A',
     tugasTambahan: ['Koordinator 7 KAIH'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Terbuka',
-    foto: '/images/guru/jamilah.webp',
+    foto: '/images/guru/jamilah-m.webp',
     kataMutiara:
       'Mendidik dengan keteladanan karakter, kasih sayang, dan keikhlasan budi.',
     urutan: 5,
@@ -126,7 +126,7 @@ export const dataGuru: Guru[] = [
     kelasDiampu: 'Kelas 4A',
     tugasTambahan: ['Kepala Perpustakaan', 'PJ Pencak Silat', 'Pendamping OSN'],
     pendidikanTerakhir: 'S1 PGSD - Universitas Negeri Jakarta',
-    foto: '/images/guru/dewi-cahyu-armania-v2.webp',
+    foto: '/images/guru/dewi_cahyu-armania.webp',
     kataMutiara:
       'Membaca membuka cakrawala dunia, olahraga dan seni melatih ketangguhan mental.',
     urutan: 9,
@@ -198,7 +198,7 @@ export const dataGuru: Guru[] = [
     mataPelajaran: 'Guru PJOK Kelas 1-6',
     tugasTambahan: ['Koordinator O2SN', 'PJ Bulutangkis', 'Tim Dokumentasi'],
     pendidikanTerakhir: 'S1 Pendidikan Jasmani - UNJ',
-    foto: '/images/guru/jepri-handani.webp',
+    foto: '/images/guru/jepry-handani.webp',
     kataMutiara:
       'Di dalam tubuh yang sehat terdapat jiwa yang kuat; sportivitas adalah cermin watak ksatria.',
     urutan: 14,

@@ -90,9 +90,7 @@ export default function GuruCard({ guru, isFeatured = false }: GuruCardProps) {
             width={400}
             height={500}
             sizes="(max-width: 640px) 180px, 200px"
-            className={`max-h-full w-auto h-auto block object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-300 ${
-              guru.nama.includes('Dewi') ? 'max-w-[210px] scale-[1.08] origin-bottom' : 'max-w-[180px]'
-            }`}
+            className="max-h-full w-auto h-auto block object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-300 max-w-[180px]"
             onError={() => setImgError(true)}
           />
         ) : (

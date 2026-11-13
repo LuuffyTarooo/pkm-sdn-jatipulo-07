@@ -81,7 +81,7 @@ export default function GaleriCard({ foto, onSelect, className = '' }: GaleriCar
 
         {/* Info Judul & Tanggal */}
         <div className="absolute bottom-0 inset-x-0 z-20 p-4 sm:p-5 space-y-1 text-left">
-          <h3 className="font-heading font-bold text-white text-sm sm:text-base leading-snug line-clamp-2 drop-shadow-sm group-hover:text-[#bae6fd] transition-colors">
+          <h3 className="font-heading font-semibold text-white text-xs sm:text-sm leading-snug line-clamp-2 drop-shadow-sm group-hover:text-[#bae6fd] transition-colors">
             {foto.judul}
           </h3>
           {foto.tanggal && (

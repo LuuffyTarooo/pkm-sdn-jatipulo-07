@@ -77,6 +77,8 @@ export interface Berita {
   gambarUtama: string;
   tags?: string[];
   isPinned?: boolean;
+  sumber?: string;
+  sumberUrl?: string;
 }
 
 // Tipe untuk Item Foto di Galeri
