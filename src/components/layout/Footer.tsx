@@ -164,9 +164,10 @@ export default function Footer() {
                 <span className="text-[#7dd3fc] font-semibold w-16 shrink-0">Email:</span>
                 <span className="text-white truncate">{dataSekolah.kontak.email}</span>
               </p>
-              <p className="pt-1 text-xs text-neutral-300 leading-relaxed">
-                Jam Pelayanan: Senin–Kamis (06.30–15.00) &bull; Jumat (06.30–14.30 WIB)
-              </p>
+              <div className="pt-1 text-xs text-neutral-300 leading-relaxed">
+                <p>Jam Pelayanan: Senin–Kamis (06.30–15.00)</p>
+                <p>Jumat (06.30–14.30 WIB)</p>
+              </div>
             </div>
           </div>
         </div>
