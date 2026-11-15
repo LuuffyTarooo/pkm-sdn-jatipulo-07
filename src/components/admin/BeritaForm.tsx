@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { compressImage } from '@/lib/image-compressor';
 
 export interface BeritaFormData {
   id?: string;
@@ -61,8 +62,11 @@ export default function BeritaForm({ initialData, isEdit = false }: BeritaFormPr
     setErrorMsg('');
 
     try {
+      // Kompres otomatis foto besar di browser sebelum diunggah
+      const optimizedFile = await compressImage(file, { maxWidth: 1920, maxHeight: 1920, quality: 0.82 });
+
       const uploadData = new FormData();
-      uploadData.append('file', file);
+      uploadData.append('file', optimizedFile);
 
       const res = await fetch('/api/admin/upload', {
         method: 'POST',
@@ -77,7 +81,7 @@ export default function BeritaForm({ initialData, isEdit = false }: BeritaFormPr
 
       setFormData((prev) => ({ ...prev, gambarUtama: json.url }));
     } catch {
-      setErrorMsg('Terjadi kesalahan saat mengunggah file.');
+      setErrorMsg('Terjadi kesalahan saat mengompres atau mengunggah file.');
     } finally {
       setIsUploading(false);
     }
@@ -271,7 +275,7 @@ export default function BeritaForm({ initialData, isEdit = false }: BeritaFormPr
               {/* Input File Upload */}
               <div>
                 <label className="block w-full text-center py-2.5 px-4 rounded-xl border border-dashed border-slate-300 hover:border-[#0f2d4a] hover:bg-slate-50 transition-colors text-xs font-semibold text-[#1d4e78] cursor-pointer">
-                  <span>{isUploading ? 'Mengunggah & Mengoptimasi...' : 'Pilih Foto dari Komputer'}</span>
+                  <span>{isUploading ? 'Mengompres & Mengunggah...' : 'Pilih Foto dari Komputer'}</span>
                   <input
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
@@ -280,6 +284,9 @@ export default function BeritaForm({ initialData, isEdit = false }: BeritaFormPr
                     className="hidden"
                   />
                 </label>
+                <p className="text-[10px] text-slate-400 mt-1 text-center">
+                  ✨ Foto kamera berukuran besar akan otomatis dikompres ke WebP.
+                </p>
               </div>
 
               {/* Atau Input URL Manual */}

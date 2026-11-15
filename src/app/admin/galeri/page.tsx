@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
 import { FotoGaleri } from '@/types';
+import { compressImages } from '@/lib/image-compressor';
 
 export default function AdminGaleriPage() {
   const [items, setItems] = useState<FotoGaleri[]>([]);
@@ -57,9 +58,16 @@ export default function AdminGaleriPage() {
     setUploading(true);
 
     try {
+      // Kompres otomatis seluruh foto berukuran besar secara paralel di browser
+      const optimizedFiles = await compressImages(selectedFiles, {
+        maxWidth: 1920,
+        maxHeight: 1920,
+        quality: 0.82,
+      });
+
       const uploadData = new FormData();
-      for (let i = 0; i < selectedFiles.length; i++) {
-        uploadData.append('files', selectedFiles[i]);
+      for (const file of optimizedFiles) {
+        uploadData.append('files', file);
       }
 
       // 1. Upload file ke server
@@ -321,6 +329,10 @@ export default function AdminGaleriPage() {
                     {selectedFiles.length} file dipilih.
                   </p>
                 )}
+                <p className="text-[11px] text-sky-800 bg-sky-50 border border-sky-200/70 p-2.5 rounded-xl mt-2 flex items-center gap-1.5">
+                  <span className="text-sm">⚡</span>
+                  <span><strong>Kompresi Otomatis:</strong> Foto kamera berukuran besar (10–25 MB) otomatis diperkecil ke WebP resolusi web tanpa kehilangan ketajaman gambar.</span>
+                </p>
               </div>
 
               <div>
@@ -378,7 +390,7 @@ export default function AdminGaleriPage() {
                   disabled={uploading}
                   className="px-5 py-2.5 rounded-xl bg-[#0f2d4a] hover:bg-[#163d63] text-white text-xs font-bold shadow-md cursor-pointer disabled:opacity-50"
                 >
-                  {uploading ? 'Mengunggah...' : 'Unggah Sekarang'}
+                  {uploading ? 'Mengompres & Mengunggah...' : 'Unggah Sekarang'}
                 </button>
               </div>
             </form>

@@ -8,6 +8,9 @@ if (!fs.existsSync(UPLOAD_DIR)) {
   fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
 
+// Batas ukuran file 25 MB per foto untuk menampung resolusi tinggi dari kamera guru
+const MAX_FILE_SIZE = 25 * 1024 * 1024;
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getSessionUser();
@@ -30,10 +33,10 @@ export async function POST(request: NextRequest) {
     const uploadedUrls: string[] = [];
 
     for (const file of files) {
-      // 1. Validasi Ukuran (Max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
+      // 1. Validasi Ukuran (Max 25MB)
+      if (file.size > MAX_FILE_SIZE) {
         return NextResponse.json(
-          { success: false, error: `File ${file.name} melebihi ukuran batas maksimum (5 MB).` },
+          { success: false, error: `File ${file.name} melebihi batas maksimum (25 MB).` },
           { status: 400 }
         );
       }
@@ -56,17 +59,27 @@ export async function POST(request: NextRequest) {
         .replace(/[^a-z0-9_-]/g, '-');
       const uniqueSuffix = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-      // Coba optimasi via sharp ke WebP, atau fallback simpan langsung buffer file
+      // Kompres otomatis: resize proporsional ke max 1920px & konversi ke WebP 80% quality
       let savedUrl = '';
       try {
         const sharp = (await import('sharp')).default;
         const fileName = `${cleanBaseName}-${uniqueSuffix}.webp`;
         const filePath = path.join(UPLOAD_DIR, fileName);
+
         await sharp(buffer)
-          .webp({ quality: 82, effort: 5 })
+          .rotate() // Otomatis koreksi rotasi orientasi EXIF kamera HP
+          .resize({
+            width: 1920,
+            height: 1920,
+            fit: 'inside',
+            withoutEnlargement: true,
+          })
+          .webp({ quality: 80, effort: 4 })
           .toFile(filePath);
+
         savedUrl = `/images/uploads/${fileName}`;
-      } catch {
+      } catch (err) {
+        console.warn('Sharp kompresi gagal, menyimpan buffer file langsung:', err);
         const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
         const fileName = `${cleanBaseName}-${uniqueSuffix}.${ext}`;
         const filePath = path.join(UPLOAD_DIR, fileName);
