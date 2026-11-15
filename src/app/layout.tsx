@@ -1,24 +1,7 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Montserrat } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import SocialSidebar from '@/components/ui/SocialSidebar';
+import PublicLayoutWrapper from '@/components/layout/PublicLayoutWrapper';
 import { siteConfig } from '@/lib/site';
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
-  weight: ['400', '500', '600', '700'],
-});
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-heading',
-  weight: ['600', '700', '800', '900'],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -75,12 +58,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${montserrat.variable}`}>
+    <html lang="id">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#f8fafc] text-neutral-900 antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <SocialSidebar />
-        <Footer />
+        <PublicLayoutWrapper>{children}</PublicLayoutWrapper>
       </body>
     </html>
   );

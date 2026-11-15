@@ -14,7 +14,7 @@ export default function Footer() {
   const currentYear = 2026;
 
   const getSocialUrl = (platform: string, fallback: string) => {
-    const found = dataSekolah.mediaSosial.find((m) => m.platform === platform);
+    const found = dataSekolah.mediaSosial?.find((m) => m.platform === platform);
     return found ? found.url : fallback;
   };
 

@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
 import HeroBanner from '@/components/ui/HeroBanner';
-import { dataBerita } from '@/data/berita';
+import { dataBerita as fallbackBerita } from '@/data/berita';
+import { getAllBerita } from '@/lib/db';
 import BeritaDirectory from '@/components/sections/BeritaDirectory';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Berita, Pengumuman & Agenda',
@@ -12,6 +15,16 @@ export const metadata: Metadata = {
  * Halaman Daftar Berita (/berita)
  */
 export default function BeritaPage() {
+  let beritaList = fallbackBerita;
+  try {
+    const fromDb = getAllBerita(false);
+    if (fromDb && fromDb.length > 0) {
+      beritaList = fromDb;
+    }
+  } catch (e) {
+    console.error('Error fetching berita from DB:', e);
+  }
+
   return (
     <div className="berita-page bg-[#f8fafc] min-h-screen pb-20">
       <HeroBanner
@@ -20,7 +33,7 @@ export default function BeritaPage() {
         preserveSpacing={true}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-10 sm:pt-14">
-        <BeritaDirectory initialBerita={dataBerita} />
+        <BeritaDirectory initialBerita={beritaList} />
       </div>
     </div>
   );

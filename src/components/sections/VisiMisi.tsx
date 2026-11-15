@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { dataSekolah } from '@/data/sekolah';
+import { dataSekolah as fallbackSekolah } from '@/data/sekolah';
+import { getProfilSekolah } from '@/lib/db';
 import AnimateIn from '@/components/ui/AnimateIn';
 import StaggerChildren from '@/components/ui/StaggerChildren';
 
@@ -14,6 +15,16 @@ interface VisiMisiProps {
  * Disusun sebagai 1 seksi penuh (full 1 section) di Beranda.
  */
 export default function VisiMisi({ className = '', isSubPage = false }: VisiMisiProps = {}) {
+  let dataSekolah = fallbackSekolah;
+  try {
+    const fromDb = getProfilSekolah();
+    if (fromDb && fromDb.visi) {
+      dataSekolah = fromDb;
+    }
+  } catch {
+    // fallback to static
+  }
+
   return (
     <section
       id="visi-misi"
@@ -114,7 +125,7 @@ export default function VisiMisi({ className = '', isSubPage = false }: VisiMisi
               </p>
             </div>
 
-            {/* Daftar Butir Misi (1 s.d. 6) */}
+            {/* Daftar Butir Misi */}
             <div className="relative flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-3">
               <div
                 className="absolute left-[13px] sm:left-[15px] top-3 bottom-5 w-[2px] bg-[#bfdbfe] pointer-events-none"

@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { dataBerita } from '@/data/berita';
+import { dataBerita as fallbackBerita } from '@/data/berita';
+import { getAllBerita, getBeritaBySlug } from '@/lib/db';
 import { formatTanggal } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 import HeroBanner from '@/components/ui/HeroBanner';
 import BeritaCoverImage from '@/components/ui/BeritaCoverImage';
-import AnimateIn from '@/components/ui/AnimateIn';
+
+export const dynamic = 'force-dynamic';
 
 interface DetailBeritaPageProps {
   params: Promise<{
@@ -18,15 +20,33 @@ interface DetailBeritaPageProps {
  * Prerender daftar slug artikel berita statis (kompatibel dengan Next.js 16 Cache Components)
  */
 export function generateStaticParams() {
-  // Pada mode static export (output: 'export'), route dinamis [slug] mewajibkan
-  // generateStaticParams menghasilkan minimal 1 parameter. Jika data berita belum tersedia,
-  // gunakan placeholder agar build pipeline tidak gagal (saat diakses akan diarahkan ke 404).
-  if (dataBerita.length === 0) {
+  try {
+    const list = getAllBerita(false);
+    if (list && list.length > 0) {
+      return list.map((b) => ({ slug: b.slug }));
+    }
+  } catch {
+    // fallback
+  }
+
+  if (fallbackBerita.length === 0) {
     return [{ slug: '_placeholder' }];
   }
-  return dataBerita.map((berita) => ({
+  return fallbackBerita.map((berita) => ({
     slug: berita.slug,
   }));
+}
+
+function findArtikel(slug: string) {
+  try {
+    const fromDb = getBeritaBySlug(slug);
+    if (fromDb && fromDb.status === 'published') {
+      return fromDb;
+    }
+  } catch {
+    // fallback
+  }
+  return fallbackBerita.find((b) => b.slug === slug);
 }
 
 /**
@@ -36,7 +56,7 @@ export async function generateMetadata({
   params,
 }: DetailBeritaPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const artikel = dataBerita.find((b) => b.slug === slug);
+  const artikel = findArtikel(slug);
 
   if (!artikel) {
     return {
@@ -75,7 +95,7 @@ function parseParagraphs(rawContent: string): string[] {
  */
 export default async function DetailBeritaPage({ params }: DetailBeritaPageProps) {
   const { slug } = await params;
-  const artikel = dataBerita.find((b) => b.slug === slug);
+  const artikel = findArtikel(slug);
 
   if (!artikel) {
     notFound();

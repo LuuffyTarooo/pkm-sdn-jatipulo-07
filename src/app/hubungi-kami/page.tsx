@@ -1,9 +1,12 @@
 import { Metadata } from 'next';
 import HeroBanner from '@/components/ui/HeroBanner';
-import { dataSekolah } from '@/data/sekolah';
+import { dataSekolah as fallbackSekolah } from '@/data/sekolah';
+import { getProfilSekolah } from '@/lib/db';
 import MapEmbed from '@/components/ui/MapEmbed';
 import AnimateIn from '@/components/ui/AnimateIn';
 import StaggerChildren from '@/components/ui/StaggerChildren';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Hubungi Kami | SDN Jatipulo 07 Jakarta',
@@ -21,6 +24,16 @@ export const metadata: Metadata = {
  * - Tautan media sosial resmi
  */
 export default function HubungiKamiPage() {
+  let dataSekolah = fallbackSekolah;
+  try {
+    const fromDb = getProfilSekolah();
+    if (fromDb && fromDb.kontak) {
+      dataSekolah = fromDb;
+    }
+  } catch {
+    // fallback
+  }
+
   const wa1Clean = dataSekolah.kontak.whatsapp?.replace(/\D/g, '') || '';
   const wa1Url = `https://wa.me/62${wa1Clean.replace(/^0/, '')}?text=Halo%20Admin%20SDN%20Jatipulo%2007...`;
   const wa2Clean = dataSekolah.kontak.whatsapp2?.replace(/\D/g, '') || '';
@@ -197,7 +210,6 @@ export default function HubungiKamiPage() {
               <p className="font-sans text-sm sm:text-base font-medium text-slate-900 leading-relaxed">
                 {dataSekolah.identitas.alamat}, Kel. {dataSekolah.identitas.kelurahan}, Kec. {dataSekolah.identitas.kecamatan}, {dataSekolah.identitas.kota} {dataSekolah.identitas.kodePos}
               </p>
-
               <a
                 href="https://maps.google.com/?q=SDN+Jatipulo+07+Pagi"
                 target="_blank"

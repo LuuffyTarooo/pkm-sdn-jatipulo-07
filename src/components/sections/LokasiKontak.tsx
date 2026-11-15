@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { dataSekolah } from '@/data/sekolah';
+import { dataSekolah as fallbackSekolah } from '@/data/sekolah';
+import { getProfilSekolah } from '@/lib/db';
 import MapEmbed from '@/components/ui/MapEmbed';
 
 /**
@@ -11,6 +12,16 @@ import MapEmbed from '@/components/ui/MapEmbed';
  * - Peta interaktif full-bleed di panel kanan tanpa header ganda
  */
 export default function LokasiKontak() {
+  let dataSekolah = fallbackSekolah;
+  try {
+    const fromDb = getProfilSekolah();
+    if (fromDb && fromDb.kontak) {
+      dataSekolah = fromDb;
+    }
+  } catch {
+    // fallback
+  }
+
   const whatsappNumber = dataSekolah.kontak.whatsapp?.replace(/\D/g, '') || '';
   const whatsappLink = `https://wa.me/62${whatsappNumber.replace(/^0/, '')}?text=Halo%20Admin%20SDN%20Jatipulo%2007,%20saya%20ingin%20bertanya%20mengenai...`;
 
@@ -145,10 +156,22 @@ export default function LokasiKontak() {
                     <span>Pelayanan TU</span>
                   </span>
                   <span className="font-semibold text-neutral-800 sm:text-right text-xs leading-relaxed">
-                    Senin–Kamis 06.30–15.00 WIB
-                    <br className="hidden sm:inline" />
-                    <span className="sm:hidden"> &bull; </span>
-                    Jumat 06.30–14.30 WIB
+                    {dataSekolah.jamKerja && dataSekolah.jamKerja.length > 0 ? (
+                      dataSekolah.jamKerja.map((jk, idx) => (
+                        <React.Fragment key={idx}>
+                          {idx > 0 && <span className="sm:hidden"> &bull; </span>}
+                          {idx > 0 && <br className="hidden sm:inline" />}
+                          {jk.hari} {jk.jam}
+                        </React.Fragment>
+                      ))
+                    ) : (
+                      <>
+                        Senin–Kamis 06.30–15.00 WIB
+                        <br className="hidden sm:inline" />
+                        <span className="sm:hidden"> &bull; </span>
+                        Jumat 06.30–14.30 WIB
+                      </>
+                    )}
                   </span>
                 </div>
               </div>

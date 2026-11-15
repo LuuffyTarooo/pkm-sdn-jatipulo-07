@@ -29,6 +29,7 @@ const basePath = isGithubPages ? process.env.NEXT_PUBLIC_BASE_PATH ?? "" : "";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  serverExternalPackages: ['sharp'],
   cacheComponents: false,
   partialPrefetching: false,
   allowedDevOrigins: getLocalDevOrigins(),

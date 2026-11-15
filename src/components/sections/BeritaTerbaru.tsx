@@ -3,19 +3,26 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { dataBerita } from '@/data/berita';
+import { dataBerita as fallbackBerita } from '@/data/berita';
+import { Berita } from '@/types';
 import { formatTanggal } from '@/lib/utils';
 import AnimateIn from '@/components/ui/AnimateIn';
 import StaggerChildren from '@/components/ui/StaggerChildren';
 
 type KategoriTab = 'Semua' | 'Berita' | 'Pengumuman' | 'Agenda';
 
+interface BeritaTerbaruProps {
+  initialBerita?: Berita[];
+}
+
 /**
  * Komponen Seksi Berita & Pengumuman di Beranda
  */
-export default function BeritaTerbaru() {
+export default function BeritaTerbaru({ initialBerita }: BeritaTerbaruProps = {}) {
   const [activeTab, setActiveTab] = useState<KategoriTab>('Semua');
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const sourceBerita = initialBerita && initialBerita.length > 0 ? initialBerita : fallbackBerita;
 
   const handleImgError = (id: string) => {
     setImgErrors((prev) => ({ ...prev, [id]: true }));
@@ -24,8 +31,8 @@ export default function BeritaTerbaru() {
   // Filter berita sesuai tab yang dipilih
   const filteredBerita =
     activeTab === 'Semua'
-      ? dataBerita
-      : dataBerita.filter((b) => b.kategori === activeTab);
+      ? sourceBerita
+      : sourceBerita.filter((b) => b.kategori === activeTab);
 
   const tabs: KategoriTab[] = ['Semua', 'Berita', 'Pengumuman', 'Agenda'];
 
