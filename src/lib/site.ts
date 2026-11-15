@@ -11,7 +11,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://sdnjatipulo07.sch.id',
   ogImage: '/images/hero/hero-og.jpg',
   links: {
-    portalArchiva: '/archiva/login',
+    portalArchiva: 'https://portal.sdnegerijatipulo07.sch.id/login',
   },
   keywords: [
     'SDN Jatipulo 07',

@@ -243,7 +243,7 @@ export default function MobileMenu({ isLightMode = false }: MobileMenuProps) {
               {/* Tombol CTA Archiva di Menu Mobile */}
               <div className="pt-6 pb-4">
                 <Link
-                  href="/archiva/login"
+                  href="https://portal.sdnegerijatipulo07.sch.id/login"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenu}

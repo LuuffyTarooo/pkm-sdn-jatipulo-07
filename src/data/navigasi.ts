@@ -55,7 +55,7 @@ export const menuNavigasi: MenuNavigasi[] = [
   },
   {
     label: 'Portal Archiva',
-    href: '/archiva/login',
+    href: 'https://portal.sdnegerijatipulo07.sch.id/login',
     isCta: true,
     isExternal: true,
   },
