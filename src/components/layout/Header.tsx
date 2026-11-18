@@ -95,16 +95,16 @@ function HeaderNav() {
   const isKesiswaanActive = pathname.startsWith('/kesiswaan');
 
   const navLinkClass = (href: string) =>
-    `relative py-1.5 px-2 xl:px-3.5 2xl:px-4 text-xs xl:text-[13.5px] 2xl:text-sm font-medium tracking-wide transition-all duration-200 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
+    `relative py-1.5 px-2 xl:px-3 2xl:px-3.5 text-xs xl:text-[13.5px] 2xl:text-sm font-medium tracking-wide transition-all duration-200 rounded-lg whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
       isLinkActive(href)
-        ? "text-white font-semibold after:content-[''] after:absolute after:bottom-0.5 after:left-2 after:right-2 xl:after:left-3.5 xl:after:right-3.5 after:h-[2px] after:bg-[#7dd3fc] after:rounded-full"
+        ? "text-white font-semibold after:content-[''] after:absolute after:bottom-0.5 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-[2px] after:bg-[#7dd3fc] after:rounded-full"
         : 'text-white/80 hover:text-white hover:bg-white/10'
     }`;
 
   return (
     <header
       style={{ viewTransitionName: 'site-header' }}
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-[height] duration-300 flex items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-[height] duration-300 flex items-center px-4 sm:px-6 md:px-8 lg:px-6 xl:px-12 2xl:px-16 ${
         isTransparent ? 'h-[76px] sm:h-[88px]' : 'h-[68px] sm:h-[76px]'
       }`}
     >
@@ -121,11 +121,11 @@ function HeaderNav() {
         }`}
       />
 
-      <div className="relative z-10 w-full max-w-[1480px] mx-auto flex items-center justify-between gap-3 lg:gap-6 xl:gap-8 min-w-0">
+      <div className="relative z-10 w-full max-w-[1480px] mx-auto flex items-center justify-between gap-2 lg:gap-3 xl:gap-8 min-w-0">
         {/* Kiri: Logo dan Nama Sekolah */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] rounded-xl py-1 pr-1"
+          className="flex items-center gap-2 sm:gap-3 shrink-0 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] rounded-xl py-1 pr-1 whitespace-nowrap"
         >
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 shrink-0 transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
             <Image
@@ -138,14 +138,14 @@ function HeaderNav() {
             />
           </div>
 
-          <span className="font-heading font-bold tracking-tight text-sm sm:text-base lg:text-[15px] xl:text-lg text-white group-hover:text-[#bae6fd] transition-colors duration-200 whitespace-nowrap">
+          <span className="font-heading font-bold tracking-tight text-sm sm:text-base lg:text-[14.5px] xl:text-lg text-white group-hover:text-[#bae6fd] transition-colors duration-200 whitespace-nowrap">
             SDN Jatipulo 07 Jakarta
           </span>
         </Link>
 
         {/* Tengah: Navigasi Desktop (Mulai dari layar laptop/tablet landscape lg: 1024px+) */}
         <nav
-          className="hidden lg:flex items-center justify-center gap-1 xl:gap-2.5 2xl:gap-4 font-medium"
+          className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-2 2xl:gap-3.5 font-medium whitespace-nowrap shrink-0"
           aria-label="Navigasi Utama"
         >
           <Link href="/" className={navLinkClass('/')}>
@@ -157,7 +157,7 @@ function HeaderNav() {
           </Link>
 
           <Link href="/guru-dan-staf" className={navLinkClass('/guru-dan-staf')}>
-            Guru &amp; Staf
+            Guru&nbsp;&amp;&nbsp;Staf
           </Link>
 
           <Link href="/sarana-prasarana" className={navLinkClass('/sarana-prasarana')}>
@@ -174,9 +174,9 @@ function HeaderNav() {
             <button
               type="button"
               onClick={() => setIsKesiswaanOpen((prev) => !prev)}
-              className={`relative flex items-center gap-1.5 transition-all duration-200 py-1.5 px-2 xl:px-3.5 2xl:px-4 text-xs xl:text-[13.5px] 2xl:text-sm font-medium tracking-wide rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
+              className={`relative flex items-center gap-1.5 transition-all duration-200 py-1.5 px-2 xl:px-3 2xl:px-3.5 text-xs xl:text-[13.5px] 2xl:text-sm font-medium tracking-wide rounded-lg whitespace-nowrap shrink-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] ${
                 isKesiswaanActive
-                  ? "text-white font-semibold after:content-[''] after:absolute after:bottom-0.5 after:left-2 after:right-2 xl:after:left-3.5 xl:after:right-3.5 after:h-[2px] after:bg-[#7dd3fc] after:rounded-full"
+                  ? "text-white font-semibold after:content-[''] after:absolute after:bottom-0.5 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-[2px] after:bg-[#7dd3fc] after:rounded-full"
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
               aria-haspopup="menu"
@@ -271,7 +271,7 @@ function HeaderNav() {
             href="https://portal.sdnegerijatipulo07.sch.id/login"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden sm:inline-flex items-center gap-2 text-xs xl:text-sm font-medium px-4 py-2 xl:px-5 xl:py-2.5 rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white shadow-xs ${
+            className={`hidden sm:inline-flex items-center gap-2 text-xs xl:text-sm font-medium px-4 py-2 xl:px-5 xl:py-2.5 rounded-full whitespace-nowrap shrink-0 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38bdf8] text-white shadow-xs ${
               isTransparent
                 ? 'bg-white/15 hover:bg-white/25 border border-white/35 hover:border-white/50'
                 : 'bg-[#163d63] hover:bg-[#1d4e78] border border-[#7dd3fc]/35 hover:border-[#7dd3fc]/60'
@@ -310,7 +310,7 @@ function HeaderNav() {
 function HeaderFallback() {
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 w-full h-[68px] sm:h-[76px] flex items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16"
+      className="fixed top-0 left-0 right-0 z-50 w-full h-[68px] sm:h-[76px] flex items-center px-4 sm:px-6 md:px-8 lg:px-6 xl:px-12 2xl:px-16"
       style={{ viewTransitionName: 'site-header' }}
     >
       <div
@@ -318,8 +318,8 @@ function HeaderFallback() {
         data-ui="sticky-nav-backdrop"
         className="absolute inset-0 z-0 pointer-events-none bg-[#0b182a]" /* taste-skill-ignore: SSR nav fallback */
       />
-      <div className="relative z-10 w-full max-w-[1480px] mx-auto flex items-center justify-between gap-3 lg:gap-6 xl:gap-8 min-w-0">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+      <div className="relative z-10 w-full max-w-[1480px] mx-auto flex items-center justify-between gap-2 lg:gap-3 xl:gap-8 min-w-0">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
           <div className="relative w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 shrink-0 flex items-center justify-center">
             <Image
               src="/images/logo/logo.webp"
@@ -330,7 +330,7 @@ function HeaderFallback() {
               loading="eager"
             />
           </div>
-          <span className="font-heading font-bold text-white tracking-tight text-sm sm:text-base lg:text-[15px] xl:text-lg truncate">
+          <span className="font-heading font-bold text-white tracking-tight text-sm sm:text-base lg:text-[14.5px] xl:text-lg truncate whitespace-nowrap">
             SDN Jatipulo 07 Jakarta
           </span>
         </Link>
